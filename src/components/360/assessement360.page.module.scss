@@ -1,0 +1,25 @@
+.page {
+    display: inline;
+    
+    .title {
+        padding-top: 45px;
+        text-align: center;
+    }
+
+    .assessement {
+        display: flex;
+        padding-top: 45px;
+        .description {
+            width: 40%;
+            padding-left: 30px;
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+        .survey {
+            padding-left: 60px;
+        }
+    }
+}
