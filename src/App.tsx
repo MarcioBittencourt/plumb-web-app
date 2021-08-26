@@ -1,24 +1,26 @@
+import Navigation from './components/navigation/navigation';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Assessement360Page from './components/360/assessement360.page';
+import DISCPage from './components/disc/DISC.page';
+import { Route, Switch } from 'react-router-dom';
+import APPOPage from './components/appo/APPO.page';
+import Nav from './components/navigation/navigation';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <title>Plumb</title>
+        <Navigation />
       </header>
+      <main>
+        <Switch>
+          <Route path="/disc" component={DISCPage} />
+          <Route path="/360" component={Assessement360Page} />
+          <Route path="/appo" component={APPOPage} />
+        </Switch>
+      </main>
+      <footer></footer>
     </div>
   );
 }
