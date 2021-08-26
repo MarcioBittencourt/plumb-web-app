@@ -1,0 +1,70 @@
+.form {
+    padding-top: 50px;
+}
+
+.scores {
+    display: flex;
+
+    .scoreTable {
+        display: flex;
+        padding: 5px 15px;
+        width: 25%;
+        border-radius: 15px;
+        border: 2px solid #000000;
+        align-items: center;
+
+        .profileNames {
+            width: 80%;
+        }
+
+        .scoresValue div {
+            width: 20%;
+            margin-left: 10px;
+        }
+    }
+
+    .profile {
+        width: 50%;
+        border: 2px solid #000000;
+        border-radius: 15px;
+        background-color: whitesmoke;
+
+        &[data-profile = "dominant"] {
+            background-color: rgb(235, 11, 11);
+        }
+
+        &[data-profile = "influence"] {
+            background-color: rgb(206, 206, 14);
+        }
+        
+        &[data-profile = "steadiness"] {
+            background-color: rgb(12, 12, 197);
+        }
+
+        &[data-profile = "compliance"] {
+            background-color: rgb(5, 131, 5);
+        }
+
+        .profileTitle {
+            font-size: 50px;
+            font-weight: 800;
+            
+            h2 {
+                margin: 5px;
+                text-transform: uppercase;
+            }
+        }
+
+        .profileDetails {
+            h4 {
+                text-transform: capitalize;
+            }
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

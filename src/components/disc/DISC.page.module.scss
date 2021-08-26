@@ -1,0 +1,16 @@
+.page {
+    display: flex;
+    margin: 20px 5px 20px 5px;
+
+    .instructions {
+        width: 35%;
+        padding-left: 20px;
+        margin: 30px 25px;
+        height: 250px;
+    }
+
+    .webform {
+        width: 55%;
+    }
+}
+

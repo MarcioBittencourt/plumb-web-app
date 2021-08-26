@@ -1,0 +1,28 @@
+{ 
+    "askings": [ 
+        {"options": ["Bondoso", "Persuasivo", "Modesto", "Original"]},
+        {"options": ["Envolvente", "Cooperativo", "Teimoso", "Afetuoso"]},
+        {"options": ["Conformado", "Pioneiro", "Leal", "Animado"]},
+        {"options": ["Aberto", "Prestativo", "Determinado", "Alegre"]},
+        {"options": ["Bem-humorado", "Detalhista", "Ousado", "Equilibrado"]},
+        {"options": ["Competitivo", "Atencioso", "Feliz", "Harmonioso"]},
+        {"options": ["Preciso", "Obediente", "Dominante", "Divertido"]},
+        {"options": ["Destemido", "Inspirador", "Submisso", "Timido"]},
+        {"options": ["Sociavel", "Tolerante", "Autoconfiante", "Contido"]},
+        {"options": ["Arrojado", "Receptivel", "Amigavel", "Moderado"]},
+        {"options": ["Comunicativo", "Reservado", "Convencional", "Decidido"]},
+        {"options": ["Polido", "Audacioso", "Diplomatico", "Satisfeito"]},
+        {"options": ["Firme", "Carismatico", "Acolhedor", "Receoso"]},
+        {"options": ["Cuidadoso", "Resoluto", "Influente", "Bom temperamento"]},
+        {"options": ["Solidario", "Entusiasmado", "Conciliador", "Dinamico"]},
+        {"options": ["Otimista", "Compreensivo", "Paciente", "Exigente"]},
+        {"options": ["Disciplinado", "Generoso", "Convincente", "Ambicioso"]},
+        {"options": ["Admiravel", "Amavel", "Resignado", "Energico"]},
+        {"options": ["Cortes", "Inovador", "Confiante", "Condescendente"]},
+        {"options": ["Agressivo", "Adaptavel", "Tranquilo", "Descontraido"]},
+        {"options": ["Credulo", "Sereno", "Positivo", "Pacifico"]},
+        {"options": ["Agradavel", "Culto", "Vigoroso", "Complacente"]},
+        {"options": ["Bom companheiro", "Exato", "Franco", "Cauteloso"]},
+        {"options": ["Impaciente", "Bom vizinho", "Popular", "Metodico"]}
+    ]
+}
