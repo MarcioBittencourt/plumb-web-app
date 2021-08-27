@@ -4,17 +4,23 @@ import Style from './survey.module.scss'
 type Props = {
     askings: {
         category: string,
-        utterances: string[],
-        options: string[]
+        utterances: any[],
     }[];
 }
+
+function showTab() {
+}
+
 const Survey = ({ askings }: Props) => {
     return (
         <div className={Style.survey}>
             <form>
                 {askings.map((ask) => {
                     return (
-                        <Ask category={ask.category} utterances={ask.utterances} answers={ask.options}/>
+                        <div className={Style.title}>
+                            <h2>{ask.category}</h2>
+                            <Ask category={ask.category} utterances={ask.utterances}/>
+                        </div>
                     )
                 })}
                 <div>

@@ -1,0 +1,43 @@
+{
+    "askings": [
+        {
+            "category": "Responsabilidades", 
+            "utterances": [
+                {
+                    "title": "Cumpre prazos estabelecidos com outras equipes/funcionários?", 
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                },
+                {
+                    "title": "Faz entregas com qualidade para a empresa?",
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                }
+            ]
+        },
+        {
+            "category": "Comunicação", 
+            "utterances": [
+                {
+                    "title": "Consegue se comunicar de forma assertiva diante de conflitos?",
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                },
+                {
+                    "title": "Comunica-se de forma transparente, sem omitir informações?",
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                }
+            ]
+        },
+        {
+            "category": "Trabalho em equipe", 
+            "utterances": [
+                {
+                    "title": "É cooperativo e consegue ouvir diferentes opiniões abertamente?",
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                },
+                {
+                    "title": "Sabe o momento de ceder e defender pontos de vista para tomar a melhor decisão para a equipe?",
+                    "options": ["Nunca", "Algumas vezes", "Sempre"]
+                }
+            ]
+        }
+    ]
+}
