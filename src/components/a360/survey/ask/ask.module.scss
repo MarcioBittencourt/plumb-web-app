@@ -1,0 +1,27 @@
+.ask {
+    margin-bottom: 24px;
+}
+
+.title {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+
+    .option {
+        margin-right: 15px;
+        
+        .form-check-input:checked {
+            all: unset;
+            background-color: red !important;
+            border-color: red !important;
+        }
+    }
+
+    label {
+        margin-left: 5px;
+    }
+}

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Profile } from '../form/survey';
+import { Profile } from '..';
 import Style from './ask.module.scss'
 
 type Props = {

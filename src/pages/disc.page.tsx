@@ -1,6 +1,6 @@
-import DISCData from '../../assets/disc.json'
-import Survey from './form/survey'
-import Style from './DISC.page.module.scss'
+import DISCData from '../assets/disc.json'
+import Survey from '../components/disc/survey';
+import Style from './disc.page.module.scss'
 
 const DISCPage = () => {
     return (

@@ -1,10 +1,9 @@
-import Navigation from './components/navigation/navigation';
-import React from 'react';
-import Assessement360Page from './components/360/assessement360.page';
-import DISCPage from './components/disc/DISC.page';
+import Navigation from './components/navigation';
+import Assessement360Page from './pages/a360.page';
+import DISCPage from './pages/disc.page';
 import { Route, Switch } from 'react-router-dom';
-import APPOPage from './components/appo/APPO.page';
-import Nav from './components/navigation/navigation';
+import APPOPage from './components/appo/appo.page';
+
 
 function App() {
   return (

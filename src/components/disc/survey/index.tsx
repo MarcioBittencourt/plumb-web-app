@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Ask from '../ask/ask'
+import Ask from './ask'
 import Style from './survey.module.scss'
 
 type Props = {
