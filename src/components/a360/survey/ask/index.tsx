@@ -3,11 +3,16 @@ import Style from './ask.module.scss'
 type Props = {
     category: string,
     title: string,
-    options: string[]
+    options: string[],
+    checked?: string
 };
 
-const Ask = ({ category, title, options }: Props) => {
+
+
+const Ask = ({ category, title, options, checked }: Props) => {
+
     const uid = Math.floor(Math.random() * 100);
+
     return (
         <div className={Style.ask}>
             <p className={Style.title}>{title}</p>
@@ -15,8 +20,8 @@ const Ask = ({ category, title, options }: Props) => {
                     {options.map((answer, index) => {
                         return (
                             <div className={Style.option}>
-                                <input className="form-check-input" id={answer} type="radio" name={`options-${uid}`} value={answer} />
-                                <label htmlFor={answer}>{answer}</label>
+                                <input className="form-check-input" id={`answer-${uid}-option-${index}`} type="radio" checked={answer === checked} name={`options-${uid}`} value={answer} />
+                                <label htmlFor={`answer-${uid}-option-${index}`}>{answer}</label>
                             </div>
                         )
                     })
