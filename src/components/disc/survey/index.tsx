@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import Ask from './ask'
 import Style from './survey.module.scss'
 
@@ -26,7 +27,7 @@ const Survey = ({ askings }: Props) => {
 
     const profileResult = () => {
         const profiles = [profile.dominant, profile.influence, profile.steadiness, profile.compliance]
-        let profileAux: any = {profile: "", scoreMore: 0, scoreLess: 0};
+        let profileAux: any = { profile: "", scoreMore: 0, scoreLess: 0 };
         profiles.forEach((profile: any) => {
             if (profile.scoreMore > profileAux.scoreMore) {
                 profileAux = profile;
@@ -41,13 +42,16 @@ const Survey = ({ askings }: Props) => {
 
     return (
         <div>
-            <form className={Style.form}>
+            <Container className={Style.form}>
+                <Row className={Style.pageSectionHeader}>
+                    <Col><h3>DISC</h3></Col>
+                </Row>
                 {askings.map((ask) => {
                     return (
-                        <Ask utterance={ask.options} profile={profile} onChangeProfile={handleProfile}/>
+                        <Ask utterance={ask.options} profile={profile} onChangeProfile={handleProfile} />
                     )
                 })}
-            </form>
+            </Container>
             <div id="scores" className={Style.scores}>
                 <div id="scoreMore" className={Style.scoreTable}>
                     <div className={Style.profileNames}>
@@ -76,10 +80,10 @@ const Survey = ({ askings }: Props) => {
                         <div><p>{profile.influence.scoreLess}</p></div>
                         <div><p>{profile.steadiness.scoreLess}</p></div>
                     </div>
-                </div> 
+                </div>
                 <div data-profile={profileResult().profile} className={Style.profile}>
                     <div className={Style.profileTitle}>
-                        <h2>{profileResult().profile.substring(0,1)}</h2>
+                        <h2>{profileResult().profile.substring(0, 1)}</h2>
                     </div>
                     <div className={Style.profileDetails}>
                         <h4>{profileResult().profile}</h4>

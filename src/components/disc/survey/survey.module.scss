@@ -1,5 +1,16 @@
 .form {
-    padding-top: 50px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.pageSectionHeader {
+    background-color: #f9683a;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    h3 {
+        margin: 0;
+    }
 }
 
 .scores {

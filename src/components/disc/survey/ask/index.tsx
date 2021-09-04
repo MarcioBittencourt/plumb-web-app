@@ -1,4 +1,6 @@
 import { useRef } from 'react'
+import { Col, Container, Row } from 'react-bootstrap';
+import { DashCircle, PatchPlus, PlusCircle } from 'react-bootstrap-icons';
 import { Profile } from '..';
 import Style from './ask.module.scss'
 
@@ -30,7 +32,7 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
                 profile.compliance.scoreMore += index;
                 break;
         }
-        onChangeProfile({...profile});
+        onChangeProfile({ ...profile });
     }
 
     const handleMeasurementLess = () => {
@@ -50,7 +52,7 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
                 profile.compliance.scoreLess -= index;
                 break;
         }
-        onChangeProfile({...profile});
+        onChangeProfile({ ...profile });
     }
 
     const showOptions = () => {
@@ -62,27 +64,31 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
     }
 
     return (
-        <div className={Style.answer}>
-            <div className={Style.options}>
-                {utterance.map((option, index) => {
-                    return (
-                        <div className={Style.option}>
-                            <p>{option}</p>
-                        </div>
-                    )
-                })}
-            </div>
-            <div className={Style.responses}>
-                <select defaultValue="none" onChange={handleMeasurementMore} ref={selectMoreRef} id="more">
-                    <option value="none" disabled> -- Selecione -- </option>
-                    {showOptions()}
-                </select>
-                <select defaultValue="none" onChange={handleMeasurementLess} ref={selectLessRef} id="less">
-                    <option value="none" disabled> -- Selecione -- </option>
-                    {showOptions()}
-                </select>
-            </div>
-        </div>
+        <Row className={Style.answer}>
+            {utterance.map((option, index) => {
+                return (
+                    <Col className={Style.option}>
+                        <p>{option}</p>
+                    </Col>
+                )
+            })}
+            <Col className={Style.option}>
+                <div className={Style.moreOption}>
+                    <PlusCircle className={Style.iconOptionMore} />
+                    <select defaultValue="none" onChange={handleMeasurementMore} ref={selectMoreRef} id="more">
+                        <option value="none" disabled> - Selecione - </option>
+                        {showOptions()}
+                    </select>
+                </div>
+                <div>
+                    <DashCircle className={Style.iconOptionLess} />
+                    <select defaultValue="none" onChange={handleMeasurementLess} ref={selectLessRef} id="less">
+                        <option value="none" disabled> - Selecione - </option>
+                        {showOptions()}
+                    </select>
+                </div>
+            </Col>
+        </Row>
     )
 }
 export default Ask;
