@@ -1,10 +1,15 @@
 import Style from './a360.page.module.scss'
 import Survey from '../components/a360/survey'
 import Data360 from '../assets/360.json'
-
+import Dashboard from '../components/a360/dashboard/index'
 const Assessement360Page = () => {
     return (
         <div className={Style.page}>
+            <Dashboard />
+        </div>
+    );
+}
+/*<div className={Style.page}>
             <h1 className={Style.title}>Avaliação 360</h1>
             <div className={Style.description}>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -21,7 +26,5 @@ const Assessement360Page = () => {
                     Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
             </div>
             <Survey askings={Data360.askings} />
-        </div>
-    );
-}
+    </div> */
 export default Assessement360Page;

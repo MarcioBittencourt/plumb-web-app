@@ -1,10 +1,10 @@
 .page {
     margin: 28px 42px;
 
-    .title {
-        margin: 10px;
-        text-transform: uppercase;
+    h1  {
+        margin: 10px 0;
         font-size: 28px;
-        font-family: 'Fira Sans';
+        font-weight: 700;
+        color: #4d5db0;
     }
 }
