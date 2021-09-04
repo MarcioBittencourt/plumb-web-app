@@ -1,18 +1,32 @@
 .navbar {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+    padding: 0;
+    margin: 0;
+    height: 8vh;
+    background-color: #bf360c !important;
+    
     .container {
-        margin-right: 5px;
-        margin-left: 5px;
-        .menu {
-            display: flex;
-            margin-left: auto;
+        padding: 0;
+        margin: 0;
+    }
 
-            div div {
-                padding-left: 45px;
-            }
+    .menu {
+        display: flex;
+        margin-left: auto;
+        
+        //background-color: white;
+        div div {
+            padding-left: 45px;
         }
     }
-    .img {
+
+    .avatar {
         padding-left: 5px;
     }
+}
+
+.brand {
+    width: 50%;
+    background-color: #4d5db0;
+    border: 0;
 }
