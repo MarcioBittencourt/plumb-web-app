@@ -6,47 +6,35 @@ const DISCPage = () => {
     return (
         <div className={Style.page}>
             <div className={Style.instructions}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Sollicitudin tempor id eu nisl nunc mi ipsum. Ipsum nunc aliquet bibendum enim facilisis.
-                Vitae justo eget magna fermentum iaculis eu non.
-                Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor.
-                Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare. Nec ullamcorper sit amet risus.
-                Condimentum mattis pellentesque id nibh tortor id. At volutpat diam ut venenatis tellus in.</p>
+                <p> O teste DISC é uma ferramenta útil para o autoconhecimento e conhecimento do outro.
+                    É definido como uma ferramenta que possibilita a identificação do perfil dominante do indivíduo,
+                    sendo frequentemente utilizado no setor de Recursos Humanos para identificar as características dos colaboradores de uma empresa.
+                </p>
+                <p>Para identificar seu perfil comportamental realize o teste e siga as etapas descritas a baixo!</p>
+                <ul>
+                    <li>
+                        <p>Cada linha ao lado contém quatro palavras.
+                            Escolha aquela que voçê mais se identifica na caixa de seleção "+" e aquela que voçê menos se identifica na caixa de seleção "-".
+                        </p>
+                    </li>
+                    <li>
+                        <p>Imagine-se como realmente voçê é no seu dia-a-dia.</p>
+                    </li>
+                    <li>
+                        <p>Responda sozinho e sem interrupções.</p>
+                    </li>
+                    <li>
+                        <p>Não pule nem uma linha</p>
+                    </li>
+                    <li>
+                        <p>Seja espontaneo e não racional</p>
+                    </li>
+                </ul>
             </div>
             <div className={Style.webform}>
                 <Survey askings={DISCData.askings} />
             </div>
-            
+
         </div>
     )
 }
