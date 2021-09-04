@@ -1,0 +1,28 @@
+.pageSection {
+    margin-bottom: 45px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.pageSectionHeader {
+    background-color: #f9683a;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    h3 {
+        margin: 0;
+    }
+}
+
+.assessementTableHeader {
+    background-color: #ffab91;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0 25px;
+    display: flex;
+    justify-items: center;
+
+    div {
+        display: flex;
+        justify-content: center;
+    }
+}

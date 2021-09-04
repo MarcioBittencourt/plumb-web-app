@@ -1,0 +1,52 @@
+{
+    "assessements": [
+        {
+            "id": "AU-12672",
+            "avaliado": {
+                "uuid": "8f3280b2-618d-4cad-b524-1c831119a535",
+                "name": "Dougras Eusou",
+                "email": "dougra@mail"
+            },
+            "avaliador": {
+                "uuid": "eaa56527-62c2-4630-9639-2e2eb1459b5f",
+                "name": "Marcio Bittencourt"
+            },
+            "dataSolicitacao": "2021-01-23T18:29:34",
+            "prazoResolucao": "2021-05-05T18:02:30",
+            "dataConclusao": "2021-08-23T18:29:34",
+            "status": "Concluído"
+        },
+        {
+            "id": "AU-12674",
+            "avaliado": {
+                "uuid": "8f3280b2-618d-4cad-b524-1c831119a535",
+                "name": "Dougras Eusou",
+                "email": "dougra@mail"
+            },
+            "avaliador": {
+                "uuid": "8af70ca7-d9ad-47ca-90e0-8488b8ef151d",
+                "name": "Jonas Damanguassa"
+            },
+            "dataSolicitacao": "2021-03-23T18:29:34",
+            "prazoResolucao": "2021-04-23T07:30:55",
+            "dataConclusao": "2021-08-23T18:29:34",
+            "status": "Pendente"
+        },
+        {
+            "id": "AU-12677",
+            "avaliado": {
+                "uuid": "8f3280b2-618d-4cad-b524-1c831119a535",
+                "name": "Dougras Eusou",
+                "email": "dougra@mail"
+            },
+            "avaliador": {
+                "uuid": "a1f7f6b5-509e-4683-940e-a4b06c2245c2",
+                "name": "Morty Mcfly"
+            },
+            "dataSolicitacao": "2021-06-23T18:29:34",
+            "prazoResolucao": "2021-09-17T01:18:23",
+            "dataConclusao": "2021-08-23T18:29:34",
+            "status": "Pendente"
+        }
+    ]
+}

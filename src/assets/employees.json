@@ -1,0 +1,60 @@
+{
+    "employees": [
+        {
+            "uuid": "eaa56527-62c2-4630-9639-2e2eb1459b5f",
+            "id": "C-1234",
+            "avatar": "foto",
+            "nome": "Marcio Bittencourt",
+            "email": "marcio@email",
+            "setor": "Administração"
+        },
+        {
+            "uuid": "18368468-fe08-4ce4-b25f-5c943b632bbc",
+            "id": "C-1235",
+            "avatar": "foto",
+            "nome": "Renata da Silva",
+            "email": "renata@email",
+            "setor": "Recursos Humanos"
+        },
+        {
+            "uuid": "9708e42d-c251-45c0-b06e-6b451b4b3d4b",
+            "id": "C-1236",
+            "avatar": "foto",
+            "nome": "Pedro da Cunha",
+            "email": "cunha@email",
+            "setor": "Almoxarifado"
+        },
+        {
+            "uuid": "8af70ca7-d9ad-47ca-90e0-8488b8ef151d",
+            "id": "C-1237",
+            "avatar": "foto",
+            "nome": "Jonas da Goiaba",
+            "email": "jonas@email",
+            "setor": "Contabilidade"
+        },
+        {
+            "uuid": "59f3b6a9-7748-490a-8515-f006e028c59d",
+            "id": "C-1238",
+            "avatar": "foto",
+            "nome": "Rick Sanchez",
+            "email": "rick@email",
+            "setor": "Contabilidade"
+        },
+        {
+            "uuid": "a1f7f6b5-509e-4683-940e-a4b06c2245c2",
+            "id": "C-1239",
+            "avatar": "foto",
+            "nome": "Morty Sanchez",
+            "email": "morty@email",
+            "setor": "Contabilidade"
+        },
+        {
+            "uuid": "35834389-bd5e-4295-b30b-c590d320db6c",
+            "id": "C-1240",
+            "avatar": "foto",
+            "nome": "Steve Barão",
+            "email": "rick@email",
+            "setor": "Contabilidade"
+        }
+    ]
+}

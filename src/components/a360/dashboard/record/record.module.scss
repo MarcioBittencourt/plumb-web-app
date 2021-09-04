@@ -1,0 +1,83 @@
+.assessementTableRecordContent {
+    display: flex;
+    align-items: center;
+    margin: 0 25px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e8e5f6;
+
+    & > div {
+        display: flex;
+        justify-content: center;
+    }
+
+    & > div:first-child {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.assessementTableRecord:hover {
+    background-color: rgba(249,104,58, .1);
+}
+
+
+.userInfo {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+        background-color: purple;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+.details {
+    margin-left: 8px;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+    }
+}
+
+.primaryInfo {
+    font-weight: 700;
+
+}
+
+.secondaryInfo {
+    font-weight: 400;
+    color: grey;
+    font-size: 12px;
+}
+
+
+.status {
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &[data-status = "Pendente"] {    
+        border: 2px solid red;
+        color: red;
+    }
+    &[data-status = "Concluído"] {
+        border: 2px solid green;
+        color: green;
+    }
+    &[data-status = "Enviado"] {
+        border: 2px solid green;
+        color: green;
+    }
+    &[data-status = "Rascunho"] {
+        border: 2px solid orange;
+        color: orange;
+    }
+}

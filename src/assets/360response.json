@@ -1,0 +1,64 @@
+{
+    "assessements": [
+        {
+            "uuid": "AU-12672",
+            "responses": [
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "textarea": ["O colaborador está de acordo com suas funçoes", "Algumas vezes O colaborador não está de acordo com suas funçoes"]
+                },
+                {
+                    "slider": [ 2, 2, 0, 3]
+                }
+            ]
+        },
+        {
+            "uuid": "AU-12673",
+            "responses": [
+                {
+                    "radiogroup": ["Sempre", "Nunca"]
+                },
+                {
+                    "radiogroup": ["Algumas vezes", "Sempre"]
+                },
+                {
+                    "radiogroup": ["Nunca", "Sempre"]
+                },
+                {
+                    "textarea": ["Está sempre tomando cafezinho", "não presta atenção no  que o espeto diz"]
+                },
+                {
+                    "slider": [ 1, 3, 0, 3]
+                }
+            ]
+        },
+        {
+            "uuid": "AU-12674",
+            "responses": [
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "radiogroup": ["Nunca", "Algumas vezes"]
+                },
+                {
+                    "radiogroup": ["O colaborador está de acordo com suas funçoes", "Algumas vezes O colaborador não está de acordo com suas funçoes"]
+                },
+                {
+                    "slider": [ 2, 2, 0, 3]
+                }
+            ]
+        }
+    ]
+}
