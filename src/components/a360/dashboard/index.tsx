@@ -24,6 +24,8 @@ const employees = DataEmployees.employees;
 
 const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
 
+const account = JSON.parse(localStorage.getItem("account") || '{}');
+
 const Dashboard = (props: Props) => {
     let { path, url } = useRouteMatch();
     const selectFilter = useRef<HTMLSelectElement>(null);

@@ -13,16 +13,16 @@ type Props = {
 const Request = ({ id, avatar, nome, email, setor, handleOnChange }: Props) => {
     return (
         <Row className={Style.assessementTableRecordContent}>
-            <Col className={Style.userInfo}>
+            <Col lg={3} sm={6} className={Style.userInfo}>
                 <div className={Style.avatar}></div>
                 <div className={Style.details}>
                     <p className={Style.primayInfo}>{nome}</p>
                     <p className={Style.secondaryInfo}>{id}</p>
                 </div>
             </Col>
-            <Col><p>{email}</p></Col>
-            <Col><p>{setor}</p></Col>
-            <Col><input className={Style.checkbox} type="checkbox" onChange={handleOnChange} /></Col>
+            <Col lg={3} sm={1}><p>{email}</p></Col>
+            <Col lg={3} sm={4}><p>{setor}</p></Col>
+            <Col lg={3} sm={1}><input className={Style.checkbox} type="checkbox" onChange={handleOnChange} /></Col>
         </Row>
     );
 }
