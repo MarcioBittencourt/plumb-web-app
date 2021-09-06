@@ -1,0 +1,127 @@
+.sectionContent {
+    display: grid;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: white;
+
+    .sprint {
+        margin-left: 18px;
+    }
+}
+
+.register {
+    display: flex;
+    margin-left: 15px;
+    .primary {
+        display:grid;
+    }
+    .businessRegister {
+        display:grid;
+        width: 75px;
+        height: 8px;
+    }
+    label {
+        margin-right: 8px;
+    }
+
+    input {
+        margin-bottom: 8px;
+        margin-right: 16px;
+        border-radius: 3px;
+        border: 1px solid #837e7c;
+    }
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.newUserButton {
+}
+
+.sectionTable {
+    padding: 0 28px;
+    margin-bottom: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: white;
+}
+
+.sectionHeader {
+    & > div {
+        display: flex;
+        background-color: #f9683a;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        align-items: center;
+
+        h3 {
+            margin-right: auto;
+        }
+
+        button {
+            margin-right: 10px;
+            border-radius: 8px;
+            border: 3px solid green;
+            color: green;
+            width: 150px;
+            height: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: white;
+        }
+    }
+}
+
+.employeeTableHeader {
+    background-color: #ffab91;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-items: center;
+
+    div {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.employeeTableRecord {
+    background-color: white;
+    padding: 15px 5px;
+    border-bottom: 1px solid #adaaa9;
+
+    div {
+        align-items: center;
+    }
+
+    div p {
+        margin: 0;
+    }
+
+    div input {
+        width: 100%;
+        height: 36px;
+        border: none;
+        padding-left: 15px;
+    }
+}
+
+
+.employeeTableRecord:last-child {
+    border-bottom: none;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: center;
+    .saveButton {
+        width: 75%;
+        height: 50px;
+        border: 2px solid rgb(74, 252, 4);
+        border-radius: 8px;
+        background-color: green;
+    }
+}
