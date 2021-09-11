@@ -1,0 +1,88 @@
+.goalSection {
+    background-color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 48px;
+    margin: 32px 0;
+    padding: 14px;
+
+    .goalSectionHeader {
+        display: flex;
+        margin-bottom: 10px;        
+
+        & > div {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .goalTitle {
+            input {
+                margin-left: 3px;
+                font-size: 16px;
+                width: 100%;
+                border: none;
+            }
+        }
+
+        .headerSecondaryContent {
+            display: inline;
+        }
+    }
+
+    .goalSectionContent {
+        & > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            height: 120px;
+            border: none;
+            padding: 15px 5px;
+            margin-top: 10px;
+            border-top: 2px solid rgba(187, 187, 187, 0.2);
+        }
+    }
+
+    .goalTagWrapper {
+        padding: 0;
+        width: 40px;
+        margin-top: 80px;
+        background-color: hotpink;
+    }
+
+    .goalClassificationTag {
+        background-color: hotpink;
+        transform: rotate(-90deg); //scaleX(-1);
+    }
+}
+
+
+/*.properties {
+    display: grid;
+    margin-bottom: 24px;
+    textarea {
+        margin-top: 15px;
+        width: 650px;
+        height: 100px;
+    }
+    .title {
+        display: flex;
+        align-items: center;
+        p {
+            margin: 0;
+        }
+        input {
+            margin-left: 8px;
+        }
+    }
+    .description {
+        display: grid;
+        margin-top: 18px;
+    }
+}
+
+.smartGoals {
+    margin: 24px 0;
+}*/

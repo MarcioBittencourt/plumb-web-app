@@ -6,7 +6,6 @@ import Survey from '../survey';
 import Data360 from '../../../assets/360.json'
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Request from './request'
-import DataEmployees from '../../../assets/employees.json'
 import DataAssessement from '../../../assets/assessements.json'
 
 /*  Pendente - Não foi iniciado
@@ -14,26 +13,22 @@ import DataAssessement from '../../../assets/assessements.json'
     Enviado - foi concluido mas o prazo final ainda não foi alcançado
     Concluido - o prazo final já chegou
  */
-
-type Props = {
-
-};
-
-const avaliacoes = DataAssessement.assessements;
-const employees = DataEmployees.employees;
-
-const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
-
-const account = JSON.parse(localStorage.getItem("account") || '{}');
-
+type Props = {}
 const Dashboard = (props: Props) => {
     let { path, url } = useRouteMatch();
-    const selectFilter = useRef<HTMLSelectElement>(null);
     const [selectedEmployees, setSelectedEmployees] = useState<any[]>([]);
+    
+    //const avaliacoes = DataAssessement.assessements;
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+    const account = JSON.parse(localStorage.getItem("account") || '{}');
+    const employees = account.company.employees;
+
+    const avaliacoes = JSON.parse(localStorage.getItem("assessements") || '{}')
+
     const [colaborators, setColaborators] = useState<any[]>(employees);
     const [assessements, setAssessements] = useState<any[]>([]);
 
-    const sort = () => {
+    /*const sort = () => {
         const index = selectFilter.current?.options.selectedIndex;
         switch (index) {
             case 1:
@@ -49,7 +44,7 @@ const Dashboard = (props: Props) => {
                 console.log(avaliacoes)
                 break;
         }
-    }
+    }*/
 
     const selectColaborator = (event: any, employee: any) => {
         //if(!event.target.checked) return;
@@ -65,11 +60,11 @@ const Dashboard = (props: Props) => {
 
     const memoRequestedColaborators = useMemo(() => {
         return assessements
-        .filter((assessement: any) => assessement.avaliado.uuid === loggedUser.uuid)
-        .map((assessement: any) => assessement.avaliador.uuid)
-        .reduce((unique: any, item: any) => unique.includes(item)
-            ? unique
-            : [...unique, item], []);
+            .filter((assessement: any) => assessement.avaliado.uuid === loggedUser.uuid)
+            .map((assessement: any) => assessement.avaliador.uuid)
+            .reduce((unique: any, item: any) => unique.includes(item)
+                ? unique
+                : [...unique, item], []);
     }, [assessements])
 
     useEffect(() => {
@@ -117,9 +112,9 @@ const Dashboard = (props: Props) => {
                                         key={employee.uuid}
                                         id={employee.id}
                                         avatar={employee.avatar}
-                                        nome={employee.nome}
+                                        nome={employee.name}
                                         email={employee.email}
-                                        setor={employee.setor}
+                                        setor={employee.departament}
                                         handleOnChange={event => selectColaborator(event, employee)}
                                     />
                                 )
@@ -128,7 +123,7 @@ const Dashboard = (props: Props) => {
                     </Container>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Minhas avaliações</h3></Col>
+                            <Col><h3>Avaliações sobre mim</h3></Col>
                             {/*<Col>
                                 <select onChange={filter} defaultValue="none" ref={selectFilter}>
                                 <option value="none" disabled> - Filtrar - </option>
@@ -138,14 +133,37 @@ const Dashboard = (props: Props) => {
                             </Col>*/}
                         </Row>
                         <Row className={Style.assessementTableHeader}>
-                            <Col>Avaliado</Col>
-                            <Col>Situação</Col>
-                            <Col>Solicitação</Col>
-                            <Col>Resolução</Col>
-                            <Col> Visualizar</Col>
+                            <Col><p>Avaliado</p></Col>
+                            <Col><p>Situação</p></Col>
+                            <Col><p>Solicitação</p></Col>
+                            <Col><p>Resolução</p></Col>
+                            <Col><p>Visualizar</p></Col>
                         </Row>
-                        {avaliacoes.filter(avaliacao => avaliacao.avaliado.uuid === loggedUser.uuid && avaliacao.status === "Concluído")
-                            .map((avaliacao) => {
+                        {avaliacoes.filter((avaliacao: any) => avaliacao.avaliado.uuid === loggedUser.uuid && avaliacao.status === "Concluído")
+                            .map((avaliacao: any) => {
+                                return (
+                                    <AssessementRecord
+                                        id={avaliacao.id}
+                                        avaliado={avaliacao.avaliador.name}
+                                        dataSolicitacao={avaliacao.dataSolicitacao}
+                                        prazoResolucao={avaliacao.prazoResolucao}
+                                        dataConclucao={avaliacao.dataConclusao}
+                                        status={avaliacao.status}
+                                    />)
+                            })}
+                    </Container>
+                    <Container className={Style.pageSection}>
+                        <Row className={Style.pageSectionHeader}>
+                            <Col><h3>Avaliaçoes pendentes para mim</h3></Col>
+                        </Row>
+                        <Row className={Style.assessementTableHeader}>
+                            <Col><p>Avaliado</p></Col>
+                            <Col><p>Solicitação</p></Col>
+                            <Col><p>Resolução</p></Col>
+                            <Col><p>Status</p></Col>
+                            <Col><p>Visualizar</p></Col>
+                        </Row>
+                        {avaliacoes.filter((avaliacao: any) => ["Pendente", "Rascunho"].includes(avaliacao.status)).map((avaliacao:any) => {
                             return (
                                 <AssessementRecord
                                     id={avaliacao.id}
@@ -159,39 +177,16 @@ const Dashboard = (props: Props) => {
                     </Container>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Avaliaçoes pendentes</h3></Col>
+                            <Col><h3>Avaliações realizadas por mim</h3></Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
-                            <Col >Avaliado</Col>
-                            <Col >Solicitação</Col>
-                            <Col>Resolução</Col>
-                            <Col >Status</Col>
-                            <Col > Visualizar</Col>
+                            <Col><p>Avaliado</p></Col>
+                            <Col><p>Solicitação</p></Col>
+                            <Col><p>Resolução</p></Col>
+                            <Col><p>Status</p></Col>
+                            <Col><p>Visualizar</p></Col>
                         </Row>
-                        {avaliacoes.filter(avaliacao => ["Pendente", "Rascunho"].includes(avaliacao.status)).map((avaliacao) => {
-                            return (
-                                <AssessementRecord
-                                    id={avaliacao.id}
-                                    avaliado={avaliacao.avaliador.name}
-                                    dataSolicitacao={avaliacao.dataSolicitacao}
-                                    prazoResolucao={avaliacao.prazoResolucao}
-                                    dataConclucao={avaliacao.dataConclusao}
-                                    status={avaliacao.status}
-                                />)
-                        })}
-                    </Container>
-                    <Container className={Style.pageSection}>
-                        <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Avaliações realizadas</h3></Col>
-                        </Row>
-                        <Row className={Style.assessementTableHeader}>
-                            <Col >Avaliado</Col>
-                            <Col>Solicitação</Col>
-                            <Col>Resolução</Col>
-                            <Col >Status</Col>
-                            <Col >Visualizar</Col>
-                        </Row>
-                        {avaliacoes.filter(avaliacao => ["Concluído"].includes(avaliacao.status )).map((avaliacao) => {
+                        {avaliacoes.filter((avaliacao: any) => ["Concluído"].includes(avaliacao.status)).map((avaliacao: any) => {
                             return (
                                 <AssessementRecord
                                     id={avaliacao.id}

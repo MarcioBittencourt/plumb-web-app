@@ -5,24 +5,31 @@
 }
 
 .pageSectionHeader {
-    background-color: #f9683a;
+    background-color: #3E5A6E;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    color: white;
     h3 {
-        margin: 0;
+        font-weight: 400;
+        margin: 4px 0;
     }
 }
 
 .assessementTableHeader {
-    background-color: #ffab91;
+    background-color: #607480;
     text-transform: uppercase;
-    font-weight: bold;
-    padding: 0 25px;
+    font-weight: 500;
+    padding: 0 24px;
     display: flex;
     justify-items: center;
 
     div {
         display: flex;
         justify-content: center;
+        p {
+            margin: 8px 0;
+            color: white;
+            font-weight: 300;
+        }
     }
 }

@@ -52,13 +52,15 @@
 .sectionHeader {
     & > div {
         display: flex;
-        background-color: #f9683a;
+        background-color: #3E5A6E;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         align-items: center;
 
         h3 {
             margin-right: auto;
+            color: white;
+            font-weight: 500;
         }
 
         button {
@@ -76,11 +78,16 @@
 }
 
 .employeeTableHeader {
-    background-color: #ffab91;
+    background-color: #607480;
     text-transform: uppercase;
     font-weight: bold;
     display: flex;
     justify-items: center;
+    
+    p {
+        color: white;
+        font-weight: 400;
+    }
 
     div {
         display: flex;

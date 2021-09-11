@@ -5,22 +5,23 @@
 }
 
 .pageSectionHeader {
-    background-color: #f9683a;
+    background-color: #3E5A6E;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     h3 {
         margin: 0;
+        color: #ffffff;
     }
 }
 
 .scores {
     display: flex;
-
+    background-color: white;
     .scoreTable {
         display: flex;
         padding: 5px 15px;
         width: 25%;
-        border-radius: 15px;
+        border-radius: 8px;
         border: 2px solid #000000;
         align-items: center;
 
@@ -37,7 +38,7 @@
     .profile {
         width: 50%;
         border: 2px solid #000000;
-        border-radius: 15px;
+        border-radius: 8px;
         background-color: whitesmoke;
 
         &[data-profile = "dominant"] {

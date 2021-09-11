@@ -1,19 +1,13 @@
 .navbar {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
-    padding: 0;
+    box-shadow: 0 2px 2px 0 rgba(17, 231, 255, 0.5); 
+    padding: 16px 22px;
     margin: 0;
-    height: 8vh;
-    background-color: #bf360c !important;
+    height: 10vh;
+    background-color: #081C2A !important;
     
-    .container {
-        padding: 0;
-        margin: 0;
-    }
-
     .menu {
         display: flex;
         margin-left: auto;
-        
         //background-color: white;
         div div {
             padding-left: 45px;
@@ -21,7 +15,9 @@
     }
 
     .avatar {
-        padding-left: 5px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
     }
 }
 
