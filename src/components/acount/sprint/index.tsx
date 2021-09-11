@@ -5,8 +5,9 @@ import Style from './sprint.module.scss';
 type Props = {
     defaultOption: string;
     options?: ["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"];
+    value: string;
 }
-const Sprint = ({ defaultOption, options }: Props) => {
+const Sprint = ({ defaultOption, options, value }: Props) => {
     const [sprintCadencyOption, setSprintCadencyOption] = useState<string>('');
 
     const handleActiveSprintOption = (event: any) => {
@@ -15,9 +16,14 @@ const Sprint = ({ defaultOption, options }: Props) => {
     return (
         <Row className={Style.sprint}>
             {options?.map(option => {
-                const isActive = (option === (sprintCadencyOption || defaultOption) ? Style.active : '');
+                const selectedOption = (sprintCadencyOption || value || defaultOption )
+                const isActive = (option === selectedOption ? Style.active : '' );
                 return (
-                    <div className={`${Style.sprintOption} ${isActive}`} onClick={handleActiveSprintOption}>{option}</div>
+                    <div 
+                        className={`${Style.sprintOption} ${isActive}`} 
+                        onClick={handleActiveSprintOption}>
+                            {option}
+                    </div>
                 )
             })}
         </Row>
