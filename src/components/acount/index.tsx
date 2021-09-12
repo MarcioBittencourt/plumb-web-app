@@ -17,7 +17,7 @@ const Acount = (props: Props) => {
     const refBusinessName = useRef<HTMLInputElement>(null);
     const refCompanyName = useRef<HTMLInputElement>(null);
     const refBusinessRegister = useRef<HTMLInputElement>(null);
-    const refAdminName = useRef<HTMLInputElement>(null);
+    const refCompanyCountry = useRef<HTMLInputElement>(null);
     const refAdminEmail = useRef<HTMLInputElement>(null);
     const refAdminPassword = useRef<HTMLInputElement>(null);
     const refEmployeeName = useRef<HTMLInputElement>(null);
@@ -31,15 +31,17 @@ const Acount = (props: Props) => {
     const [employeesData, setEmployeesData] = useState<any[]>([]);
 
     useEffect(() => {
+        setEmployeesData([...colaborators]);
         colaborators.forEach((employee: any, index: number) => {
             newLine(employee.name, employee.uuid, employee.email, employee.password, index);
         });
     }, []);
 
-    const createAccount = () => {
+    const createAccount = async () => {
+        console.log('employes data', employeesData);
         const account: any = {
             admin: {
-                name: refAdminName.current?.value,
+                name: refCompanyName.current?.value,
                 email: refAdminEmail.current?.value,
                 password: refAdminPassword.current?.value,
             },
@@ -47,8 +49,9 @@ const Acount = (props: Props) => {
                 businessName: refBusinessName.current?.value,
                 companyName: refCompanyName.current?.value,
                 businessRegister: refBusinessRegister.current?.value,
-                employees: employeesData.map((employee, index) => { 
-                    return { name: employee.name, email: employee.email, password: employee.password }
+                country: refCompanyCountry.current?.value,
+                employees: employeesData.map((employee, index) => {
+                    return { name: employee.name, email: employee.email, password: employee.password, role: "user" }
                 }),
                 sprints: {
                     appo: {
@@ -65,8 +68,24 @@ const Acount = (props: Props) => {
                     },
                 }
             }
-        }
+        };
         localStorage.setItem("account", JSON.stringify(account));
+
+        const response = await fetch(`http://localhost:5000/companies`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: account.company.businessName,
+                recoverEmail: account.admin.email,
+                country: "Brasil",
+                businessName: account.company.businessName,
+                password: account.admin.password,
+                businessRegister: account.company.businessRegister,
+                employees: account.company.employees,
+            })
+        });
+        console.log("Salvou com status: ", response);
+        console.log(account.company.employees);
     }
 
     const handleEmployeeDataOnChange = (index: number) => {
@@ -88,34 +107,34 @@ const Acount = (props: Props) => {
         setEmployees((prevState) => [...prevState, (
             <Row className={Style.employeeTableRecord}>
                 <Col>
-                    <input 
+                    <input
                         key={`name-${uuid}`}
-                        value={name} 
-                        type="text" 
-                        onChange={() => handleEmployeeDataOnChange(row)} 
-                        ref={refEmployeeName} 
-                        name="name" 
+                        value={name}
+                        type="text"
+                        onChange={() => handleEmployeeDataOnChange(row)}
+                        ref={refEmployeeName}
+                        name="name"
                         placeholder="Nome do colaborador" />
                 </Col>
                 <Col>
-                    <input 
+                    <input
                         key={`mail-${uuid}`}
-                        value={email} 
-                        type="text" 
-                        onChange={() => handleEmployeeDataOnChange(row)} 
-                        ref={refEmployeeEmail} 
-                        name="mail" 
+                        value={email}
+                        type="text"
+                        onChange={() => handleEmployeeDataOnChange(row)}
+                        ref={refEmployeeEmail}
+                        name="mail"
                         placeholder="usuario@email.exemplo" />
                 </Col>
                 <Col>
-                    <input 
+                    <input
                         key={`pass-${uuid}`}
-                        disabled 
-                        value={password || generatePassword()} 
-                        type="text" 
-                        onChange={() => handleEmployeeDataOnChange(row)} 
-                        ref={refEmployeePassword} 
-                        name="password" 
+                        disabled
+                        value={password || generatePassword()}
+                        type="text"
+                        onChange={() => handleEmployeeDataOnChange(row)}
+                        ref={refEmployeePassword}
+                        name="password"
                         placeholder="Senha" />
                 </Col>
             </Row>
@@ -136,50 +155,65 @@ const Acount = (props: Props) => {
                 <Row className={Style.register}>
                     <Col lg={4} sm={4} className={Style.primary}>
                         <label htmlFor="businessName">Nome</label>
-                        <input 
-                            type="text" 
-                            ref={refBusinessName} 
-                            name="businessName" 
-                            value={company.businessName} 
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refBusinessName}
+                            name="businessName"
+                            value={company.businessName}
                             placeholder="Razão social" />
                     </Col>
                     <Col lg={4} sm={4} className={Style.primary}>
                         <label htmlFor="companyName">Nome fantasia</label>
-                        <input 
-                            type="text" 
-                            ref={refCompanyName} 
-                            name="companyName" 
-                            value={company.companyName} 
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refCompanyName}
+                            name="companyName"
+                            value={company.companyName}
                             placeholder="Nome fantasia" />
                     </Col>
-                    <Col lg={4} sm={4} className={Style.businessRegister}>
+                    <Col lg={3} sm={3} className={Style.businessRegister}>
                         <label htmlFor="businessRegister">CNPJ</label>
-                        <input 
-                            type="text" 
-                            ref={refBusinessRegister} 
-                            name="businessRegister" 
-                            value={company.businessRegister} 
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refBusinessRegister}
+                            name="businessRegister"
+                            value={company.businessRegister}
                             placeholder="12.345.678/0000-00" />
                     </Col>
                 </Row>
                 <Row className={Style.register}>
                     <Col lg={4} sm={4} className={Style.primary}>
                         <label htmlFor="email">Email</label>
-                        <input 
-                            type="text" 
-                            ref={refAdminEmail} 
-                            name="email" 
-                            value={admin.email} 
-                            placeholder="usuario@email.exemplo"/>
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refAdminEmail}
+                            name="email"
+                            value={admin.email}
+                            placeholder="usuario@email.exemplo" />
                     </Col>
                     <Col lg={4} sm={4} className={Style.primary}>
                         <label htmlFor="password">Senha</label>
-                        <input 
-                            disabled 
-                            type="text" 
-                            ref={refAdminPassword} 
-                            value={admin.password || generatePassword()} 
+                        <input
+                            className="form-control"
+                            disabled
+                            type="text"
+                            ref={refAdminPassword}
+                            value={admin.password || generatePassword()}
                             name="password"></input>
+                    </Col>
+                    <Col lg={3} sm={3} className={Style.businessRegister}>
+                        <label htmlFor="companyCountry">País</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refCompanyCountry}
+                            name="companyCountry"
+                            value={company.country}
+                            placeholder="Uzuberquistão" />
                     </Col>
                 </Row>
             </Container>
@@ -187,11 +221,11 @@ const Acount = (props: Props) => {
                 <Row className={Style.sectionHeader}>
                     <Col>
                         <h3>Cadastro de colaboradores</h3>
-                        <button 
-                            onClick={() => newLine()} 
+                        <button
+                            onClick={() => newLine()}
                             className={Style.newUserButton}>Adicionar</button>
-                        <button 
-                            onClick={erase} 
+                        <button
+                            onClick={erase}
                             className={Style.newUserButton}>Limpar</button>
                     </Col>
                 </Row>
@@ -214,20 +248,24 @@ const Acount = (props: Props) => {
                     <Col><h3>Configuração de cadência e ciclos</h3></Col>
                 </Row>
                 <label className={Style.sprint}>Avaliação Participativa por Objetivos</label>
-                <Sprint 
-                    defaultOption="3 Meses" 
-                    value={sprints.appo.cadency} 
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} />
+                <Sprint
+                    defaultOption="3 Meses"
+                    value={sprints.appo.cadency}
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
+                    dateFinish={new Date()}    
+                />
                 <label className={Style.sprint}>Teste psicométrico DISC</label>
-                <Sprint 
-                    defaultOption="6 Meses" 
-                    value={sprints.disc.cadency} 
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} />
+                <Sprint
+                    defaultOption="6 Meses"
+                    value={sprints.disc.cadency}
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
+                    dateFinish={new Date()}/>
                 <label className={Style.sprint}>Avaliação de feedback 360</label>
-                <Sprint 
-                    defaultOption="2 Meses" 
-                    value={sprints.a360.cadency} 
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} />
+                <Sprint
+                    defaultOption="2 Meses"
+                    value={sprints.a360.cadency}
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
+                    dateFinish={new Date()} />
             </Container>
             <Container className={Style.containerButton}>
                 <button className={Style.saveButton} onClick={createAccount}>Salvar</button>

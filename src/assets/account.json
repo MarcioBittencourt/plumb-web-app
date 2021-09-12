@@ -1,6 +1,6 @@
 {
     "admin": {
-        "name": "Thomas Shelby",
+        "name": "Shelby LTDA",
         "email": "thomas@mail.com",
         "password": "6bw52lsb"
     },
@@ -8,6 +8,7 @@
         "businessName": "Shelby LTDA",
         "companyName": "Peakyblinders",
         "businessRegister": "1234567890",
+        "country": "Birmingham-Inglaterra",
         "employees": [
             {
                 "uuid": "23858110-3b42-4eab-a8fe-c20f7bd88b1e",

@@ -1,14 +1,19 @@
+import { format } from "date-fns";
 import { useState } from "react";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import Style from './sprint.module.scss';
 
 type Props = {
     defaultOption: string;
     options?: ["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"];
     value: string;
+    dateFinish: Date;
 }
-const Sprint = ({ defaultOption, options, value }: Props) => {
+const Sprint = ({ defaultOption, options, value, dateFinish }: Props) => {
+    const [periodStart, setPeriodStart] = useState<number>(1);
+    const [periodEnd, setPeriodEnd] = useState<number>(7);
     const [sprintCadencyOption, setSprintCadencyOption] = useState<string>('');
+    const [dateConclusion, setDateConclusion] = useState<Date>(dateFinish);
 
     const handleActiveSprintOption = (event: any) => {
         setSprintCadencyOption(event.target.textContent);
@@ -16,18 +21,24 @@ const Sprint = ({ defaultOption, options, value }: Props) => {
     return (
         <Row className={Style.sprint}>
             {options?.map(option => {
-                const selectedOption = (sprintCadencyOption || value || defaultOption )
-                const isActive = (option === selectedOption ? Style.active : '' );
+                const selectedOption = (sprintCadencyOption || value || defaultOption)
+                const isActive = (option === selectedOption ? Style.active : '');
                 return (
-                    <div 
-                        className={`${Style.sprintOption} ${isActive}`} 
+                    <div
+                        className={`${Style.sprintOption} ${isActive}`}
                         onClick={handleActiveSprintOption}>
-                            {option}
+                        {option}
                     </div>
                 )
             })}
+            <Col className={Style.sectionDate}>
+                <label htmlFor="start">Período:</label>
+                <input className="form-control" type="number" value={periodStart} onChange={(event: any) => setPeriodStart(event?.target.value)} name="start" min="1" max="31" />
+                <input className="form-control" type="number" value={periodEnd} onChange={(event: any) => setPeriodEnd(event?.target.value)} name="end" min="1" max="31" />
+                <label htmlFor="end">Término:</label>
+                <input className="form-control" type="date" value={format(dateConclusion, 'yyyy-MM-dd')} onChange={(event: any) => setDateConclusion(new Date(event?.target.value))} name="dateFinish" />
+            </Col>
         </Row>
     )
 }
-
 export default Sprint;
