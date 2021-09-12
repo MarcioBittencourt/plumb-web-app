@@ -43,6 +43,28 @@
             margin-top: 10px;
             border-top: 2px solid rgba(187, 187, 187, 0.2);
         }
+
+        .sectorInput {
+            width: 338px;
+            margin-top: 18px;
+        }
+
+        .searchEmployee {
+            display: inline-flex;
+            align-items: center;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #868686;
+
+            .icon {
+                margin: 0 5px;
+            }
+
+            input {
+                border: none;
+                width: 90%;
+            }
+        }
     }
 
     .goalTagWrapper {
