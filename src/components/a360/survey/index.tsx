@@ -2,15 +2,34 @@ import { Slider } from '@material-ui/core';
 import Ask from './ask';
 import Style from './survey.module.scss'
 import DataResponse360 from '../../../assets/360response.json'
+import { useEffect, useState } from 'react';
 
 type Props = {
-    askings: any;
-    code: string;
+    //askings: any;
+    uuid: string;
 }
 
-const Survey = ({ askings, code }: Props) => {
 
-    const assessement: any = DataResponse360.assessements.find((assessement) => assessement.uuid === code)
+// 1- consertar o banco de dados com as propriedades certas referentes a avaliação
+// 2- criar o fetch para retornar a avaliação
+const Survey = ({ uuid }: Props) => {
+    const [askings, setAskings] = useState<any[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`http://localhost:5000/questions/byAssessement/${uuid}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const resp = response.json();
+            setAskings(await resp);
+            console.log("resp:", resp);
+        })();
+    }, []);
+
+    console.log("state:", askings);
+
+    const assessement: any = DataResponse360.assessements.find((assessement) => assessement.uuid === uuid)
 
     const marks = [
         //{value: 0, label: ""},
@@ -80,7 +99,7 @@ const Survey = ({ askings, code }: Props) => {
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
                     <div className={Style.slider}>
-                        <Slider className={Style.slider} defaultValue={3}  valueLabelDisplay="auto" value={assessement.responses[4].slider[1]} marks={marks} step={1} min={0} max={3}></Slider>
+                        <Slider className={Style.slider} defaultValue={3} valueLabelDisplay="auto" value={assessement.responses[4].slider[1]} marks={marks} step={1} min={0} max={3}></Slider>
                     </div>
                 </div>
                 <div className={Style.essential}>

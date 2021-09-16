@@ -33,3 +33,32 @@
         }
     }
 }
+
+.sectionTable {
+    padding: 0 28px;
+    margin-bottom: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: white;
+}
+
+.assessementTableHidden {
+    background-color: white;
+    padding: 15px 5px;
+    border-bottom: 1px solid #adaaa9;
+
+    div {
+        align-items: center;
+    }
+
+    div p {
+        margin: 0;
+    }
+
+    div input {
+        width: 100%;
+        height: 36px;
+        border: none;
+        padding-left: 15px;
+    }
+}
