@@ -1,9 +1,11 @@
+@import '../../assets/styles/colors';
+
 .navbar {
     box-shadow: 0 2px 2px 0 rgba(17, 231, 255, 0.5); 
     padding: 16px 22px;
     margin: 0;
     height: 10vh;
-    background-color: #081C2A !important;
+    background-color: $color-primary !important; //#081C2A !important;
     
     .menu {
         display: flex;
