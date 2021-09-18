@@ -7,8 +7,6 @@ type Props = {
     checked?: string
 };
 
-
-
 const Ask = ({ category, title, options, checked }: Props) => {
 
     const uid = Math.floor(Math.random() * 100);

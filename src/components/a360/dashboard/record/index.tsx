@@ -19,8 +19,8 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
     const dataSolicitacaoFmt = format(new Date(requestDate), 'd MMM yyyy');
     const dataResolution = intervalToDuration(
         {
-            start: new Date(),
-            end: new Date()
+            start: new Date(dataSolicitacaoFmt),
+            end: new Date(prazoResolucaoFmt)
         }
     )
 

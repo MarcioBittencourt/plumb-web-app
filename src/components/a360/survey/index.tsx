@@ -1,7 +1,7 @@
 import { Slider } from '@material-ui/core';
 import Ask from './ask';
 import Style from './survey.module.scss'
-import DataResponse360 from '../../../assets/360response.json'
+import Data360 from '../../../assets/360.json'
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -9,27 +9,28 @@ type Props = {
     uuid: string;
 }
 
-
-// 1- consertar o banco de dados com as propriedades certas referentes a avaliação
-// 2- criar o fetch para retornar a avaliação
 const Survey = ({ uuid }: Props) => {
-    const [askings, setAskings] = useState<any[]>([]);
-
+    const [askings, setAskings] = useState<any>({});
     useEffect(() => {
         (async () => {
             const response = await fetch(`http://localhost:5000/questions/byAssessement/${uuid}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
+            })
+            const resp = await response.json();
+            const questions: any = {};
+            resp.map((q: any) => {
+                questions[q.questionId] = q;
             });
-            const resp = response.json();
-            setAskings(await resp);
-            console.log("resp:", resp);
+            setAskings(questions);
         })();
     }, []);
 
-    console.log("state:", askings);
-
-    const assessement: any = DataResponse360.assessements.find((assessement) => assessement.uuid === uuid)
+    const options = [
+        "Nunca",
+        "Algumas vezes",
+        "Sempre"
+    ];
 
     const marks = [
         //{value: 0, label: ""},
@@ -39,27 +40,64 @@ const Survey = ({ uuid }: Props) => {
         { value: 3, label: "Supera" },
         //{value: 5, label: ""}
     ]
+
     return (
         <form className={Style.survey}>
             <h2>Responsabilidades</h2>
             <section className={Style.section}>
                 <ol>
-                    <li><Ask checked={assessement?.responses[0].radiogroup[0]} category={askings[0].category} title={askings[0].utterances[0].title} options={askings[0].utterances[0].options} /></li>
-                    <li><Ask checked={assessement?.responses[0].radiogroup[1]} category={askings[0].category} title={askings[0].utterances[1].title} options={askings[0].utterances[1].options} /></li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-responsability-1"]?.answer}
+                            category={askings["a360-responsability-1"]?.category}
+                            title={askings["a360-responsability-1"]?.ask}
+                            options={options} />
+                    </li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-responsability-2"]?.answer}
+                            category={askings["a360-responsability-2"]?.category}
+                            title={askings["a360-responsability-2"]?.ask}
+                            options={options} />
+                    </li>
                 </ol>
             </section>
             <h2>Comunicação</h2>
             <section className={Style.section}>
                 <ol>
-                    <li><Ask checked={assessement?.responses[1].radiogroup[0]} category={askings[1].category} title={askings[1].utterances[0].title} options={askings[1].utterances[0].options} /></li>
-                    <li><Ask checked={assessement?.responses[1].radiogroup[1]} category={askings[1].category} title={askings[1].utterances[1].title} options={askings[1].utterances[1].options} /></li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-comunication-1"]?.answer}
+                            category={askings["a360-comunication-1"]?.category}
+                            title={askings["a360-comunication-1"]?.ask}
+                            options={options} />
+                    </li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-comunication-2"]?.answer}
+                            category={askings["a360-comunication-2"]?.category}
+                            title={askings["a360-comunication-2"]?.ask}
+                            options={options} />
+                    </li>
                 </ol>
             </section>
             <h2>Trabalho em equipe</h2>
             <section className={Style.section}>
                 <ol>
-                    <li><Ask checked={assessement?.responses[2].radiogroup[0]} category={askings[2].category} title={askings[2].utterances[0].title} options={askings[2].utterances[0].options} /></li>
-                    <li><Ask checked={assessement?.responses[2].radiogroup[1]} category={askings[2].category} title={askings[2].utterances[1].title} options={askings[2].utterances[1].options} /></li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-teamwork-1"]?.answer}
+                            category={askings["a360-teamwork-1"]?.category}
+                            title={askings["a360-teamwork-1"]?.ask}
+                            options={options} />
+                    </li>
+                    <li>
+                        <Ask
+                            checked={askings["a360-teamwork-2"]?.answer}
+                            category={askings["a360-teamwork-2"]?.category}
+                            title={askings["a360-teamwork-2"]?.ask}
+                            options={options} />
+                    </li>
                 </ol>
             </section>
             <h2>Feedback individual</h2>
@@ -68,13 +106,13 @@ const Survey = ({ uuid }: Props) => {
                     <li>
                         <div className={Style.utterance}>
                             <p>Como posso melhorar ainda mais?</p>
-                            <textarea>{assessement?.responses[3].textarea[0]}</textarea>
+                            <textarea value={askings["a360-feedback-1"]?.answer}></textarea>
                         </div>
                     </li>
                     <li>
                         <div className={Style.utterance}>
                             <p>O que eu realizei com excelência/destaque?</p>
-                            <textarea>{assessement?.responses[3].textarea[1]}</textarea>
+                            <textarea value={askings["a360-feedback-2"]?.answer}></textarea>
                         </div>
                     </li>
                 </ol>
@@ -84,12 +122,22 @@ const Survey = ({ uuid }: Props) => {
                 <div className={Style.essential}>
                     <p>O colaborador está alinhado aos pilares da organização?</p>
                     <label className="teste">Integridade</label>
-                    <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-                        in their exact original form, accompanied by English versions from the 1914 translation
-                        by H. Rackham.</p>
+                    <p>significa a qualidade de alguém ou algo a ser integre,
+                        de conduta reta, pessoa de honra, ética, educada, brioso,
+                        pundonoroso, cuja natureza de ação nos dá uma imagem de inocência,
+                        pureza ou castidade, o que é íntegro, é justo e perfeito,
+                        é puro de alma e de espírito.</p>
                     <div className={Style.slider}>
-                        <Slider className={Style.slider} defaultValue={3} valueLabelDisplay="auto" value={assessement.responses[4].slider[0]} marks={marks} step={1} min={0} max={3}></Slider>
+                        <Slider
+                            className={Style.slider}
+                            defaultValue={3}
+                            valueLabelDisplay="auto"
+                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-1']?.answer)}
+                            marks={marks}
+                            step={1}
+                            min={0}
+                            max={3}>
+                        </Slider>
                     </div>
                 </div>
                 <div className={Style.essential}>
@@ -99,17 +147,35 @@ const Survey = ({ uuid }: Props) => {
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
                     <div className={Style.slider}>
-                        <Slider className={Style.slider} defaultValue={3} valueLabelDisplay="auto" value={assessement.responses[4].slider[1]} marks={marks} step={1} min={0} max={3}></Slider>
+                        <Slider
+                            className={Style.slider}
+                            defaultValue={3}
+                            valueLabelDisplay="auto"
+                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-2']?.answer)}
+                            marks={marks}
+                            step={1}
+                            min={0}
+                            max={3}>
+                        </Slider>
                     </div>
                 </div>
                 <div className={Style.essential}>
-                    <label className="teste">Transparencia</label>
+                    <label className="teste">Transparência</label>
                     <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
                         Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
                     <div className={Style.slider}>
-                        <Slider className={Style.slider} defaultValue={3} valueLabelDisplay="auto" value={assessement.responses[4].slider[2]} marks={marks} step={1} min={0} max={3}></Slider>
+                        <Slider
+                            className={Style.slider}
+                            defaultValue={3}
+                            valueLabelDisplay="auto"
+                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-3']?.answer)}
+                            marks={marks}
+                            step={1}
+                            min={0}
+                            max={3}>
+                        </Slider>
                     </div>
                 </div>
                 <div className={Style.essential}>
@@ -119,11 +185,19 @@ const Survey = ({ uuid }: Props) => {
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
                     <div className={Style.slider}>
-                        <Slider defaultValue={3} valueLabelDisplay="auto" value={assessement.responses[4].slider[3]} marks={marks} step={1} min={0} max={3}></Slider>
+                        <Slider
+                            defaultValue={3}
+                            valueLabelDisplay="auto"
+                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-4']?.answer)}
+                            marks={marks}
+                            step={1}
+                            min={0}
+                            max={3}>
+                        </Slider>
                     </div>
                 </div>
             </section>
-        </form>
+        </form >
     )
 }
 export default Survey;

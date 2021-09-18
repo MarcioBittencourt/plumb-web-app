@@ -64,10 +64,9 @@ const Dashboard = (props: Props) => {
         localStorage.setItem('assessements', JSON.stringify(assessements));
     }, [assessements]);
 
-    const enviarSolicitacao = () => {
-        //salvar no local storage uma nova avaliação para cada colaborador existente no array de colaboradores selecionados
-        const newAssessements: any[] = selectedEmployees.map(employee => {
-            const response = fetch(`http://localhost:5000/assessements`, {
+    const enviarSolicitacao = async () => {
+        const newAssessements: any[] = await Promise.all(selectedEmployees.map(async employee => {
+            const createdAssessementResponse = await fetch(`http://localhost:5000/assessements`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -77,6 +76,24 @@ const Dashboard = (props: Props) => {
                     status: "Pendente"
                 })
             });
+
+            const assessement: any = await createdAssessementResponse.json();
+
+            Data360.askings.map((ask) => {
+                ask.utterances.map(async (utterance) => {
+                    const createdQuestionResponse = await fetch(`http://localhost:5000/questions`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            assessement: assessement.id,
+                            category: ask.category,
+                            ask: utterance.title,
+                            questionId: utterance.questionId
+                        })
+                    });
+                })
+            });
+
             return {
                 uuid: new Date().getTime(), //substituir por uuid
                 rated: JSON.parse(localStorage.getItem("loggedUser") || '{}'),
@@ -86,7 +103,8 @@ const Dashboard = (props: Props) => {
                 prazoResolucao: "2021-10-05T18:02:30",
                 status: "Pendente"
             }
-        });
+        }));
+        console.log('new_assessements', newAssessements);
         setAssessements([...assessements, ...newAssessements]);
         setSelectedEmployees([]);
     }
@@ -159,7 +177,7 @@ const Dashboard = (props: Props) => {
                         }
                         <Row className={Style.sectionTable}>
                             <Col hidden={!(assessements.filter((assessement: any) =>
-                            assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído").length === 0)} className={Style.assessementTableHidden}>
+                                assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído").length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
                             </Col>
                         </Row>
@@ -193,7 +211,7 @@ const Dashboard = (props: Props) => {
                         }
                         <Row className={Style.sectionTable}>
                             <Col hidden={!(assessements.filter((assessement: any) => ["Pendente", "Rascunho"]
-                            .includes(assessement.status) && assessement.evaluator.id === loggedUser.id).length === 0)} className={Style.assessementTableHidden}>
+                                .includes(assessement.status) && assessement.evaluator.id === loggedUser.id).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
                             </Col>
                         </Row>
@@ -224,7 +242,7 @@ const Dashboard = (props: Props) => {
                             })}
                         <Row className={Style.sectionTable}>
                             <Col hidden={!(assessements.filter((assessement: any) => ["Concluído"]
-                            .includes(assessement.status)).length === 0 ) } className={Style.assessementTableHidden}>
+                                .includes(assessement.status)).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
                             </Col>
                         </Row>
