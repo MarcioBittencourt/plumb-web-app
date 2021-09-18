@@ -5,7 +5,6 @@ import Data360 from '../../../assets/360.json'
 import { useEffect, useState } from 'react';
 
 type Props = {
-    //askings: any;
     uuid: string;
 }
 
