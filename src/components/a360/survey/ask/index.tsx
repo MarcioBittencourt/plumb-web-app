@@ -1,15 +1,33 @@
+import { useEffect, useState } from 'react';
 import Style from './ask.module.scss'
 
 type Props = {
     category: string,
     title: string,
     options: string[],
-    checked?: string
+    checked: string,
+    uuidAssessement: string,
+    questionId: string,
+    status: string,
+    //handleUpdateData: (event: any, newValue: any, questionId: any) => void;
 };
 
-const Ask = ({ category, title, options, checked }: Props) => {
+const Ask = ({ category, title, options, checked, uuidAssessement, questionId, status }: Props) => {
 
     const uid = Math.floor(Math.random() * 100);
+
+    const [selectedValue, setSelectedValue ] = useState<string>(checked);
+
+    useEffect(() => {
+        setSelectedValue(checked);
+    }, [checked]);
+
+    const handleUpdateData = (event: any) => {
+        const data: any = JSON.parse(localStorage.getItem(uuidAssessement) || '{}');
+        data[questionId].answer = event.target.value;
+        setSelectedValue(event.target.value);
+        localStorage.setItem(uuidAssessement, JSON.stringify(data));
+    }
 
     return (
         <div className={Style.ask}>
@@ -18,7 +36,15 @@ const Ask = ({ category, title, options, checked }: Props) => {
                     {options.map((answer, index) => {
                         return (
                             <div className={Style.option}>
-                                <input className="form-check-input" id={`answer-${uid}-option-${index}`} type="radio" checked={answer === checked} name={`options-${uid}`} value={answer} />
+                                <input
+                                    className="form-check-input"
+                                    id={`answer-${uid}-option-${index}`}
+                                    type="radio"
+                                    checked={answer === selectedValue}
+                                    disabled={"Concluído" === status}
+                                    name={`options-${uid}`}
+                                    value={answer}
+                                    onChange={handleUpdateData}/>
                                 <label htmlFor={`answer-${uid}-option-${index}`}>{answer}</label>
                             </div>
                         )

@@ -2,29 +2,12 @@ import { Slider } from '@material-ui/core';
 import Ask from './ask';
 import Style from './survey.module.scss'
 import Data360 from '../../../assets/360.json'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
     uuid: string;
 }
-
 const Survey = ({ uuid }: Props) => {
-    const [askings, setAskings] = useState<any>({});
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(`http://localhost:5000/questions/byAssessement/${uuid}`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            })
-            const resp = await response.json();
-            const questions: any = {};
-            resp.map((q: any) => {
-                questions[q.questionId] = q;
-            });
-            setAskings(questions);
-        })();
-    }, []);
-
     const options = [
         "Nunca",
         "Algumas vezes",
@@ -32,13 +15,104 @@ const Survey = ({ uuid }: Props) => {
     ];
 
     const marks = [
-        //{value: 0, label: ""},
         { value: 0, label: "Não atende" },
         { value: 1, label: "Abaixo" },
         { value: 2, label: "Atende Plenamente" },
         { value: 3, label: "Supera" },
-        //{value: 5, label: ""}
     ]
+    const [askings, setAskings] = useState<any>({});
+    const [sliders, setSliders] = useState<number[]>([]);
+
+    const [assessement, setAssessement] = useState<any>({});
+
+    // duvida resgatar o ID do assessement pelo localstorage ou fetch?
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            setAssessement(await response.json());
+        })()
+    }, []);
+
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`http://localhost:5000/questions/byAssessement/${uuid}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const resp = await response.json();
+            const questions: any = {};
+            resp.map((q: any) => {
+                questions[q.questionId] = q;
+            });
+            setAskings(questions);
+
+            setSliders([
+                questions["a360-expectation-1"].answer,
+                questions["a360-expectation-2"].answer,
+                questions["a360-expectation-3"].answer,
+                questions["a360-expectation-4"].answer
+            ].map(value => marks.findIndex(mark => mark.label === value)));
+
+            localStorage.setItem(uuid, JSON.stringify(questions));
+        })();
+    }, []);
+
+    const save = async () => {
+        const data: any = JSON.parse(localStorage.getItem(uuid) || '{}');
+        Object.values(data).map(async (question: any) => {
+            await fetch(`http://localhost:5000/questions/${question.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    answer: question.answer,
+                })
+            });
+        });
+        const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                status: "Rascunho",
+            })
+        });
+        response.ok
+        ? alert("A avaliação foi salva com sucesso!")
+        : alert("Houve um problema ao realizar o salvamento!");
+    }
+
+    const send = async () => {
+        const data: any = JSON.parse(localStorage.getItem(uuid) || '{}');
+        Object.values(data).map(async (question: any) => {
+            await fetch(`http://localhost:5000/questions/${question.id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    answer: question.answer,
+                })
+            });
+        });
+        const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                status: "Enviado",
+                concludedDate: new Date(),
+            })
+        });
+        response.ok
+        ? alert("A avaliação foi enviada com sucesso!")
+        : alert("Houve um problema ao realizar o envio!");
+    }
+
+    const handleUpdateData = (event: any, newValue: any, questionId: any) => {
+        const data: any = JSON.parse(localStorage.getItem(uuid) || '{}');
+        data[questionId].answer = marks[newValue].label;
+        localStorage.setItem(uuid, JSON.stringify(data));
+    }
 
     return (
         <form className={Style.survey}>
@@ -47,17 +121,27 @@ const Survey = ({ uuid }: Props) => {
                 <ol>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-responsability-1"]?.answer}
                             category={askings["a360-responsability-1"]?.category}
                             title={askings["a360-responsability-1"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-responsability-1"}
+                            uuidAssessement={uuid} 
+                            status={assessement.status}
+                            />
                     </li>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-responsability-2"]?.answer}
                             category={askings["a360-responsability-2"]?.category}
                             title={askings["a360-responsability-2"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-responsability-1"}
+                            uuidAssessement={uuid}
+                            status={assessement.status}
+                            />
                     </li>
                 </ol>
             </section>
@@ -66,17 +150,27 @@ const Survey = ({ uuid }: Props) => {
                 <ol>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-comunication-1"]?.answer}
                             category={askings["a360-comunication-1"]?.category}
                             title={askings["a360-comunication-1"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-comunication-1"}
+                            uuidAssessement={uuid}
+                            status={assessement.status}
+                            />
                     </li>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-comunication-2"]?.answer}
                             category={askings["a360-comunication-2"]?.category}
                             title={askings["a360-comunication-2"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-comunication-1"}
+                            uuidAssessement={uuid}
+                            status={assessement.status}
+                            />
                     </li>
                 </ol>
             </section>
@@ -85,17 +179,27 @@ const Survey = ({ uuid }: Props) => {
                 <ol>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-teamwork-1"]?.answer}
                             category={askings["a360-teamwork-1"]?.category}
                             title={askings["a360-teamwork-1"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-responsability-1"}
+                            uuidAssessement={uuid}
+                            status={assessement.status}
+                            />
                     </li>
                     <li>
                         <Ask
+                            key={uuid}
                             checked={askings["a360-teamwork-2"]?.answer}
                             category={askings["a360-teamwork-2"]?.category}
                             title={askings["a360-teamwork-2"]?.ask}
-                            options={options} />
+                            options={options}
+                            questionId={"a360-responsability-1"}
+                            uuidAssessement={uuid}
+                            status={assessement.status}
+                            />
                     </li>
                 </ol>
             </section>
@@ -105,13 +209,13 @@ const Survey = ({ uuid }: Props) => {
                     <li>
                         <div className={Style.utterance}>
                             <p>Como posso melhorar ainda mais?</p>
-                            <textarea value={askings["a360-feedback-1"]?.answer}></textarea>
+                            <textarea disabled={"Concluído" === assessement.status} value={askings["a360-feedback-1"]?.answer}></textarea>
                         </div>
                     </li>
                     <li>
                         <div className={Style.utterance}>
                             <p>O que eu realizei com excelência/destaque?</p>
-                            <textarea value={askings["a360-feedback-2"]?.answer}></textarea>
+                            <textarea disabled={"Concluído" === assessement.status} value={askings["a360-feedback-2"]?.answer}></textarea>
                         </div>
                     </li>
                 </ol>
@@ -131,7 +235,9 @@ const Survey = ({ uuid }: Props) => {
                             className={Style.slider}
                             defaultValue={3}
                             valueLabelDisplay="auto"
-                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-1']?.answer)}
+                            value={sliders[0]}
+                            disabled={"Concluído" === assessement.status}
+                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-1")}
                             marks={marks}
                             step={1}
                             min={0}
@@ -149,8 +255,10 @@ const Survey = ({ uuid }: Props) => {
                         <Slider
                             className={Style.slider}
                             defaultValue={3}
+                            value={sliders[1]}
                             valueLabelDisplay="auto"
-                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-2']?.answer)}
+                            disabled={"Concluído" === assessement.status}
+                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-2")}
                             marks={marks}
                             step={1}
                             min={0}
@@ -168,8 +276,10 @@ const Survey = ({ uuid }: Props) => {
                         <Slider
                             className={Style.slider}
                             defaultValue={3}
+                            value={sliders[2]}
                             valueLabelDisplay="auto"
-                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-3']?.answer)}
+                            disabled={"Concluído" === assessement.status}
+                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-3")}
                             marks={marks}
                             step={1}
                             min={0}
@@ -187,7 +297,9 @@ const Survey = ({ uuid }: Props) => {
                         <Slider
                             defaultValue={3}
                             valueLabelDisplay="auto"
-                            value={marks.findIndex(mark => mark.label === askings['a360-expectation-4']?.answer)}
+                            value={sliders[3]}
+                            disabled={"Concluído" === assessement.status}
+                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-4")}
                             marks={marks}
                             step={1}
                             min={0}
@@ -196,6 +308,8 @@ const Survey = ({ uuid }: Props) => {
                     </div>
                 </div>
             </section>
+            <button type="button" onClick={save}>Salvar</button>
+            <button type="button" onClick={send}>Enviar</button>
         </form >
     )
 }

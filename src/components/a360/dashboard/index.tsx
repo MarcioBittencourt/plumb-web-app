@@ -64,7 +64,7 @@ const Dashboard = (props: Props) => {
         localStorage.setItem('assessements', JSON.stringify(assessements));
     }, [assessements]);
 
-    const enviarSolicitacao = async () => {
+    const sendRequest = async () => {
         const newAssessements: any[] = await Promise.all(selectedEmployees.map(async employee => {
             const createdAssessementResponse = await fetch(`http://localhost:5000/assessements`, {
                 method: 'POST',
@@ -104,7 +104,6 @@ const Dashboard = (props: Props) => {
                 status: "Pendente"
             }
         }));
-        console.log('new_assessements', newAssessements);
         setAssessements([...assessements, ...newAssessements]);
         setSelectedEmployees([]);
     }
@@ -125,7 +124,7 @@ const Dashboard = (props: Props) => {
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
                             <Col><h3>Solicitar avaliação (X/5)</h3></Col>
-                            <Col><button onClick={enviarSolicitacao}>Solicitar</button></Col>
+                            <Col><button className={Style.buttonRequest} onClick={sendRequest}>Solicitar</button></Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Colaborador</p></Col>
@@ -227,7 +226,7 @@ const Dashboard = (props: Props) => {
                             <Col><p>Status</p></Col>
                             <Col><p>Visualizar</p></Col>
                         </Row>
-                        {assessements.filter((assessement: any) => ["Concluído"]
+                        {assessements.filter((assessement: any) => ["Concluído", "Enviado"]
                             .includes(assessement.status)).map((assessement: any) => {
                                 return (
                                     <AssessementRecord
@@ -241,7 +240,7 @@ const Dashboard = (props: Props) => {
                                 )
                             })}
                         <Row className={Style.sectionTable}>
-                            <Col hidden={!(assessements.filter((assessement: any) => ["Concluído"]
+                            <Col hidden={!(assessements.filter((assessement: any) => ["Concluído", "Enviado"]
                                 .includes(assessement.status)).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
                             </Col>

@@ -19,10 +19,13 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
     const dataSolicitacaoFmt = format(new Date(requestDate), 'd MMM yyyy');
     const dataResolution = intervalToDuration(
         {
-            start: new Date(dataSolicitacaoFmt),
-            end: new Date(prazoResolucaoFmt)
+            start: new Date(),
+            end: new Date(deadlineDate)
         }
     )
+
+    var days = (dataResolution.months || 0) * 30;
+    days += (dataResolution.days || 0);
 
     return (
         <div className={Style.assessementTableRecord}>
@@ -44,7 +47,7 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
                 </Col>
                 <Col>
                     <div className={Style.details}>
-                        <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${dataResolution.days} dias ${dataResolution.hours}:${dataResolution.minutes}:${dataResolution.seconds}`}</p>
+                        <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${days} dias ${dataResolution.hours}:${dataResolution.minutes}`}</p>
                         <p className={Style.secondaryInfo} hidden={["Concluído", "Enviado"].includes(status)}>Disponível até {prazoResolucaoFmt}</p>
                         <p className={Style.secondaryInfo} hidden={["Pendente", "Rascunho"].includes(status)}>Concluído em {dataConclusaoFmt}</p>
                     </div>
