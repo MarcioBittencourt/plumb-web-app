@@ -13,7 +13,7 @@
             {
                 "uuid": "23858110-3b42-4eab-a8fe-c20f7bd88b1e",
                 "id": "C-1231",
-                "avatar": "foto",
+                "photo": "foto",
                 "departament": "Economia",
                 "name": "Thomas Shelby",
                 "email": "thomas@mail.com",
@@ -22,7 +22,7 @@
             {
                 "uuid": "6ea5b3a6-6558-4561-a1ff-d3087fe4b259",
                 "id": "C-1232",
-                "avatar": "foto",
+                "photo": "foto",
                 "departament": "Entregas",
                 "name": "Zezinho do Tiro",
                 "email": "zezinho@mail.com",
@@ -31,7 +31,7 @@
             {
                 "uuid": "5a849864-136d-4e4c-87d8-b824216ed2dc",
                 "id": "C-1233",
-                "avatar": "foto",
+                "photo": "foto",
                 "departament": "Cobranças",
                 "name": "Juca da Bala",
                 "email": "jucabala@mail.com",
@@ -40,7 +40,7 @@
             {
                 "uuid": "eaa56527-62c2-4630-9639-2e2eb1459b5f",
                 "id": "C-1234",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Marcio Bittencourt",
                 "email": "marcio@email",
                 "departament": "Administração",
@@ -49,7 +49,7 @@
             {
                 "uuid": "18368468-fe08-4ce4-b25f-5c943b632bbc",
                 "id": "C-1235",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Renata da Silva",
                 "email": "renata@email",
                 "departament": "Recursos Humanos",
@@ -58,7 +58,7 @@
             {
                 "uuid": "9708e42d-c251-45c0-b06e-6b451b4b3d4b",
                 "id": "C-1236",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Pedro da Cunha",
                 "email": "cunha@email",
                 "departament": "Almoxarifado",
@@ -67,7 +67,7 @@
             {
                 "uuid": "8af70ca7-d9ad-47ca-90e0-8488b8ef151d",
                 "id": "C-1237",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Jonas da Goiaba",
                 "email": "jonas@email",
                 "departament": "Contabilidade",
@@ -76,7 +76,7 @@
             {
                 "uuid": "59f3b6a9-7748-490a-8515-f006e028c59d",
                 "id": "C-1238",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Rick Sanchez",
                 "email": "rick@email",
                 "departament": "Contabilidade",
@@ -85,7 +85,7 @@
             {
                 "uuid": "a1f7f6b5-509e-4683-940e-a4b06c2245c2",
                 "id": "C-1239",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Morty Sanchez",
                 "email": "morty@email",
                 "departament": "Contabilidade",
@@ -94,7 +94,7 @@
             {
                 "uuid": "35834389-bd5e-4295-b30b-c590d320db6c",
                 "id": "C-1240",
-                "avatar": "foto",
+                "photo": "foto",
                 "name": "Steve Barão",
                 "email": "rick@email",
                 "departament": "Contabilidade",

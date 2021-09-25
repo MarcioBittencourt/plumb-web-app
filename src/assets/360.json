@@ -4,6 +4,7 @@
             "category": "Responsabilidades",
             "utterances": [
                 {
+                    "questionId": "a360-responsability-1",
                     "title": "Cumpre prazos estabelecidos com outras equipes/funcionários?",
                     "options": [
                         "Nunca",
@@ -12,6 +13,7 @@
                     ]
                 },
                 {
+                    "questionId": "a360-responsability-2",
                     "title": "Faz entregas com qualidade para a empresa?",
                     "options": [
                         "Nunca",
@@ -25,6 +27,7 @@
             "category": "Comunicação",
             "utterances": [
                 {
+                    "questionId": "a360-comunication-1",
                     "title": "Consegue se comunicar de forma assertiva diante de conflitos?",
                     "options": [
                         "Nunca",
@@ -33,6 +36,7 @@
                     ]
                 },
                 {
+                    "questionId": "a360-comunication-2",
                     "title": "Comunica-se de forma transparente, sem omitir informações?",
                     "options": [
                         "Nunca",
@@ -46,6 +50,7 @@
             "category": "Trabalho em equipe",
             "utterances": [
                 {
+                    "questionId": "a360-teamwork-1",
                     "title": "É cooperativo e consegue ouvir diferentes opiniões abertamente?",
                     "options": [
                         "Nunca",
@@ -54,6 +59,7 @@
                     ]
                 },
                 {
+                    "questionId": "a360-teamwork-2",
                     "title": "Sabe o momento de ceder e defender pontos de vista para tomar a melhor decisão para a equipe?",
                     "options": [
                         "Nunca",
@@ -67,10 +73,33 @@
             "category": "Feedback Individual",
             "utterances": [
                 {
+                    "questionId": "a360-feedback-1",
                     "title": "É cooperativo e consegue ouvir diferentes opiniões abertamente?"
                 },
                 {
+                    "questionId": "a360-feedback-2",
                     "title": "Sabe o momento de ceder e defender pontos de vista para tomar a melhor decisão para a equipe?"
+                }
+            ]
+        },
+        {
+            "category": "Expectativas",
+            "utterances": [
+                {
+                    "questionId": "a360-expectation-1",
+                    "title": "Integridade"
+                },
+                {
+                    "questionId": "a360-expectation-2",
+                    "title": "Colaboração"
+                },
+                {
+                    "questionId": "a360-expectation-3",
+                    "title": "Transparência"
+                },
+                {
+                    "questionId": "a360-expectation-4",
+                    "title": "Organização"
                 }
             ]
         }
