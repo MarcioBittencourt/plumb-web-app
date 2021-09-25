@@ -123,8 +123,12 @@ const Dashboard = (props: Props) => {
                 <Route exact path={path}>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Solicitar avaliação (X/5)</h3></Col>
-                            <Col><button className={Style.buttonRequest} onClick={sendRequest}>Solicitar</button></Col>
+                            <Col lg={10} >
+                                <h3>Solicitar avaliação (X/5)</h3>
+                            </Col>
+                            <Col lg={2}>
+                                <button className={Style.buttonRequest} onClick={sendRequest}>Solicitar</button>
+                            </Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Colaborador</p></Col>
@@ -183,8 +187,8 @@ const Dashboard = (props: Props) => {
                     </Container>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Avaliaçoes pendentes para mim</h3></Col>
-                            <Col><button onClick={refreshPendingAssessements}>Atualizar</button></Col>
+                            <Col lg={10}><h3>Avaliaçoes pendentes para mim</h3></Col>
+                            <Col lg={2}><button className={Style.buttonRequest} onClick={refreshPendingAssessements}>Atualizar</button></Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Avaliado</p></Col>

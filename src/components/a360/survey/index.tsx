@@ -3,6 +3,7 @@ import Ask from './ask';
 import Style from './survey.module.scss'
 import Data360 from '../../../assets/360.json'
 import { useEffect, useRef, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
 
 type Props = {
     uuid: string;
@@ -80,8 +81,8 @@ const Survey = ({ uuid }: Props) => {
             })
         });
         response.ok
-        ? alert("A avaliação foi salva com sucesso!")
-        : alert("Houve um problema ao realizar o salvamento!");
+            ? alert("A avaliação foi salva com sucesso!")
+            : alert("Houve um problema ao realizar o salvamento!");
     }
 
     const send = async () => {
@@ -104,8 +105,8 @@ const Survey = ({ uuid }: Props) => {
             })
         });
         response.ok
-        ? alert("A avaliação foi enviada com sucesso!")
-        : alert("Houve um problema ao realizar o envio!");
+            ? alert("A avaliação foi enviada com sucesso!")
+            : alert("Houve um problema ao realizar o envio!");
     }
 
     const handleUpdateData = (event: any, newValue: any, questionId: any) => {
@@ -127,9 +128,9 @@ const Survey = ({ uuid }: Props) => {
                             title={askings["a360-responsability-1"]?.ask}
                             options={options}
                             questionId={"a360-responsability-1"}
-                            uuidAssessement={uuid} 
+                            uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                     <li>
                         <Ask
@@ -141,7 +142,7 @@ const Survey = ({ uuid }: Props) => {
                             questionId={"a360-responsability-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                 </ol>
             </section>
@@ -158,7 +159,7 @@ const Survey = ({ uuid }: Props) => {
                             questionId={"a360-comunication-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                     <li>
                         <Ask
@@ -170,7 +171,7 @@ const Survey = ({ uuid }: Props) => {
                             questionId={"a360-comunication-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                 </ol>
             </section>
@@ -187,7 +188,7 @@ const Survey = ({ uuid }: Props) => {
                             questionId={"a360-responsability-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                     <li>
                         <Ask
@@ -199,7 +200,7 @@ const Survey = ({ uuid }: Props) => {
                             questionId={"a360-responsability-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
-                            />
+                        />
                     </li>
                 </ol>
             </section>
@@ -222,94 +223,99 @@ const Survey = ({ uuid }: Props) => {
             </section>
             <h2>Expectativas</h2>
             <section className={Style.section}>
-                <div className={Style.essential}>
+                <div className={Style.essentialSlider}>
                     <p>O colaborador está alinhado aos pilares da organização?</p>
                     <label className="teste">Integridade</label>
-                    <p>significa a qualidade de alguém ou algo a ser integre,
+                    <p className={Style.askUtterance}>significa a qualidade de alguém ou algo a ser integre,
                         de conduta reta, pessoa de honra, ética, educada, brioso,
                         pundonoroso, cuja natureza de ação nos dá uma imagem de inocência,
                         pureza ou castidade, o que é íntegro, é justo e perfeito,
                         é puro de alma e de espírito.</p>
-                    <div className={Style.slider}>
-                        <Slider
-                            className={Style.slider}
-                            defaultValue={3}
-                            valueLabelDisplay="auto"
-                            value={sliders[0]}
-                            disabled={"Concluído" === assessement.status}
-                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-1")}
-                            marks={marks}
-                            step={1}
-                            min={0}
-                            max={3}>
-                        </Slider>
+                    <div className={Style.sliderSection}>
+                        <Col lg={8}>
+                            <Slider
+                                defaultValue={3}
+                                valueLabelDisplay="auto"
+                                value={sliders[0]}
+                                disabled={"Concluído" === assessement.status}
+                                onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-1")}
+                                marks={marks}
+                                step={1}
+                                min={0}
+                                max={3}>
+                            </Slider>
+                        </Col>
                     </div>
                 </div>
-                <div className={Style.essential}>
+                <div className={Style.essentialSlider}>
                     <label className="teste">Colaboração</label>
-                    <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                    <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
                         Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
-                    <div className={Style.slider}>
-                        <Slider
-                            className={Style.slider}
-                            defaultValue={3}
-                            value={sliders[1]}
-                            valueLabelDisplay="auto"
-                            disabled={"Concluído" === assessement.status}
-                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-2")}
-                            marks={marks}
-                            step={1}
-                            min={0}
-                            max={3}>
-                        </Slider>
+                    <div className={Style.sliderSection}>
+                        <Col lg={8}>
+                            <Slider
+                                defaultValue={3}
+                                value={sliders[1]}
+                                valueLabelDisplay="auto"
+                                disabled={"Concluído" === assessement.status}
+                                onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-2")}
+                                marks={marks}
+                                step={1}
+                                min={0}
+                                max={3}>
+                            </Slider>
+                        </Col>
                     </div>
                 </div>
-                <div className={Style.essential}>
+                <div className={Style.essentialSlider}>
                     <label className="teste">Transparência</label>
-                    <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                    <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
                         Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
-                    <div className={Style.slider}>
-                        <Slider
-                            className={Style.slider}
-                            defaultValue={3}
-                            value={sliders[2]}
-                            valueLabelDisplay="auto"
-                            disabled={"Concluído" === assessement.status}
-                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-3")}
-                            marks={marks}
-                            step={1}
-                            min={0}
-                            max={3}>
-                        </Slider>
+                    <div className={Style.sliderSection}>
+                        <Col lg={8}>
+                            <Slider
+                                defaultValue={3}
+                                value={sliders[2]}
+                                valueLabelDisplay="auto"
+                                disabled={"Concluído" === assessement.status}
+                                onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-3")}
+                                marks={marks}
+                                step={1}
+                                min={0}
+                                max={3}>
+                            </Slider>
+                        </Col>
                     </div>
                 </div>
-                <div className={Style.essential}>
+                <div className={Style.essentialSlider}>
                     <label className="teste">Organização</label>
-                    <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+                    <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
                         Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
                         in their exact original form, accompanied by English versions from the 1914 translation
                         by H. Rackham.</p>
-                    <div className={Style.slider}>
-                        <Slider
-                            defaultValue={3}
-                            valueLabelDisplay="auto"
-                            value={sliders[3]}
-                            disabled={"Concluído" === assessement.status}
-                            onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-4")}
-                            marks={marks}
-                            step={1}
-                            min={0}
-                            max={3}>
-                        </Slider>
+                    <div className={Style.sliderSection}>
+                        <Col lg={8}>
+                            <Slider
+                                defaultValue={3}
+                                valueLabelDisplay="auto"
+                                value={sliders[3]}
+                                disabled={"Concluído" === assessement.status}
+                                onChange={(event, newValue) => handleUpdateData(event, newValue, "a360-expectation-4")}
+                                marks={marks}
+                                step={1}
+                                min={0}
+                                max={3}>
+                            </Slider>
+                        </Col>
                     </div>
                 </div>
             </section>
-            <button type="button" onClick={save}>Salvar</button>
-            <button type="button" onClick={send}>Enviar</button>
+            <button className={Style.buttons} type="button" onClick={save}>Salvar</button>
+            <button className={Style.buttons} type="button" onClick={send}>Enviar</button>
         </form >
     )
 }
