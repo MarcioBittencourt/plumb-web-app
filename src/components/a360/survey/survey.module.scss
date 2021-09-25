@@ -1,28 +1,48 @@
+@import "../../../assets/styles/typograph";
+@import "../../../assets/styles/button";
+
 .survey {
     display: inline;
 
-    h2  {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 24px;
-        font-weight: 700;
-        color: #4d5db0;
-    }
-
     .section {
         background-color: #ffffff;
-        padding: 15px;
+        padding: 25px;
         border-radius: 8px;
         margin-bottom: 20px;
     }
 
     .utterance {
+        textarea {
+            width: 550px;
+            height: 100px;
+        }
     }
+}
+
+.askUtterance {
+    font-size: 14px;
 }
 
 .essential {
     margin-bottom: 24px;
 }
 
-.slider {
+.essentialSlider {
+    margin-bottom: 80px;
+
+    p {
+        margin-bottom: 24px;
+    }
+
+    label {
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+    
+    .sliderSection {
+        display: flex;
+        justify-content: center;
+    }
+    .slider {
+    }
 }

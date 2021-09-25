@@ -1,15 +1,10 @@
-.goalSection {
-    background-color: white;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 48px;
-    margin: 32px 0;
-    padding: 14px;
+@import "../../../assets/styles/section";
 
-    .goalSectionHeader {
-        display: flex;
-        margin-bottom: 10px;        
+.pageSection {
+    border-bottom-right-radius: 48px;
+
+    .pageSectionHeader {
+        margin-bottom: 10px;
 
         & > div {
             display: inline-flex;
@@ -19,14 +14,17 @@
         .goalTitle {
             input {
                 margin-left: 3px;
-                font-size: 16px;
+                font-size: 20px;
                 width: 100%;
+                margin-bottom: 5px;
+                margin-top: 5px;
                 border: none;
+                background-color: #3e5a6e;
+                color: white;
             }
-        }
-
-        .headerSecondaryContent {
-            display: inline;
+            ::placeholder {
+                color: white;
+            }
         }
     }
 
@@ -56,30 +54,67 @@
             border-radius: 5px;
             border: 1px solid #868686;
 
-            .icon {
-                margin: 0 5px;
-            }
-
             input {
                 border: none;
-                width: 90%;
+                width: 300px;
+            }
+
+            .iconSearch {
+                margin: 0 5px;
             }
         }
     }
 
-    .goalTagWrapper {
-        padding: 0;
-        width: 40px;
-        margin-top: 80px;
-        background-color: hotpink;
+    .listSearch {
+        list-style: none;
+        margin: 0;
+        margin-bottom: 50px;
+        padding-left: 4px;
     }
 
-    .goalClassificationTag {
-        background-color: hotpink;
-        transform: rotate(-90deg); //scaleX(-1);
+    .searchOption:hover {            
+        .iconXCircle {
+            display: block;
+        }
+    }
+
+    .searchOption {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin: 6px 3px;
+        font-size: 16px;
+
+        .iconXCircle {
+            display: none;
+            margin-left: auto;  
+            margin-right: 20px;
+
+            :hover {
+                color: red;
+            }
+        }
+
+        p { 
+            margin: 0 12px;
+        }
+    
+        .avatar {
+            content: '';
+            background-color: #081c2a;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+        }
+    }
+    .searchOption:hover {
+        background-color: #eee;
+    }
+
+    .addedColaborators {
+        padding-top: 18px;
     }
 }
-
 
 /*.properties {
     display: grid;

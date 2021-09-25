@@ -1,0 +1,66 @@
+.pageSection {
+    margin-bottom: 45px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.pageSectionHeader {
+    display: flex;
+    align-items: center;
+    background-color: #3e5a6e;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: white;
+    h3 {
+        font-weight: 400;
+        margin: 4px 0;
+    }
+}
+
+.assessementTableHeader {
+    background-color: #607480;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0 24px;
+    display: flex;
+    justify-items: center;
+
+    div {
+        display: flex;
+        justify-content: center;
+        p {
+            margin: 8px 0;
+            color: white;
+            font-weight: 300;
+        }
+    }
+}
+
+.sectionTable {
+    padding: 0 28px;
+    margin-bottom: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: white;
+}
+
+.assessementTableHidden {
+    background-color: white;
+    padding: 15px 5px;
+    border-bottom: 1px solid #adaaa9;
+
+    div {
+        align-items: center;
+    }
+
+    div p {
+        margin: 0;
+    }
+
+    div input {
+        width: 100%;
+        height: 36px;
+        border: none;
+        padding-left: 15px;
+    }
+}

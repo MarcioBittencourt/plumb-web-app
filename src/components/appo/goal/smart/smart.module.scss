@@ -8,17 +8,18 @@
     margin: 0 3px;
     display: flex;
     background-color: white;
+    color: #06171F;
     border-radius: 8px;
-    border: 2px solid green;
+    border: 2px solid #06171F;
     font-size: 16px;
     justify-content: center;
     align-items: center;
     width: 40px;
 
     &.active {
-        background-color: green;
+        background-color: #06171F;
         border-radius: 8px;
-        border: 2px solid green;
+        border: 2px solid rgba(17, 231, 255, 0.5);
         color: white;
     }
 }

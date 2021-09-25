@@ -1,18 +1,20 @@
 .sprint {
-    display: flex;
+    display: block;
     border-radius: 8px;
-    border: 2px solid #7a7878;
+    border: 2px solid #bebdbd;
     padding: 20px;
     justify-content: space-between;
     align-items: center;
-    margin: 0 15px 20px 15px;
+    margin-bottom: 24px;
 
     .sprintOption {
         cursor: pointer;
         display: flex;
+        margin-left: 35px;
         background-color: white;
+        color: #06171F;
         border-radius: 8px;
-        border: 2px solid green;
+        border: 2px solid #06171F;
         font-size: 16px;
         justify-content: center;
         align-items: center;
@@ -20,19 +22,26 @@
         height: 30px;
 
         &.active {
-            background-color: green;
+            background-color: #06171F;
             border-radius: 8px;
-            border: 2px solid white;
+            border: 2px solid rgba(17, 231, 255, 0.5);
+            box-shadow: 0 0 18px rgba(17, 231, 255, 0.5);
             color: white;
+            width: 115px;
+            height: 35px;
         }
     }
 }
 .sectionDate {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
+
     label {
+        padding: 0;
         margin-left: 16px;
         margin-right: 6px;
+        width: inherit;
     }
     input[type='number'] {
         margin: 0 3px;
@@ -43,4 +52,10 @@
     input[type='date'] {
         width: 170px;
     }
+}
+
+.sectionCadency {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
