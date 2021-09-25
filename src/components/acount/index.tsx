@@ -38,7 +38,6 @@ const Acount = (props: Props) => {
     }, []);
 
     const createAccount = async () => {
-        console.log('employes data', employeesData);
         const account: any = {
             admin: {
                 name: refCompanyName.current?.value,
@@ -51,7 +50,7 @@ const Acount = (props: Props) => {
                 businessRegister: refBusinessRegister.current?.value,
                 country: refCompanyCountry.current?.value,
                 employees: employeesData.map((employee, index) => {
-                    return { name: employee.name, email: employee.email, password: employee.password, role: "user" }
+                    return { name: employee.name, photo: employee.photo, email: employee.email, password: employee.password, role: "user" }
                 }),
                 sprints: {
                     appo: {
@@ -75,17 +74,15 @@ const Acount = (props: Props) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: account.company.businessName,
-                recoverEmail: account.admin.email,
-                country: "Brasil",
+                companyName: account.company.businessName,
                 businessName: account.company.businessName,
+                recoverEmail: account.admin.email,
+                country: account.company.country,
                 password: account.admin.password,
                 businessRegister: account.company.businessRegister,
                 employees: account.company.employees,
             })
         });
-        console.log("Salvou com status: ", response);
-        console.log(account.company.employees);
     }
 
     const handleEmployeeDataOnChange = (index: number) => {
@@ -105,7 +102,7 @@ const Acount = (props: Props) => {
 
     const newLine = (name?: string, uuid?: string, email?: string, password?: string, row: number = employees.length) => {
         setEmployees((prevState) => [...prevState, (
-            <Row className={Style.employeeTableRecord}>
+            <Row className={Style.assessementTableHidden}>
                 <Col>
                     <input
                         key={`name-${uuid}`}
@@ -216,27 +213,35 @@ const Acount = (props: Props) => {
                             placeholder="Uzuberquistão" />
                     </Col>
                 </Row>
+                    <label>Setor</label>
+                <Row>
+
+                </Row>
             </Container>
-            <Container>
-                <Row className={Style.sectionHeader}>
-                    <Col>
+            <Container className={Style.pageSection}>
+                <Row className={Style.pageSectionHeader}>
+                    <Col lg={8}>
                         <h3>Cadastro de colaboradores</h3>
+                    </Col>
+                    <Col lg={2}>
                         <button
                             onClick={() => newLine()}
                             className={Style.newUserButton}>Adicionar</button>
+                    </Col>
+                    <Col lg={2}>
                         <button
                             onClick={erase}
                             className={Style.newUserButton}>Limpar</button>
                     </Col>
                 </Row>
-                <Row className={Style.employeeTableHeader}>
+                <Row className={Style.assessementTableHeader}>
                     <Col><p>Nome</p></Col>
                     <Col><p>Email</p></Col>
                     <Col><p>Senha</p></Col>
                 </Row>
                 <Row className={Style.sectionTable}>
                     <Col>
-                        <Row hidden={!(employees.length === 0)} className={Style.employeeTableRecord}>
+                        <Row hidden={!(employees.length === 0)} className={Style.assessementTableHidden}>
                             <Col><p>Nenhum registro de colaborador existente.</p></Col>
                         </Row>
                         {employees}
@@ -251,24 +256,24 @@ const Acount = (props: Props) => {
                 <Sprint
                     defaultOption="3 Meses"
                     value={sprints.appo.cadency}
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
-                    dateFinish={new Date()}    
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]}
+                    dateFinish={new Date()}
                 />
                 <label className={Style.sprint}>Teste psicométrico DISC</label>
                 <Sprint
                     defaultOption="6 Meses"
                     value={sprints.disc.cadency}
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
-                    dateFinish={new Date()}/>
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]}
+                    dateFinish={new Date()} />
                 <label className={Style.sprint}>Avaliação de feedback 360</label>
                 <Sprint
                     defaultOption="2 Meses"
                     value={sprints.a360.cadency}
-                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]} 
+                    options={["2 Semanas", "2 Meses", "3 Meses", "6 Meses", "1 Ano"]}
                     dateFinish={new Date()} />
             </Container>
             <Container className={Style.containerButton}>
-                <button className={Style.saveButton} onClick={createAccount}>Salvar</button>
+                <button onClick={createAccount}>Salvar</button>
             </Container>
         </div >
     );
