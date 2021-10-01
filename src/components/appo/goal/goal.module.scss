@@ -1,4 +1,6 @@
 @import "../../../assets/styles/section";
+@import "../../../assets/styles/ui";
+@import "../../../assets/styles/colors";
 
 .pageSection {
     border-bottom-right-radius: 48px;
@@ -29,6 +31,8 @@
     }
 
     .goalSectionContent {
+        padding: 18px;
+        
         & > div {
             display: flex;
             flex-direction: column;
@@ -42,37 +46,71 @@
             border-top: 2px solid rgba(187, 187, 187, 0.2);
         }
 
+        .goalDates {
+            display: flex;
+            margin: 6px 24px;
+            & > div {
+                display: block;
+            }
+        }
+
+        .rowSector {
+            margin: 6px 24px;
+        }
         .sectorInput {
-            width: 338px;
             margin-top: 18px;
+        }
+
+        .rowSearchEmployee {
+            margin: 6px 24px;
         }
 
         .searchEmployee {
             display: inline-flex;
             align-items: center;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #868686;
+            margin-top: 10px;
+            width: 100%;
+            border-bottom: 2px solid #868686;
 
             input {
                 border: none;
-                width: 300px;
+                margin-right: 5px;
             }
 
             .iconSearch {
-                margin: 0 5px;
+                margin: 0 15px;
+                margin-left: auto;
             }
         }
+
+        .searchCollaboratorsList {
+            height: 250px;
+            overflow-y: scroll;
+            background-color: lightgray;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+    }
+    .rowDetailsGoal {
+        margin: 6px 24px;
     }
 
-    .listSearch {
+    .entityTable {
+        margin: 16px 24px;
+    }
+
+    .tableColumnRecordID{
+        padding-right: 0;
+    }
+
+    .listSearchEmployee {
         list-style: none;
         margin: 0;
         margin-bottom: 50px;
         padding-left: 4px;
     }
 
-    .searchOption:hover {            
+    .searchOption:hover {
         .iconXCircle {
             display: block;
         }
@@ -112,34 +150,18 @@
     }
 
     .addedColaborators {
-        padding-top: 18px;
-    }
-}
-
-/*.properties {
-    display: grid;
-    margin-bottom: 24px;
-    textarea {
-        margin-top: 15px;
-        width: 650px;
-        height: 100px;
-    }
-    .title {
         display: flex;
         align-items: center;
-        p {
-            margin: 0;
-        }
-        input {
-            margin-left: 8px;
-        }
-    }
-    .description {
-        display: grid;
-        margin-top: 18px;
+        margin-top: 40px;
+        padding-left: 6px;
+        border-radius: 4px;
+        color:white;
+        background-color: $color-quartenary;
     }
 }
 
-.smartGoals {
-    margin: 24px 0;
-}*/
+.taskTitle {
+    margin: 8px 0;
+    border: none;
+    width: inherit;
+}

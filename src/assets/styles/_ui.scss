@@ -1,3 +1,5 @@
+@import './colors';
+
 .btn {
     width: 120px;
     height: 30px;
@@ -6,7 +8,7 @@
 .btn-primary {
     background-color: $color-background;
     border-radius: 30px;
-    border: 2px solid $primary-color;
+    border: 2px solid $color-primary;
 }
 
 .page {
@@ -30,5 +32,62 @@
         background-color: $color-background-primary;
         border-bottom-left-radius: $border-radius-sm;
         border-bottom-right-radius: $border-radius-sm;
+    }
+}
+
+.entityTable {
+    margin: 28px 0;
+
+    .entityTableHeader {
+        background-color: $color-quartenary;
+        padding: 10px;
+        color: white;
+        border-top-left-radius: $border-radius-sm;
+        border-top-right-radius: $border-radius-sm;
+
+        & > div {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .entityTableActions {
+            display: flex;
+            margin-left: auto;
+        }
+    }
+
+    .entityTableRecord {
+        & > div {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .entityTableRecordAction {
+            display: none;
+            //margin-left: auto;
+            margin: 0 5px;
+        }
+    }
+
+    .entityTableRecord:hover {
+        background-color: lightgray;
+
+        .entityTableRecordAction {
+            display: block;
+        }
+    }
+}
+
+.removeEntityButton {
+    :hover {
+        color: red;
     }
 }
