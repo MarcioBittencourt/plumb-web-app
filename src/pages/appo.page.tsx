@@ -24,7 +24,6 @@ const APPOPage = (props: Props) => {
             </Row>
             <Goal />
             <Goal />
-            <Goal />
         </Container >
     );
 }

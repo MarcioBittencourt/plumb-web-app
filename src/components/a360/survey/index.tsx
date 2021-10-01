@@ -26,7 +26,6 @@ const Survey = ({ uuid }: Props) => {
 
     const [assessement, setAssessement] = useState<any>({});
 
-    // duvida resgatar o ID do assessement pelo localstorage ou fetch?
     useEffect(() => {
         (async () => {
             const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {

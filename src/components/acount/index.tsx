@@ -30,12 +30,7 @@ const Acount = (props: Props) => {
     const [employees, setEmployees] = useState<any[]>([]);
     const [employeesData, setEmployeesData] = useState<any[]>([]);
 
-    useEffect(() => {
-        setEmployeesData([...colaborators]);
-        colaborators.forEach((employee: any, index: number) => {
-            newLine(employee.name, employee.uuid, employee.email, employee.password, index);
-        });
-    }, []);
+    
 
     const createAccount = async () => {
         const account: any = {
@@ -84,6 +79,13 @@ const Acount = (props: Props) => {
             })
         });
     }
+
+    useEffect(() => {
+        setEmployeesData([...colaborators]);
+        colaborators.forEach((employee: any, index: number) => {
+            newLine(employee.name, employee.uuid, employee.email, employee.password, index);
+        });
+    }, []);
 
     const handleEmployeeDataOnChange = (index: number) => {
         const changedEmployee = {
