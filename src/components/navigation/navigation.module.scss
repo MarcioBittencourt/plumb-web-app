@@ -2,9 +2,8 @@
 
 .navbar {
     box-shadow: 0 2px 2px 0 rgba(17, 231, 255, 0.5); 
-    padding: 16px 22px;
+    padding: 6px 12px;
     margin: 0;
-    height: 10vh;
     background-color: $color-primary !important; //#081C2A !important;
     
     .menu {
@@ -13,6 +12,24 @@
         //background-color: white;
         div div {
             padding-left: 45px;
+        }
+    }
+
+    .navLinks {
+        align-items: center;
+        a {
+            padding: 0;
+        }
+    }
+
+    .avatarContent {
+        display: grid;
+        justify-items: center;
+
+        p {
+            margin-top: 4px;
+            font-size: 10px;
+            color: gray;
         }
     }
 
