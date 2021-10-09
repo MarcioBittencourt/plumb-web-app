@@ -23,6 +23,8 @@ const Survey = ({ uuid }: Props) => {
     ]
     const [askings, setAskings] = useState<any>({});
     const [sliders, setSliders] = useState<number[]>([]);
+    const [feedback1, setFeedback1] = useState<string>();
+    const [feedback2, setFeedback2] = useState<string>();
 
     const [assessement, setAssessement] = useState<any>({});
 
@@ -48,7 +50,11 @@ const Survey = ({ uuid }: Props) => {
             resp.map((q: any) => {
                 questions[q.questionId] = q;
             });
+
             setAskings(questions);
+
+            setFeedback1(questions["a360-feedback-1"]?.answer);
+            setFeedback2(questions["a360-feedback-2"]?.answer);
 
             setSliders([
                 questions["a360-expectation-1"].answer,
@@ -63,14 +69,18 @@ const Survey = ({ uuid }: Props) => {
 
     const save = async () => {
         const data: any = JSON.parse(localStorage.getItem(uuid) || '{}');
+        data["a360-feedback-1"].answer = feedback1;
+        data["a360-feedback-2"].answer = feedback2;
+    
         Object.values(data).map(async (question: any) => {
-            await fetch(`http://localhost:5000/questions/${question.id}`, {
+            const resp = await fetch(`http://localhost:5000/questions/${question.id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     answer: question.answer,
                 })
             });
+            console.log("resp", resp);
         });
         const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {
             method: 'PATCH',
@@ -138,7 +148,7 @@ const Survey = ({ uuid }: Props) => {
                             category={askings["a360-responsability-2"]?.category}
                             title={askings["a360-responsability-2"]?.ask}
                             options={options}
-                            questionId={"a360-responsability-1"}
+                            questionId={"a360-responsability-2"}
                             uuidAssessement={uuid}
                             status={assessement.status}
                         />
@@ -167,7 +177,7 @@ const Survey = ({ uuid }: Props) => {
                             category={askings["a360-comunication-2"]?.category}
                             title={askings["a360-comunication-2"]?.ask}
                             options={options}
-                            questionId={"a360-comunication-1"}
+                            questionId={"a360-comunication-2"}
                             uuidAssessement={uuid}
                             status={assessement.status}
                         />
@@ -184,7 +194,7 @@ const Survey = ({ uuid }: Props) => {
                             category={askings["a360-teamwork-1"]?.category}
                             title={askings["a360-teamwork-1"]?.ask}
                             options={options}
-                            questionId={"a360-responsability-1"}
+                            questionId={"a360-teamwork-1"}
                             uuidAssessement={uuid}
                             status={assessement.status}
                         />
@@ -196,7 +206,7 @@ const Survey = ({ uuid }: Props) => {
                             category={askings["a360-teamwork-2"]?.category}
                             title={askings["a360-teamwork-2"]?.ask}
                             options={options}
-                            questionId={"a360-responsability-1"}
+                            questionId={"a360-teamwork-2"}
                             uuidAssessement={uuid}
                             status={assessement.status}
                         />
@@ -209,13 +219,22 @@ const Survey = ({ uuid }: Props) => {
                     <li>
                         <div className={Style.utterance}>
                             <p>Como posso melhorar ainda mais?</p>
-                            <textarea disabled={"Concluído" === assessement.status} value={askings["a360-feedback-1"]?.answer}></textarea>
+                            <textarea 
+                                disabled={"Concluído" === assessement.status} 
+                                value={feedback1}
+                                onChange={(e) => setFeedback1(e.target.value)}
+                            >
+                            </textarea>
                         </div>
                     </li>
                     <li>
                         <div className={Style.utterance}>
                             <p>O que eu realizei com excelência/destaque?</p>
-                            <textarea disabled={"Concluído" === assessement.status} value={askings["a360-feedback-2"]?.answer}></textarea>
+                            <textarea 
+                                disabled={"Concluído" === assessement.status} 
+                                value={feedback2}
+                                onChange={(e) => setFeedback2(e.target.value)}>
+                            </textarea>
                         </div>
                     </li>
                 </ol>

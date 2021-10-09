@@ -10,7 +10,7 @@ type Props = {
     questionId: string,
     status: string,
     //handleUpdateData: (event: any, newValue: any, questionId: any) => void;
-};
+}; 
 
 const Ask = ({ category, title, options, checked, uuidAssessement, questionId, status }: Props) => {
 
@@ -38,14 +38,14 @@ const Ask = ({ category, title, options, checked, uuidAssessement, questionId, s
                             <div className={Style.option}>
                                 <input
                                     className="form-check-input"
-                                    id={`answer-${uid}-option-${index}`}
+                                    id={`${category}-answer-${questionId}-option-${index}`}
                                     type="radio"
                                     checked={answer === selectedValue}
                                     disabled={"Concluído" === status}
-                                    name={`options-${uid}`}
+                                    name={`options-${questionId}`}
                                     value={answer}
                                     onChange={handleUpdateData}/>
-                                <label htmlFor={`answer-${uid}-option-${index}`}>{answer}</label>
+                                <label htmlFor={`${category}-answer-${questionId}-option-${index}`}>{answer}</label>
                             </div>
                         )
                     })
