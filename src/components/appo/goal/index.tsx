@@ -5,9 +5,11 @@ import { Search, XCircleFill } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
 import { convertToObject } from "typescript";
 
-type Props = {};
+type Props = {
+    uuid?: string | null;
+};
 
-type Goal = {
+type GoalType = {
     description: string;
     smartGoals: string;
     dateInit: Date;
@@ -17,7 +19,7 @@ type Goal = {
     employees: [];
 };
 
-const Goal = (props: Props) => {
+const Goal = ({ uuid }: Props) => {
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
 
     const refTitle = useRef<HTMLInputElement>(null);
@@ -25,8 +27,6 @@ const Goal = (props: Props) => {
     const refGoalMeasuredDetail = useRef<HTMLTextAreaElement>(null);
     const refStartDate = useRef<HTMLInputElement>(null);
     const refEndDate = useRef<HTMLInputElement>(null);
-    const refSector = useRef<HTMLSelectElement>(null);
-    const refEmployee = useRef<HTMLInputElement>(null);
     const refTaskName = useRef<HTMLInputElement>(null);
     const refTaskStatus = useRef<HTMLInputElement>(null);
 
@@ -41,7 +41,6 @@ const Goal = (props: Props) => {
 
     useEffect(() => {
         (async () => {
-            
             const url = `http://localhost:5000/employees/company/${loggedUser.companyId}`;
             const company = await fetch(url, {
                 method: 'GET',
@@ -50,17 +49,17 @@ const Goal = (props: Props) => {
             const companyData: any[] = await company.json();
             setColaborators([...companyData]);
             setFilteredColaborators([...companyData]);
-            console.log("colaboradores adicionados", addedColaborators);
-
-            const goal = await fetch(`http://localhost:5000/goals/4`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            });
-            const goalData: any = await goal.json();
-            setGoal(goalData);
-            setAddedColaborators([...goalData.employees]);
-            setTasksData([...goalData.tasks]);
-            console.log("fetch rodou", goalData);
+            if (uuid != undefined || uuid != null) {
+                const goal = await fetch(`http://localhost:5000/goals/${uuid}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                const goalData: any = await goal.json();
+                setGoal(goalData);
+                setAddedColaborators([...goalData.employees]);
+                setTasksData([...goalData.tasks]);
+                goalData.tasks.forEach((task: any, index: number) => newLine(task.name, index));
+            }
         })();
     }, []);
 
@@ -74,22 +73,22 @@ const Goal = (props: Props) => {
                 goalMeasuredDetail: refGoalMeasuredDetail.current?.value,
                 startDate: refStartDate.current?.value,
                 endDate: refEndDate.current?.value,
-                sector: refSector.current?.value,
-                employees: addedColaborators
+                employees: addedColaborators,
             })
         });
-        const goalID = await goalsResponse.json();
+        const goal = await goalsResponse.json();
         tasksData.map(async (task) => {
             await fetch(`http://localhost:5000/tasks`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: refTaskName.current?.value,
+                    name: task.name,
                     status: "Pendente",
-                    goal: goalID.id,
+                    goal: goal.id,
                 })
             })
         });
+        alert("O objetivo foi salvo com sucesso !!!");
     }
 
     const addEmployeeGoal = (colaborator: any, index: number) => {
@@ -104,7 +103,6 @@ const Goal = (props: Props) => {
                     if (colaborator.id === element.id) {
                         filteredColaborators.splice(index, 1);
                         setFilteredColaborators([...filteredColaborators]);
-                        console.log("if passou", filteredColaborators);
                     }
                 });
             });
@@ -113,10 +111,8 @@ const Goal = (props: Props) => {
 
     const removeCollaborator = (colaborator: any, index: number) => {
         const removed = addedColaborators.splice(index, 1);
-        console.log("colaborador removido", removed);
         setAddedColaborators([...addedColaborators]);
         setFilteredColaborators([...filteredColaborators, removed[0]]);
-        console.log("array filtered", filteredColaborators);
     }
 
     const handleTaskDataOnChange = (index: number) => {
@@ -128,12 +124,6 @@ const Goal = (props: Props) => {
         newValues.splice(index, 1, changedTask);
         setTasksData([...newValues]);
     }
-
-    useEffect(() => {
-        tasksData.forEach((task: any, index: number) => {
-            newLine(task.name, index);
-        });
-    }, [tasksData]);
 
     const newLine = (name?: string, row: number = tasks.length) => {
         setTasks((prevState) => [...prevState, (
@@ -197,7 +187,12 @@ const Goal = (props: Props) => {
                                 <Col lg={11}>
                                     <p>Nome</p>
                                     <div className={Style.entityTableActions}>
-                                        <button type="button" onClick={() => newLine()}>Adicionar</button>
+                                        <button
+                                            className={Style.btnPrimary}
+                                            type="button"
+                                            onClick={() => newLine()}>
+                                            Adicionar
+                                        </button>
                                     </div>
                                 </Col>
                             </Row>
@@ -221,21 +216,6 @@ const Goal = (props: Props) => {
                                     className="form-control"
                                     value={goal.endDate}
                                     ref={refEndDate} />
-                            </Col>
-                        </Row>
-                        <Row className={Style.rowSector}>
-                            <Col lg={12}>
-                                <select
-                                    ref={refSector}
-                                    defaultValue="none"
-                                    value={goal.sector}
-                                    className={`${Style.sectorInput} form-control`}>
-                                    <option value="none" disabled> - Selecione o setor - </option>
-                                    <option value="1"> Opção1 </option>
-                                    <option value="2"> Opção2 </option>
-                                    <option value="3"> Opção3 </option>
-                                    <option value="4"> Opção4 </option>
-                                </select>
                             </Col>
                         </Row>
                         <Row className={Style.rowSearchEmployee}>
@@ -292,7 +272,13 @@ const Goal = (props: Props) => {
                     </Col>
                 </Row>
             </Col>
-            <button type="button" onClick={saveGoal}>Salvar</button>
+            <button
+                className={Style.btnPrimary}
+                type="button"
+                
+                onClick={saveGoal}>
+                Salvar
+            </button>
         </Row>
     );
 }

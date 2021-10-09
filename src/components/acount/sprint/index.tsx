@@ -21,31 +21,37 @@ const Sprint = ({ defaultOption, options, value, dateFinish }: Props) => {
     return (
         <Container className={Style.sprint}>
             <Row className={Style.sectionDate}>
-                <label htmlFor="start">Período de:</label>
-                <input
-                    className="form-control"
-                    type="number"
-                    value={periodStart}
-                    onChange={(event: any) => setPeriodStart(event?.target.value)}
-                    name="start"
-                    min="1"
-                    max="31" />
-                <label htmlFor="start">até:</label>
-                <input
-                    className="form-control"
-                    type="number"
-                    value={periodEnd}
-                    onChange={(event: any) => setPeriodEnd(event?.target.value)}
-                    name="end"
-                    min="1"
-                    max="31" />
-                <label htmlFor="end">Término:</label>
-                <input
-                    className="form-control"
-                    type="date"
-                    value={format(dateConclusion, 'yyyy-MM-dd')}
-                    onChange={(event: any) => setDateConclusion(new Date(event?.target.value))}
-                    name="dateFinish" />
+                <Col lg={4} sm={4}>
+                    <label htmlFor="start">Período de:</label>
+                    <input
+                        className="form-control"
+                        type="number"
+                        value={periodStart}
+                        onChange={(event: any) => setPeriodStart(event?.target.value)}
+                        name="start"
+                        min="1"
+                        max="31" />
+                </Col>
+                <Col lg={2} sm={2}>
+                    <label htmlFor="start">até:</label>
+                    <input
+                        className="form-control"
+                        type="number"
+                        value={periodEnd}
+                        onChange={(event: any) => setPeriodEnd(event?.target.value)}
+                        name="end"
+                        min="1"
+                        max="31" />
+                </Col>
+                <Col lg={5} sm={5}>
+                    <label htmlFor="end">Término:</label>
+                    <input
+                        className="form-control"
+                        type="date"
+                        value={format(dateConclusion, 'yyyy-MM-dd')}
+                        onChange={(event: any) => setDateConclusion(new Date(event?.target.value))}
+                        name="dateFinish" />
+                </Col>
             </Row>
             <Row className={Style.sectionCadency}>
                 {options?.map(option => {

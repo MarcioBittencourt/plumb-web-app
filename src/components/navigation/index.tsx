@@ -17,11 +17,11 @@ const Navigation = () => {
             <div className={Style.menu}>
                 <Collapse id="navbarTogglerDemo02">
                     <Nav>
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/360">360°</Nav.Link>
-                        <Nav.Link href="/disc">DISC</Nav.Link>
-                        <Nav.Link href="/appo">APPO</Nav.Link>
-                        <Nav.Link href="/account">Account</Nav.Link>
+                        <Nav.Link href="/app/home">Home</Nav.Link>
+                        <Nav.Link href="/app/360">360°</Nav.Link>
+                        <Nav.Link href="/app/disc">DISC</Nav.Link>
+                        <Nav.Link href="/app/appo">APPO</Nav.Link>
+                        <Nav.Link href="/app/account">Account</Nav.Link>
                     </Nav>
                     <img className={Style.avatar} alt="user avatar" src={loggedUser.avatar ? loggedUser.avatar : Profile} />
                 </Collapse>

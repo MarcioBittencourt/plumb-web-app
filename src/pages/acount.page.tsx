@@ -7,7 +7,7 @@ const AcountPage = (props: Props) => {
     return (
         <div className={Style.page}>
             <Acount />
-        </div>
+        </div >
     );
 }
 export default AcountPage;

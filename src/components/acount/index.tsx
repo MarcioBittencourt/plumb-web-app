@@ -30,7 +30,7 @@ const Acount = (props: Props) => {
     const [employees, setEmployees] = useState<any[]>([]);
     const [employeesData, setEmployeesData] = useState<any[]>([]);
 
-    
+
 
     const createAccount = async () => {
         const account: any = {
@@ -104,33 +104,36 @@ const Acount = (props: Props) => {
 
     const newLine = (name?: string, uuid?: string, email?: string, password?: string, row: number = employees.length) => {
         setEmployees((prevState) => [...prevState, (
-            <Row className={Style.assessementTableHidden}>
-                <Col>
+            <Row className={Style.entityTableRecord}>
+                <Col lg={4}>
                     <input
                         key={`name-${uuid}`}
                         value={name}
                         type="text"
+                        className="form-control"
                         onChange={() => handleEmployeeDataOnChange(row)}
                         ref={refEmployeeName}
                         name="name"
                         placeholder="Nome do colaborador" />
                 </Col>
-                <Col>
+                <Col lg={4}>
                     <input
                         key={`mail-${uuid}`}
                         value={email}
                         type="text"
+                        className="form-control"
                         onChange={() => handleEmployeeDataOnChange(row)}
                         ref={refEmployeeEmail}
                         name="mail"
                         placeholder="usuario@email.exemplo" />
                 </Col>
-                <Col>
+                <Col lg={4}>
                     <input
                         key={`pass-${uuid}`}
                         disabled
                         value={password || generatePassword()}
                         type="text"
+                        className="form-control"
                         onChange={() => handleEmployeeDataOnChange(row)}
                         ref={refEmployeePassword}
                         name="password"
@@ -147,12 +150,14 @@ const Acount = (props: Props) => {
 
     return (
         <div>
-            <Container className={Style.sectionContent}>
+            <Container className={Style.pageSection}>
                 <Row>
-                    <Col><h3>Cadastro de Empresa</h3></Col>
+                    <Col lg={12}>
+                        <h3>Cadastro da Empresa</h3>
+                    </Col>
                 </Row>
                 <Row className={Style.register}>
-                    <Col lg={4} sm={4} className={Style.primary}>
+                    <Col lg={12} sm={12} className={Style.fild}>
                         <label htmlFor="businessName">Nome</label>
                         <input
                             className="form-control"
@@ -162,7 +167,9 @@ const Acount = (props: Props) => {
                             value={company.businessName}
                             placeholder="Razão social" />
                     </Col>
-                    <Col lg={4} sm={4} className={Style.primary}>
+                </Row>
+                <Row className={Style.register}>
+                    <Col lg={12} sm={12} className={Style.fild}>
                         <label htmlFor="companyName">Nome fantasia</label>
                         <input
                             className="form-control"
@@ -172,7 +179,9 @@ const Acount = (props: Props) => {
                             value={company.companyName}
                             placeholder="Nome fantasia" />
                     </Col>
-                    <Col lg={3} sm={3} className={Style.businessRegister}>
+                </Row>
+                <Row className={Style.register}>
+                    <Col lg={5} sm={5} className={Style.businessRegister}>
                         <label htmlFor="businessRegister">CNPJ</label>
                         <input
                             className="form-control"
@@ -182,29 +191,7 @@ const Acount = (props: Props) => {
                             value={company.businessRegister}
                             placeholder="12.345.678/0000-00" />
                     </Col>
-                </Row>
-                <Row className={Style.register}>
-                    <Col lg={4} sm={4} className={Style.primary}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            ref={refAdminEmail}
-                            name="email"
-                            value={admin.email}
-                            placeholder="usuario@email.exemplo" />
-                    </Col>
-                    <Col lg={4} sm={4} className={Style.primary}>
-                        <label htmlFor="password">Senha</label>
-                        <input
-                            className="form-control"
-                            disabled
-                            type="text"
-                            ref={refAdminPassword}
-                            value={admin.password || generatePassword()}
-                            name="password"></input>
-                    </Col>
-                    <Col lg={3} sm={3} className={Style.businessRegister}>
+                    <Col lg={5} sm={5} className={Style.businessRegister}>
                         <label htmlFor="companyCountry">País</label>
                         <input
                             className="form-control"
@@ -215,12 +202,30 @@ const Acount = (props: Props) => {
                             placeholder="Uzuberquistão" />
                     </Col>
                 </Row>
-                    <label>Setor</label>
-                <Row>
-
+                <Row className={Style.register}>
+                    <Col lg={5} sm={5} className={Style.fild}>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            ref={refAdminEmail}
+                            name="email"
+                            value={admin.email}
+                            placeholder="usuario@email.exemplo" />
+                    </Col>
+                    <Col lg={5} sm={5} className={Style.fild}>
+                        <label htmlFor="password">Senha</label>
+                        <input
+                            className="form-control"
+                            disabled
+                            type="text"
+                            ref={refAdminPassword}
+                            value={admin.password || generatePassword()}
+                            name="password"></input>
+                    </Col>
                 </Row>
             </Container>
-            <Container className={Style.pageSection}>
+            <Container className={Style.entityTable}>
                 <Row className={Style.pageSectionHeader}>
                     <Col lg={8}>
                         <h3>Cadastro de colaboradores</h3>
@@ -228,30 +233,32 @@ const Acount = (props: Props) => {
                     <Col lg={2}>
                         <button
                             onClick={() => newLine()}
-                            className={Style.newUserButton}>Adicionar</button>
+                            className={Style.btnPrimary}>Adicionar</button>
                     </Col>
                     <Col lg={2}>
                         <button
                             onClick={erase}
-                            className={Style.newUserButton}>Limpar</button>
+                            className={Style.btnPrimary}>Limpar</button>
                     </Col>
                 </Row>
-                <Row className={Style.assessementTableHeader}>
-                    <Col><p>Nome</p></Col>
-                    <Col><p>Email</p></Col>
-                    <Col><p>Senha</p></Col>
-                </Row>
-                <Row className={Style.sectionTable}>
-                    <Col>
-                        <Row hidden={!(employees.length === 0)} className={Style.assessementTableHidden}>
-                            <Col><p>Nenhum registro de colaborador existente.</p></Col>
-                        </Row>
-                        {employees}
+                <Row className={Style.entityTableHeader}>
+                    <Col lg={4}>
+                        <p>Nome</p>
+                    </Col>
+                    <Col lg={4}>
+                        <p>Email</p>
+                    </Col>
+                    <Col lg={4}>
+                        <p>Senha</p>
                     </Col>
                 </Row>
+                <Row hidden={!(employees.length === 0)} className={Style.entityTableRecord}>
+                    <Col lg={12}><p>Nenhum registro de colaborador existente.</p></Col>
+                </Row>
+                {employees}
             </Container>
-            <Container className={Style.sectionContent}>
-                <Row >
+            <Container className={Style.pageSection}>
+                <Row>
                     <Col><h3>Configuração de cadência e ciclos</h3></Col>
                 </Row>
                 <label className={Style.sprint}>Avaliação Participativa por Objetivos</label>
@@ -275,7 +282,11 @@ const Acount = (props: Props) => {
                     dateFinish={new Date()} />
             </Container>
             <Container className={Style.containerButton}>
-                <button onClick={createAccount}>Salvar</button>
+                <button
+                    className={Style.btnPrimary}
+                    onClick={createAccount}>
+                    Salvar
+                </button>
             </Container>
         </div >
     );

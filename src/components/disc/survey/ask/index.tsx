@@ -17,7 +17,6 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
 
     const handleMeasurementMore = () => {
         let index = selectMoreRef.current?.options.selectedIndex;
-        console.log("index more: ", index);
         switch (index) {
             case 1:
                 profile.dominant.scoreMore += index;
@@ -37,7 +36,6 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
 
     const handleMeasurementLess = () => {
         const index = selectLessRef.current?.options.selectedIndex;
-        console.log("index less: ", index);
         switch (index) {
             case 1:
                 profile.dominant.scoreLess -= index;

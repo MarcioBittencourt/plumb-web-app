@@ -1,6 +1,8 @@
 import Style from './appo.page.module.scss';
 import Goal from '../components/appo/goal'
 import { Col, Container, Row } from 'react-bootstrap';
+import { useState } from 'react';
+import DashboardAppo from '../components/appo/dashboardAppo';
 type Props = {}
 
 // - Declaração do resultado que se pretende alcançar em um tempo estipulado</p>
@@ -17,13 +19,23 @@ type Props = {}
 // - o colaborador deve realizar sua autoavaliação, compreender os resultados e equiparar com os objetivos definidos. Contanto com a ajuda do gerente nesse processo.( a ferramenta não irá implementar)</p>
 
 const APPOPage = (props: Props) => {
+    /* const [goals, setGoals] = useState<any[]>([]);
+    const newGoal = () => {
+        setGoals((prevState) => [...prevState, (
+            <>
+                <Goal />
+            </>
+        )])
+    } */
     return (
         <Container>
-            <Row className={Style.pageHeader}>
+            {/* <Row className={Style.pageHeader}>
                 <Col><h3>Avaliação participativa por objetivos</h3></Col>
             </Row>
+            <button type="button" onClick={newGoal}>+</button>
             <Goal />
-            <Goal />
+            {goals} */}
+            <DashboardAppo />
         </Container >
     );
 }
