@@ -53,7 +53,7 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
                     </div>
                 </Col>
                 <Col>
-                    <Link to={`/360/${id}`}><BoxArrowInRight size={25} /></Link>
+                    <Link to={`/app/360/${id}`}><BoxArrowInRight size={25} /></Link>
                 </Col>
             </Row>
         </div>
