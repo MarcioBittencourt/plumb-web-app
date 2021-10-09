@@ -1,50 +1,60 @@
 @import "../../assets/styles/button";
 @import "../../assets/styles/typograph";
-@import "../../assets/styles/section";
+@import "../../assets/styles/ui";
 
 .register {
     display: flex;
-    margin-left: 15px;
-    .primary {
-        display:grid;
+    .fild {
+        display: grid;
     }
     .businessRegister {
-        display:grid;
+        display: grid;
     }
     label {
         margin-right: 8px;
     }
 
     input {
+        padding: 2px 6px;
         margin-bottom: 8px;
         margin-right: 16px;
-        border-radius: 3px;
         border: 1px solid #837e7c;
     }
 }
 
-.assessementTableHidden:last-child {
-    border-bottom: none;
+.entityTableHeader {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
-.assessementTableHeader {
-    div {
-        display: flex;
-        justify-content: flex-start;
-    }
-}
-
-.sectionContent {
-    display: grid;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    padding: 16px;
+.entityTableRecord {
     background-color: white;
+    padding: 6px;
+    border-bottom: 1px solid #adaaa9;
 
-    .sprint {
-        margin: 10px 12px 6px;
-        font-weight: 500;
+    & > div {
+        display: block;
+        input {
+            border: none;
+            padding: 2px 6px;
+            margin: 4px 0;
+        }
     }
+}
+
+.entityTableRecord:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.entityTableRecord:hover {
+    background-color: white;
+}
+
+.sprint {
+    margin: 10px 12px 6px;
+    font-weight: 500;
 }
 
 .containerButton {

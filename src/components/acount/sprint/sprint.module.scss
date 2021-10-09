@@ -1,5 +1,6 @@
 .sprint {
     display: block;
+    max-width: 780px;
     border-radius: 8px;
     border: 2px solid #bebdbd;
     padding: 20px;
@@ -9,12 +10,12 @@
 
     .sprintOption {
         cursor: pointer;
+        margin: 6px 0;
         display: flex;
-        margin-left: 35px;
         background-color: white;
-        color: #06171F;
+        color: #06171f;
         border-radius: 8px;
-        border: 2px solid #06171F;
+        border: 2px solid #06171f;
         font-size: 16px;
         justify-content: center;
         align-items: center;
@@ -22,7 +23,7 @@
         height: 30px;
 
         &.active {
-            background-color: #06171F;
+            background-color: #06171f;
             border-radius: 8px;
             border: 2px solid rgba(17, 231, 255, 0.5);
             box-shadow: 0 0 18px rgba(17, 231, 255, 0.5);
@@ -33,24 +34,29 @@
     }
 }
 .sectionDate {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-
-    label {
+    & > div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
         padding: 0;
-        margin-left: 16px;
-        margin-right: 6px;
-        width: inherit;
-    }
-    input[type='number'] {
-        margin: 0 3px;
-        width: 52px;
-        padding-right: 4px;
-    }
 
-    input[type='date'] {
-        width: 170px;
+        label {
+            margin-left: 16px;
+            margin-right: 6px;
+        }
+
+        input {
+            padding: 2px 6px;
+            border: 1px solid #837e7c;
+        }
+
+        input[type="number"] {
+            width: 52px;
+        }
+
+        input[type="date"] {
+            width: 150px;
+        }
     }
 }
 

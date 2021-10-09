@@ -1,89 +1,164 @@
-@import './colors';
+@import "./colors";
+
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    text-decoration: none;
+    color: black;
+}
 
 .btn {
     width: 120px;
     height: 30px;
 }
 
-.btn-primary {
-    background-color: $color-background;
-    border-radius: 30px;
-    border: 2px solid $color-primary;
+.btnPrimary:hover {
+    box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
+    background-color: #0f2c3a;
+    color: white;
+}
+
+.btnPrimary {
+    margin-right: 6spx;
+    border-radius: 8px;
+    border: 1px solid rgba(17, 231, 255, 0.5);
+    color: white;
+    width: fit-content;
+    padding: 4px 16px;
+    min-height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #06171f;
+    text-align: center;
 }
 
 .page {
     background-color: $color-background-primary;
 }
 
-.page-section {
-    background-color: $color-background-second;
+.pageHeader {
+    display: flex;
+    align-items: baseline;
+}
+
+.pageSection {
+    padding: 24px 48px;
+    max-width: 768px;
+    background-color: white;
+    margin-top: 28px;
     border-top-left-radius: $border-radius-sm;
     border-top-right-radius: $border-radius-sm;
     border-bottom-left-radius: $border-radius-sm;
     border-bottom-right-radius: $border-radius-sm;
+}
+.pageSectionHeader {
+    display: flex;
+    align-items: center;
+    background-color: $color-terciary;
+    color: white;
+    border-top-left-radius: $border-radius-sm;
+    border-top-right-radius: $border-radius-sm;
+}
 
-    .page-section-header {
-        background-color: $color-background-primary;
-        border-top-left-radius: $border-radius-sm;
-        border-top-right-radius: $border-radius-sm;
-    }
-
-    .page-section-content {
-        background-color: $color-background-primary;
-        border-bottom-left-radius: $border-radius-sm;
-        border-bottom-right-radius: $border-radius-sm;
-    }
+.page-section-content {
+    background-color: $color-background-primary;
+    border-bottom-left-radius: $border-radius-sm;
+    border-bottom-right-radius: $border-radius-sm;
 }
 
 .entityTable {
-    margin: 28px 0;
+    max-width: 744px;
+    background-color: white;
+    padding: 0;
+    margin-top: 28px;
+    border-top-left-radius: $border-radius-sm;
+    border-top-right-radius: $border-radius-sm;
+    border-bottom-left-radius: $border-radius-sm;
+    border-bottom-right-radius: $border-radius-sm;
+}
 
-    .entityTableHeader {
-        background-color: $color-quartenary;
-        padding: 10px;
-        color: white;
-        border-top-left-radius: $border-radius-sm;
-        border-top-right-radius: $border-radius-sm;
+.entityTableHeader {
+    background-color: $color-quartenary;
+    padding: 6px;
+    border-top-left-radius: $border-radius-sm;
+    border-top-right-radius: $border-radius-sm;
 
-        & > div {
-            display: flex;
-            align-items: center;
-
-            p {
-                margin: 0;
-            }
-        }
-
-        .entityTableActions {
-            display: flex;
-            margin-left: auto;
-        }
-    }
-
-    .entityTableRecord {
-        & > div {
-            display: flex;
-            align-items: center;
-
-            p {
-                margin: 0;
-            }
-        }
-
-        .entityTableRecordAction {
-            display: none;
-            //margin-left: auto;
-            margin: 0 5px;
+    & > div {
+        display: flex;
+        align-items: center;
+        p {
+            color: white;
+            margin: 0;
         }
     }
 
-    .entityTableRecord:hover {
-        background-color: lightgray;
+    .entityTableActions {
+        display: flex;
+        margin-left: auto;
+    }
+}
 
-        .entityTableRecordAction {
-            display: block;
+.entityTableRecord {
+    & > div {
+        display: flex;
+        align-items: center;
+
+        input {
+            padding: 2px 6px;
+            margin-bottom: 8px;
+            margin-right: 16px;
+            border-radius: 3px;
+        }
+
+        p {
+            margin: 0;
         }
     }
+
+    .entityTableRecordAction {
+        display: none;
+        //margin-left: auto;
+        margin: 0 5px;
+    }
+}
+
+.entityTableRecord:hover {
+    background-color: lightgray;
+
+    .entityTableRecordAction {
+        display: block;
+    }
+}
+
+.infoRound {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $color-primary;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 8px 0;
+}
+
+.pageTitle {
+    margin: 32px 0;
+    background-color: #081c2a;
+    color: white;
+    border-top-left-radius: 48px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 48px;
+    border-top-right-radius: 8px;
+    box-shadow: 0 0 16px rgba(17, 231, 255, 0.5);
+
+    width: fit-content;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    padding: 8px 48px;
+    font-weight: 300;
 }
 
 .removeEntityButton {

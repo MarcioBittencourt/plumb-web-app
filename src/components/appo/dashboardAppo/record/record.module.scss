@@ -1,0 +1,56 @@
+@import "../../../../assets/styles/ui";
+
+.goal {
+    background-color: white;
+    border-radius: 8px;
+    border-bottom-right-radius: 50px;
+    align-items: center;
+
+    padding: 32px;
+    margin: 32px 0;
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+.goal:hover {
+    border-bottom: 2px solid grey;
+}
+
+.taskTitle {
+    align-self: flex-start;
+}
+
+.tasksLabel {
+    color: grey;
+    font-size: 16px;
+}
+
+.tasksCount {
+    font-weight: bold;
+    font-size: 44px;
+}
+
+.stakeholdersLabel {
+    color: grey;
+    font-size: 16px;
+}
+
+.stakeholdersCount {
+    font-weight: bold;
+    font-size: 44px;
+}
+
+.primaryInfo {
+    font-weight: 700;
+}
+
+.secondaryInfo {
+    font-weight: 400;
+    color: grey;
+    font-size: 12px;
+}

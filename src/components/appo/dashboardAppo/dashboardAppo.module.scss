@@ -1,0 +1,11 @@
+@import "../../../assets/styles/ui";
+
+p {
+    margin: 0;
+}
+
+.containerHeaderActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}

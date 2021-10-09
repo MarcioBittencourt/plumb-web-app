@@ -4,6 +4,7 @@
 
 .pageSection {
     border-bottom-right-radius: 48px;
+    margin-top: 50px;
 
     .pageSectionHeader {
         margin-bottom: 10px;
@@ -21,7 +22,7 @@
                 margin-bottom: 5px;
                 margin-top: 5px;
                 border: none;
-                background-color: #3e5a6e;
+                background-color: $color-terciary;
                 color: white;
             }
             ::placeholder {
@@ -69,6 +70,7 @@
             display: inline-flex;
             align-items: center;
             margin-top: 10px;
+            margin-bottom: 3px;
             width: 100%;
             border-bottom: 2px solid #868686;
 
