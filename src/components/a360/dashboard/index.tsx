@@ -44,6 +44,7 @@ const Dashboard = (props: Props) => {
             });
             setColaborators(await response.json());
             await filterSelectColaborator();
+            await refreshPendingAssessements();
         })();
     }, []);
 
@@ -127,7 +128,11 @@ const Dashboard = (props: Props) => {
                                 <h3>Solicitar avaliação (X/5)</h3>
                             </Col>
                             <Col lg={2}>
-                                <button className={Style.buttonRequest} onClick={sendRequest}>Solicitar</button>
+                                <button 
+                                    className={Style.buttonRequest} 
+                                    onClick={sendRequest}>
+                                        Solicitar
+                                </button>
                             </Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
@@ -137,6 +142,7 @@ const Dashboard = (props: Props) => {
                             <Col><p>Selecionar</p></Col>
                         </Row>
                         {colaborators
+                            .filter(employee => loggedUser.uuid !== employee.uuid)
                             .filter(employee => !memoRequestedColaborators.includes(employee.id))
                             .map((employee) => {
                                 return (
@@ -188,7 +194,13 @@ const Dashboard = (props: Props) => {
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}><h3>Avaliaçoes pendentes para mim</h3></Col>
-                            <Col lg={2}><button className={Style.buttonRequest} onClick={refreshPendingAssessements}>Atualizar</button></Col>
+                            <Col lg={2}>
+                                <button 
+                                    className={Style.buttonRequest}
+                                    onClick={refreshPendingAssessements}>
+                                        Atualizar
+                                </button>
+                            </Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Avaliado</p></Col>
