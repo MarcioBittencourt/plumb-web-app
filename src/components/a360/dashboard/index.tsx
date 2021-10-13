@@ -6,6 +6,7 @@ import Survey from '../survey';
 import Data360 from '../../../assets/360.json'
 import { useEffect, useMemo, useState } from 'react';
 import Request from './request'
+import { ArrowClockwise } from 'react-bootstrap-icons';
 
 type Props = {}
 const Dashboard = (props: Props) => {
@@ -77,9 +78,7 @@ const Dashboard = (props: Props) => {
                     status: "Pendente"
                 })
             });
-
             const assessement: any = await createdAssessementResponse.json();
-
             Data360.askings.map((ask) => {
                 ask.utterances.map(async (utterance) => {
                     const createdQuestionResponse = await fetch(`http://localhost:5000/questions`, {
@@ -94,7 +93,6 @@ const Dashboard = (props: Props) => {
                     });
                 })
             });
-
             return {
                 uuid: new Date().getTime(), //substituir por uuid
                 rated: JSON.parse(localStorage.getItem("loggedUser") || '{}'),
@@ -161,7 +159,16 @@ const Dashboard = (props: Props) => {
                     </Container>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Avaliações sobre mim</h3></Col>
+                            <Col lg={10}>
+                                <h3>Avaliações sobre mim</h3>
+                            </Col>
+                            <Col lg={2} className={Style.colBtnRedirect}>
+                                <button 
+                                    className={Style.buttonRedirect}
+                                    onClick={refreshPendingAssessements}>
+                                        <ArrowClockwise className={Style.iconRedirect} />
+                                </button>
+                            </Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Avaliador</p></Col>
@@ -194,11 +201,11 @@ const Dashboard = (props: Props) => {
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}><h3>Avaliaçoes pendentes para mim</h3></Col>
-                            <Col lg={2}>
+                            <Col lg={2} className={Style.colBtnRedirect}>
                                 <button 
-                                    className={Style.buttonRequest}
+                                    className={Style.buttonRedirect}
                                     onClick={refreshPendingAssessements}>
-                                        Atualizar
+                                        <ArrowClockwise className={Style.iconRedirect} />
                                 </button>
                             </Col>
                         </Row>
@@ -233,7 +240,16 @@ const Dashboard = (props: Props) => {
                     </Container>
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
-                            <Col><h3>Avaliações realizadas por mim</h3></Col>
+                            <Col lg={10}>
+                                <h3>Avaliações realizadas por mim</h3>
+                            </Col>
+                            <Col lg={2} className={Style.colBtnRedirect}>
+                                <button 
+                                    className={Style.buttonRedirect}
+                                    onClick={refreshPendingAssessements}>
+                                        <ArrowClockwise className={Style.iconRedirect} />
+                                </button>
+                            </Col>
                         </Row>
                         <Row className={Style.assessementTableHeader}>
                             <Col><p>Avaliado</p></Col>

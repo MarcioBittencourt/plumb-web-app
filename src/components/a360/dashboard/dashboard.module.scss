@@ -6,3 +6,18 @@
 .assessementTableHeader {}
 .sectionTable {}
 .assessementTableHidden {}
+
+.colBtnRedirect {
+    display: flex;
+}
+
+.buttonRedirect {
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+}
+
+.iconRedirect {
+    color: white;
+    font-size: 30px;
+}

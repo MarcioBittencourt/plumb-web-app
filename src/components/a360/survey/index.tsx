@@ -62,7 +62,6 @@ const Survey = ({ uuid }: Props) => {
                 questions["a360-expectation-3"].answer,
                 questions["a360-expectation-4"].answer
             ].map(value => marks.findIndex(mark => mark.label === value)));
-
             localStorage.setItem(uuid, JSON.stringify(questions));
         })();
     }, []);
