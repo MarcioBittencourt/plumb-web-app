@@ -1,11 +1,32 @@
 @import "../../../assets/styles/button";
-@import "../../../assets/styles/section";
+@import "../../../assets/styles/ui";
+@import "../../../assets/styles/colors";
 
-.pageSection {}
-.pageSectionHeader {}
-.assessementTableHeader {}
-.sectionTable {}
-.assessementTableHidden {}
+.iconCheck {
+    color: white;
+    font-size: 24px;
+    margin-left: auto;
+}
+
+.pageSection {
+    padding: 0;
+    max-width: 900px;
+}
+
+.entityTableHeader {
+    max-width: 900px;
+    padding: 6px 25px;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.pageSectionHeader {
+    max-width: 900px;
+    margin-left: 0;
+}
+
+
 
 .colBtnRedirect {
     display: flex;

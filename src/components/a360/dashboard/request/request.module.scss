@@ -1,6 +1,10 @@
+@import '../../../../assets/styles/ui';
+
 .checkbox {
+    cursor: pointer;
     width: 22px;
     height: 22px;
+    margin-left: auto;
 }
 
 .assessementTableRecordContent {
@@ -12,7 +16,7 @@
 
     & > div {
         display: flex;
-        justify-content: center;
+        margin: 0;
     }
 
     & > div:first-child {

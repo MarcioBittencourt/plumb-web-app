@@ -6,7 +6,7 @@ import Survey from '../survey';
 import Data360 from '../../../assets/360.json'
 import { useEffect, useMemo, useState } from 'react';
 import Request from './request'
-import { ArrowClockwise } from 'react-bootstrap-icons';
+import { ArrowClockwise, UiChecks } from 'react-bootstrap-icons';
 
 type Props = {}
 const Dashboard = (props: Props) => {
@@ -123,21 +123,21 @@ const Dashboard = (props: Props) => {
                     <Container className={Style.pageSection}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10} >
-                                <h3>Solicitar avaliação (X/5)</h3>
+                                <h3>Solicitar avaliação</h3>
                             </Col>
                             <Col lg={2}>
-                                <button 
-                                    className={Style.buttonRequest} 
+                                <button
+                                    className={Style.btnPrimary}
                                     onClick={sendRequest}>
-                                        Solicitar
+                                    Solicitar
                                 </button>
                             </Col>
                         </Row>
-                        <Row className={Style.assessementTableHeader}>
-                            <Col><p>Colaborador</p></Col>
-                            <Col><p>Contato</p></Col>
-                            <Col><p>Setor</p></Col>
-                            <Col><p>Selecionar</p></Col>
+                        <Row className={Style.entityTableHeader}>
+                            <Col lg={4}><p>Colaborador</p></Col>
+                            <Col lg={3}><p>Contato</p></Col>
+                            <Col lg={3}><p>Setor</p></Col>
+                            <Col lg={2}><UiChecks className={Style.iconCheck} /></Col>
                         </Row>
                         {colaborators
                             .filter(employee => loggedUser.uuid !== employee.uuid)
@@ -163,19 +163,17 @@ const Dashboard = (props: Props) => {
                                 <h3>Avaliações sobre mim</h3>
                             </Col>
                             <Col lg={2} className={Style.colBtnRedirect}>
-                                <button 
+                                <button
                                     className={Style.buttonRedirect}
                                     onClick={refreshPendingAssessements}>
-                                        <ArrowClockwise className={Style.iconRedirect} />
+                                    <ArrowClockwise className={Style.iconRedirect} />
                                 </button>
                             </Col>
                         </Row>
-                        <Row className={Style.assessementTableHeader}>
-                            <Col><p>Avaliador</p></Col>
-                            <Col><p>Situação</p></Col>
-                            <Col><p>Solicitação</p></Col>
-                            <Col><p>Resolução</p></Col>
-                            <Col><p>Visualizar</p></Col>
+                        <Row className={Style.entityTableHeader}>
+                            <Col lg={4}><p>Avaliador</p></Col>
+                            <Col lg={3}><p>Situação</p></Col>
+                            <Col lg={4}><p>Status</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) =>
                             assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído")
@@ -191,7 +189,7 @@ const Dashboard = (props: Props) => {
                                     />)
                             })
                         }
-                        <Row className={Style.sectionTable}>
+                        <Row className={Style.entityTableRecord}>
                             <Col hidden={!(assessements.filter((assessement: any) =>
                                 assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído").length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
@@ -202,19 +200,17 @@ const Dashboard = (props: Props) => {
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}><h3>Avaliaçoes pendentes para mim</h3></Col>
                             <Col lg={2} className={Style.colBtnRedirect}>
-                                <button 
+                                <button
                                     className={Style.buttonRedirect}
                                     onClick={refreshPendingAssessements}>
-                                        <ArrowClockwise className={Style.iconRedirect} />
+                                    <ArrowClockwise className={Style.iconRedirect} />
                                 </button>
                             </Col>
                         </Row>
-                        <Row className={Style.assessementTableHeader}>
-                            <Col><p>Avaliado</p></Col>
-                            <Col><p>Solicitação</p></Col>
-                            <Col><p>Resolução</p></Col>
-                            <Col><p>Status</p></Col>
-                            <Col><p>Visualizar</p></Col>
+                        <Row className={Style.entityTableHeader}>
+                            <Col lg={4}><p>Avaliado</p></Col>
+                            <Col lg={3}><p>Situação</p></Col>
+                            <Col lg={4}><p>Status</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) => ["Pendente", "Rascunho"]
                             .includes(assessement.status) && assessement.evaluator.id === loggedUser.id)
@@ -231,7 +227,7 @@ const Dashboard = (props: Props) => {
                                 )
                             })
                         }
-                        <Row className={Style.sectionTable}>
+                        <Row className={Style.entityTableRecord}>
                             <Col hidden={!(assessements.filter((assessement: any) => ["Pendente", "Rascunho"]
                                 .includes(assessement.status) && assessement.evaluator.id === loggedUser.id).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
@@ -244,19 +240,17 @@ const Dashboard = (props: Props) => {
                                 <h3>Avaliações realizadas por mim</h3>
                             </Col>
                             <Col lg={2} className={Style.colBtnRedirect}>
-                                <button 
+                                <button
                                     className={Style.buttonRedirect}
                                     onClick={refreshPendingAssessements}>
-                                        <ArrowClockwise className={Style.iconRedirect} />
+                                    <ArrowClockwise className={Style.iconRedirect} />
                                 </button>
                             </Col>
                         </Row>
-                        <Row className={Style.assessementTableHeader}>
-                            <Col><p>Avaliado</p></Col>
-                            <Col><p>Solicitação</p></Col>
-                            <Col><p>Resolução</p></Col>
-                            <Col><p>Status</p></Col>
-                            <Col><p>Visualizar</p></Col>
+                        <Row className={Style.entityTableHeader}>
+                            <Col lg={4}><p>Avaliado</p></Col>
+                            <Col lg={3}><p>Situação</p></Col>
+                            <Col lg={4}><p>Status</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) => ["Concluído", "Enviado"]
                             .includes(assessement.status)).map((assessement: any) => {
@@ -271,7 +265,7 @@ const Dashboard = (props: Props) => {
                                     />
                                 )
                             })}
-                        <Row className={Style.sectionTable}>
+                        <Row className={Style.entityTableRecord}>
                             <Col hidden={!(assessements.filter((assessement: any) => ["Concluído", "Enviado"]
                                 .includes(assessement.status)).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>

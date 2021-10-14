@@ -1,4 +1,4 @@
-.assessementTableRecordContent {
+.tableRecordContent {
     display: flex;
     align-items: center;
     margin: 0 25px;
@@ -16,8 +16,16 @@
     }
 }
 
-.assessementTableRecord:hover {
+.tableRecord:hover {
     background-color: rgba(24, 69, 80, 0.1);
+}
+
+.linkIconInside {
+    margin-left: auto;
+}
+
+.iconInside {
+    font-size: 25px;
 }
 
 
@@ -33,8 +41,16 @@
     }
 }
 
-.details {
+.detailsAvatar {
     margin-left: 8px;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+    }
+}
+
+.detailsStatus {
     flex-direction: column;
 
     p {
@@ -44,13 +60,21 @@
 
 .primaryInfo {
     font-weight: 700;
+}
 
+.tertiaryInfo {
+    font-weight: 500;
+    font-size: 14px;
 }
 
 .secondaryInfo {
     font-weight: 400;
     color: grey;
     font-size: 12px;
+}
+
+.dataColumn {
+    justify-content: flex-start !important;
 }
 
 

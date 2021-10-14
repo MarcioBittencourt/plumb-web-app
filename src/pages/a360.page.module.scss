@@ -1,5 +1,11 @@
+@import "../assets/styles/ui";
+
 .page {
-    margin: 28px 42px;
+    display: grid;
+
+    .sectionTitle {
+        margin-left: 106px;
+    }
 
     h1  {
         margin: 10px 0;

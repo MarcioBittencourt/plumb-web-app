@@ -28,32 +28,34 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
     days += (dataResolution.days || 0);
 
     return (
-        <div className={Style.assessementTableRecord}>
-            <Row className={Style.assessementTableRecordContent}>
-                <Col className={Style.userInfo}>
+        <div className={Style.tableRecord}>
+            <Row className={Style.tableRecordContent}>
+                <Col lg={4} className={Style.userInfo}>
                     <span className={Style.avatar}></span>
-                    <div className={Style.details}>
+                    <div className={Style.detailsAvatar}>
                         <p className={Style.primaryInfo}>{name}</p>
                         <p className={Style.secondaryInfo}>{id}</p>
                     </div>
                 </Col>
-                <Col className={Style.statusAssessement}>
+                <Col lg={3} className={Style.dataColumn}>
                     <div data-status={status} className={Style.status}>
                         {status}
                     </div>
                 </Col>
-                <Col>
-                    <p className={Style.primaryInfo}>{dataSolicitacaoFmt}</p>
-                </Col>
-                <Col>
-                    <div className={Style.details}>
+                <Col lg={3} className={Style.dataColumn}>
+                    <div className={Style.detailsStatus}>
+                        <p className={Style.tertiaryInfo}>Solicitado {dataSolicitacaoFmt}</p>
                         <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${days} dias ${dataResolution.hours}:${dataResolution.minutes}`}</p>
                         <p className={Style.secondaryInfo} hidden={["Concluído", "Enviado"].includes(status)}>Disponível até {prazoResolucaoFmt}</p>
                         <p className={Style.secondaryInfo} hidden={["Pendente", "Rascunho"].includes(status)}>Concluído em {dataConclusaoFmt}</p>
                     </div>
                 </Col>
-                <Col>
-                    <Link to={`/app/360/${id}`}><BoxArrowInRight size={25} /></Link>
+                <Col lg={2}>
+                    <Link 
+                        to={`/app/360/${id}`} 
+                        className={Style.linkIconInside}>
+                            <BoxArrowInRight className={Style.iconInside} />
+                    </Link>
                 </Col>
             </Row>
         </div>
