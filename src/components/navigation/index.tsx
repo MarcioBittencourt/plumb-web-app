@@ -1,9 +1,9 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Style from './navigation.module.scss'
-import Profile from '../../assets/person-circle.svg'
 import Collapse from 'react-bootstrap/NavbarCollapse'
 import Button from 'react-bootstrap/NavbarToggle'
+import { HouseDoorFill, PersonCircle } from 'react-bootstrap-icons'
 
 const Navigation = () => {
     const loggedUser: any = JSON.parse(localStorage.getItem('loggedUser') || '{}');
@@ -17,12 +17,12 @@ const Navigation = () => {
             <div className={Style.menu}>
                 <Collapse id="navbarTogglerDemo02">
                     <Nav className={Style.navLinks}>
-                        <Nav.Link href="/app/home">Home</Nav.Link>
-                        <Nav.Link href="/app/360">360°</Nav.Link>
-                        <Nav.Link href="/app/disc">DISC</Nav.Link>
-                        <Nav.Link href="/app/appo">APPO</Nav.Link>
+                        <Nav.Link href="/app/home"><HouseDoorFill /> <p>Inicio</p></Nav.Link>
+                        <Nav.Link href="/app/360">Desempenho</Nav.Link>
+                        <Nav.Link href="/app/disc">Comportamento</Nav.Link>
+                        <Nav.Link href="/app/appo">Objetivos</Nav.Link>
                         <Nav.Link href="/app/account" className={Style.avatarContent}>
-                            <img className={Style.avatar} alt="user avatar" src={loggedUser.avatar ? loggedUser.avatar : Profile} />
+                            <PersonCircle className={Style.avatar} />
                             <p>Olá, {loggedUser.name}</p>
                         </Nav.Link>
                     </Nav>
