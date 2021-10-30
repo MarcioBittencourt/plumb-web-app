@@ -23,23 +23,13 @@ const DashboardAppo = (props: Props) => {
     }, []);
 
     return (
-        <Container>
+        <div className={Style.pageDashboard}>
             <Switch>
                 <Route exact path={path}>
-                    <Row className={Style.pageHeader}>
-                        <Col>
-                            <h3 className={Style.pageTitle} >Objetivos</h3>
-                        </Col>
-                        <Col className={Style.containerHeaderActions}>
-                            <Link className={Style.btnPrimary} to={`/appo/goals/`}>
-                                Realizar planejamento
-                            </Link>
-                        </Col>
-                    </Row>
                     <section className={Style.goalsSection}>
                         {goals.map((goal) => {
                             return (
-                                <Link className={Style.disabledLink} to={`/appo/goals/${goal.id}`}>
+                                <Link className={Style.disabledLink} to={`/app/appo/goals/${goal.id}`}>
                                     <Record 
                                         title={goal.title}
                                         startDate={goal.startDate}
@@ -56,12 +46,8 @@ const DashboardAppo = (props: Props) => {
                     (props) => (<Goal uuid={props.match.params.id} />)
                 }>
                 </Route>
-                <Route path={`${path}/goals`} render={
-                    () => (<Goal />)
-                }>
-                </Route>
             </Switch>
-        </Container>
+        </div>
     );
 }
 

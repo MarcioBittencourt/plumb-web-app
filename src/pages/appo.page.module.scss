@@ -1,0 +1,16 @@
+@import "../assets/styles/ui";
+
+.page {
+    display: grid;
+}
+
+.btnPlan {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.sectionTitle {
+    padding: 0;
+}

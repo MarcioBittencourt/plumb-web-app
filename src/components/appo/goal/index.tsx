@@ -1,5 +1,5 @@
 import Style from "./goal.module.scss";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Smart from './smart/index';
 import { Search, XCircleFill } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
@@ -41,7 +41,7 @@ const Goal = ({ uuid }: Props) => {
 
     useEffect(() => {
         (async () => {
-            const url = `http://localhost:5000/employees/company/${loggedUser.companyId}`;
+            const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
             const company = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
@@ -125,6 +125,16 @@ const Goal = ({ uuid }: Props) => {
         setTasksData([...newValues]);
     }
 
+    const removeTask = (index: number) => {
+        console.log("index", index);
+        console.log("tasks antes", tasks);
+        //tasks.splice(index, 1);
+        console.log("tasks depois splice", tasks);
+        //setTasks([...tasks]);
+        console.log("tasks depois do set", tasks);
+    }
+    console.log("fora", tasks);
+
     const newLine = (name?: string, row: number = tasks.length) => {
         setTasks((prevState) => [...prevState, (
             <Row className={Style.entityTableRecord}>
@@ -137,24 +147,24 @@ const Goal = ({ uuid }: Props) => {
                         value={name}
                         placeholder="Nome da tarefa"
                         onChange={() => handleTaskDataOnChange(row)} />
-                    <XCircleFill className={`${Style.entityTableRecordAction} ${Style.removeEntityButton}`} size={25} />
+                    <XCircleFill onClick={() => removeTask(row)} className={`${Style.entityTableRecordAction} ${Style.removeEntityButton}`} size={25} />
                 </Col>
             </Row>
         )])
     }
 
     return (
-        <Row className={Style.pageSection}>
-            <Col lg={12}>
+        <>
+            <Container className={Style.pageSectionForDashboard}>
                 <Row className={Style.pageSectionHeader}>
-                    <Col className={Style.goalTitle} lg={9}>
+                    <Col className={Style.goalTitle} lg={8}>
                         <input
                             type="text"
                             placeholder="Insira o titulo do objetivo aqui!"
                             value={goal.title}
                             ref={refTitle} />
                     </Col>
-                    <Col lg={2}>
+                    <Col lg={3}>
                         <Smart smarts={["Especifico", "Mensuravel", "Alcançavel", "Realista", "Temporal"]} />
                     </Col>
                 </Row>
@@ -196,7 +206,9 @@ const Goal = ({ uuid }: Props) => {
                                     </div>
                                 </Col>
                             </Row>
-                            {tasks}
+                            <div className={Style.tasksSection}>
+                                {tasks}
+                            </div>
                         </Row>
                     </Col>
                     <Col lg={5}>
@@ -271,15 +283,16 @@ const Goal = ({ uuid }: Props) => {
                         </Row>
                     </Col>
                 </Row>
-            </Col>
-            <button
-                className={Style.btnPrimary}
-                type="button"
-                
-                onClick={saveGoal}>
-                Salvar
-            </button>
-        </Row>
+            </Container>
+            <Container>
+                <button
+                    className={Style.btnPrimary}
+                    type="button"
+                    onClick={saveGoal}>
+                    Salvar
+                </button>
+            </Container>
+        </>
     );
 }
 export default Goal;
