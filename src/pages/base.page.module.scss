@@ -1,6 +1,13 @@
 @import '../assets/styles/colors';
 
+.main {
+}
+
 .footer {
-    height: 150px;
-    background-color: $color-primary;
+    width: 100%;
+    div {
+        background-color: $color-primary;
+        height: 100px;
+        color: white;
+    }
 }
