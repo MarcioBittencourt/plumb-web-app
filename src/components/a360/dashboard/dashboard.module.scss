@@ -2,6 +2,10 @@
 @import "../../../assets/styles/ui";
 @import "../../../assets/styles/colors";
 
+.iconCheckColumn {
+    padding-right: 30px !important;
+}
+
 .iconCheck {
     color: white;
     font-size: 24px;
@@ -10,11 +14,14 @@
 
 .pageSection {
     padding: 0;
-    max-width: 900px;
+}
+
+.colaboratorsSection {
+    overflow-y: scroll;
+    height: 450px;
 }
 
 .entityTableHeader {
-    max-width: 900px;
     padding: 6px 25px;
     margin: 0;
     border-top-left-radius: 0;
@@ -22,7 +29,6 @@
 }
 
 .pageSectionHeader {
-    max-width: 900px;
     margin-left: 0;
 }
 

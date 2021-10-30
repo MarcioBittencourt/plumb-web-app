@@ -38,7 +38,7 @@ const Dashboard = (props: Props) => {
 
     useEffect(() => {
         (async () => {
-            const url = `http://localhost:5000/employees/company/${loggedUser.companyId}`;
+            const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
@@ -120,7 +120,7 @@ const Dashboard = (props: Props) => {
         <>
             <Switch>
                 <Route exact path={path}>
-                    <Container className={Style.pageSection}>
+                    <Container className={Style.pageSectionForDashboard}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10} >
                                 <h3>Solicitar avaliação</h3>
@@ -137,27 +137,31 @@ const Dashboard = (props: Props) => {
                             <Col lg={4}><p>Colaborador</p></Col>
                             <Col lg={3}><p>Contato</p></Col>
                             <Col lg={3}><p>Setor</p></Col>
-                            <Col lg={2}><UiChecks className={Style.iconCheck} /></Col>
+                            <Col lg={2} className={Style.iconCheckColumn}>
+                                <UiChecks className={Style.iconCheck} />
+                            </Col>
                         </Row>
-                        {colaborators
-                            .filter(employee => loggedUser.uuid !== employee.uuid)
-                            .filter(employee => !memoRequestedColaborators.includes(employee.id))
-                            .map((employee) => {
-                                return (
-                                    <Request
-                                        key={employee.uuid}
-                                        id={employee.id}
-                                        avatar={employee.avatar}
-                                        name={employee.name}
-                                        email={employee.email}
-                                        departament={employee.departament}
-                                        handleOnChange={event => selectColaborator(event, employee)}
-                                    />
-                                )
-                            })
-                        }
+                        <div className={Style.colaboratorsSection}>
+                            {colaborators
+                                .filter(employee => loggedUser.uuid !== employee.uuid)
+                                .filter(employee => !memoRequestedColaborators.includes(employee.id))
+                                .map((employee) => {
+                                    return (
+                                        <Request
+                                            key={employee.uuid}
+                                            id={employee.id}
+                                            avatar={employee.avatar}
+                                            name={employee.name}
+                                            email={employee.email}
+                                            departament={employee.departament}
+                                            handleOnChange={event => selectColaborator(event, employee)}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
                     </Container>
-                    <Container className={Style.pageSection}>
+                    <Container className={Style.pageSectionForDashboard}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}>
                                 <h3>Avaliações sobre mim</h3>
@@ -196,7 +200,7 @@ const Dashboard = (props: Props) => {
                             </Col>
                         </Row>
                     </Container>
-                    <Container className={Style.pageSection}>
+                    <Container className={Style.pageSectionForDashboard}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}><h3>Avaliaçoes pendentes para mim</h3></Col>
                             <Col lg={2} className={Style.colBtnRedirect}>
@@ -234,7 +238,7 @@ const Dashboard = (props: Props) => {
                             </Col>
                         </Row>
                     </Container>
-                    <Container className={Style.pageSection}>
+                    <Container className={Style.pageSectionForDashboard}>
                         <Row className={Style.pageSectionHeader}>
                             <Col lg={10}>
                                 <h3>Avaliações realizadas por mim</h3>

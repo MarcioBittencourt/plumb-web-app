@@ -1,4 +1,5 @@
 import { Col, Row } from "react-bootstrap";
+import { PersonCircle } from "react-bootstrap-icons";
 import Style from './request.module.scss'
 
 type Props = {
@@ -14,7 +15,7 @@ const Request = ({ id, avatar, name, email, departament, handleOnChange }: Props
     return (
         <Row className={Style.assessementTableRecordContent}>
             <Col lg={4} sm={4} className={Style.userInfo}>
-                <div className={Style.avatar}></div>
+                <PersonCircle className={Style.avatar} />
                 <div className={Style.details}>
                     <p className={Style.primayInfo}>{name}</p>
                     <p className={Style.secondaryInfo}>{id}</p>

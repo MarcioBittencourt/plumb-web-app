@@ -1,7 +1,7 @@
 import Style from './record.module.scss'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { BoxArrowInRight } from 'react-bootstrap-icons';
+import { BoxArrowInRight, PersonCircle } from 'react-bootstrap-icons';
 import { format, intervalToDuration } from 'date-fns';
 import { Link } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
         <div className={Style.tableRecord}>
             <Row className={Style.tableRecordContent}>
                 <Col lg={4} className={Style.userInfo}>
-                    <span className={Style.avatar}></span>
+                    <PersonCircle className={Style.avatar} />
                     <div className={Style.detailsAvatar}>
                         <p className={Style.primaryInfo}>{name}</p>
                         <p className={Style.secondaryInfo}>{id}</p>

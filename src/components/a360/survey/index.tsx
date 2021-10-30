@@ -79,7 +79,6 @@ const Survey = ({ uuid }: Props) => {
                     answer: question.answer,
                 })
             });
-            console.log("resp", resp);
         });
         const response = await fetch(`http://localhost:5000/assessements/${uuid}`, {
             method: 'PATCH',
