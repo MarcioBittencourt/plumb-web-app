@@ -1,0 +1,57 @@
+.answer {
+    display: flex;
+    border-bottom: 2px solid #e8e5f6;
+    margin: 5px 0;
+    padding: 15px 0;
+    align-items: center;
+
+    .option {
+        align-items: center;
+        display: flex;
+        padding: 0;
+
+        p {
+            margin: 0;
+        }
+        div {
+            display: flex;
+            align-items: center;
+        }
+        select {
+            padding: 0 6px;
+            width: 140px;
+            height: 30px;
+            background-color: whitesmoke;
+            border-color: rgba(17, 231, 255, 0.5);
+        }
+        .moreOption {
+            margin-bottom: 5px;
+        }
+    }
+
+    .option:nth-last-child(-n+2) {
+        justify-content: center;
+    }
+
+    .iconOptionMore {
+        padding: 0;
+        color: #0f2c3a;
+        background-color: white;
+        font-size: 45px;
+        box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+        border-radius: 100%;
+    }
+    .iconOptionLess {
+        padding: 0;
+        color: #0f2c3a;
+        background-color: white;
+        box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+        border-radius: 100%;
+    }
+}

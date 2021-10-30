@@ -1,0 +1,203 @@
+@import "../../../assets/styles/ui";
+
+.page {
+    display: flex;
+    padding-top: 25px;
+}
+.discLogoImageSection {
+    display: flex;
+}
+
+.discLogoImage {
+    margin-left: auto;
+    height: 360px;
+    width: 400px;
+}
+
+.titleProfile {
+    text-transform: capitalize;
+    h3 {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+}
+
+.contentColumn {
+    display: grid;
+}
+
+.btnPresentationRow {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+        width: 100%;
+    }
+}
+
+.entityTable {
+    margin-top: 0;
+    margin-bottom: 50px;
+    background-color: initial;
+}
+
+.entityTableRecord {
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.primaryInfoSecondaryCol {
+    text-transform: capitalize;
+    color: grey;
+    margin: 0;
+}
+
+.tableRecordyTerciaryCol {
+    line-height: 16px;
+    flex-direction: column;
+    align-items: center;
+}
+.primaryInfoTerciaryCol {
+    font-weight: bold;
+}
+
+.secondaryInfoTerciaryCol {
+    color: grey;
+}
+
+.entityTableRecord:hover {
+    background-color: white !important;
+    box-shadow: 0 0 16px rgba(17, 231, 255, 0.5);
+}
+
+.titleTable {
+    margin-bottom: 16px;
+}
+
+.profileTableRecord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    text-transform: uppercase;
+
+    &[data-profile="influence"] {
+        background-color: #FFD017;
+        border: 2px solid #80680B;
+        box-shadow: 0 0 5px #E6BC15;
+    }
+    &[data-profile="dominant"] {
+        background-color: #FE2449;
+        border: 2px solid #801224;
+        box-shadow: 0 0 5px #E62041;
+    }
+
+    &[data-profile="steadiness"] {
+        background-color: #11CA68;
+        border: 2px solid #064A26;
+        box-shadow: 0 0 5px #0EB05A;
+    }
+
+    &[data-profile="compliance"] {
+        background-color: #16B8E7;
+        border: 2px solid #0A5469;
+        box-shadow: 0 0 5px #15A6CF;
+    }
+}
+
+.scores {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    .scoreTable {
+        display: flex;
+        padding: 5px 15px;
+        width: 25%;
+        border-radius: 8px;
+        border: 2px solid #000000;
+        align-items: center;
+
+        .profileNames {
+            width: 80%;
+        }
+
+        .scoresValue div {
+            width: 20%;
+            margin-left: 10px;
+        }
+    }
+
+    .profile {
+        display: grid;
+        width: 300px;
+        height: 250px;
+        border: 2px solid rgba(17, 231, 255, 0.5);
+        box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
+        border-radius: 8px;
+        background-color: whitesmoke;
+
+        &[data-profile="dominant"] {
+            background-color: #FE2449;
+            border: 2px solid #801224;
+            box-shadow: 0 0 5px #E62041;
+        }
+
+        &[data-profile="influence"] {
+            background-color: #FFD017;
+            border: 2px solid #80680B;
+            box-shadow: 0 0 5px #E6BC15;
+        }
+
+        &[data-profile="steadiness"] {
+            background-color: #11CA68;
+            border: 2px solid #064A26;
+            box-shadow: 0 0 5px #0EB05A;
+        }
+
+        &[data-profile="compliance"] {
+            background-color: #16B8E7;
+            border: 2px solid #0A5469;
+            box-shadow: 0 0 5px #15A6CF;
+        }
+
+        .profileTitle {
+            font-size: 50px;
+            font-weight: 800;
+            h2 {
+                margin: 0;
+                font-size: 130px;
+                text-transform: uppercase;
+                color: whitesmoke;
+            }
+        }
+
+        .profileDetails {
+            h4 {
+                font-size: 35px;
+                margin: 0;
+                text-transform: capitalize;
+                color: whitesmoke;
+            }
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.descriptionProfile {
+    margin-bottom: 38px;
+}

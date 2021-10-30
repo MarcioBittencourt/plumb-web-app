@@ -1,21 +1,32 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import { DashCircle, PatchPlus, PlusCircle } from 'react-bootstrap-icons';
-import { Profile } from '..';
+import { Profile } from '../survey';
 import Style from './ask.module.scss'
 
 type Props = {
+    id: string,
     utterance: string[],
     response?: string,
     profile: Profile,
     onChangeProfile: (profile: Profile) => void;
 }
 
-const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
+const Ask = ({ id, utterance, response, profile, onChangeProfile }: Props) => {
     const selectMoreRef = useRef<HTMLSelectElement>(null);
     const selectLessRef = useRef<HTMLSelectElement>(null);
 
+    const [selectMore, setSelectMore] = useState<any>('');
+    const [selectLess, setSelectLess] = useState<any>('');
+
+    useEffect(() => {
+        const disc: any = JSON.parse(localStorage.getItem('disc') || '{}');
+        disc[id] = { less: selectLess, more: selectMore };
+        localStorage.setItem('disc', JSON.stringify(disc));
+    }, [selectMore, selectLess]);
+
     const handleMeasurementMore = () => {
+        setSelectMore(selectMoreRef.current?.value);
         let index = selectMoreRef.current?.options.selectedIndex;
         switch (index) {
             case 1:
@@ -35,6 +46,7 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
     }
 
     const handleMeasurementLess = () => {
+        setSelectLess(selectLessRef.current?.value);
         const index = selectLessRef.current?.options.selectedIndex;
         switch (index) {
             case 1:
@@ -65,26 +77,34 @@ const Ask = ({ utterance, response, profile, onChangeProfile }: Props) => {
         <Row className={Style.answer}>
             {utterance.map((option, index) => {
                 return (
-                    <Col className={Style.option}>
+                    <Col lg={2} className={Style.option}>
                         <p>{option}</p>
                     </Col>
                 )
             })}
-            <Col className={Style.option}>
-                <div className={Style.moreOption}>
-                    <PlusCircle className={Style.iconOptionMore} />
-                    <select defaultValue="none" onChange={handleMeasurementMore} ref={selectMoreRef} id="more">
+            <Col lg={2} className={Style.option}>
+                <PlusCircle className={Style.iconOptionMore} />
+                <select 
+                    defaultValue="none" 
+                    onChange={handleMeasurementMore} 
+                    ref={selectMoreRef} 
+                    id="more"
+                    className="form-control">
                         <option value="none" disabled> - Selecione - </option>
                         {showOptions()}
-                    </select>
-                </div>
-                <div>
-                    <DashCircle className={Style.iconOptionLess} />
-                    <select defaultValue="none" onChange={handleMeasurementLess} ref={selectLessRef} id="less">
-                        <option value="none" disabled> - Selecione - </option>
-                        {showOptions()}
-                    </select>
-                </div>
+                </select>
+            </Col>
+            <Col lg={2} className={Style.option}>
+                <DashCircle className={Style.iconOptionLess} />
+                <select 
+                    defaultValue="none" 
+                    onChange={handleMeasurementLess} 
+                    ref={selectLessRef} 
+                    id="less"
+                    className="form-control">
+                    <option value="none" disabled> - Selecione - </option>
+                    {showOptions()}
+                </select>
             </Col>
         </Row>
     )

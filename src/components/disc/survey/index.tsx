@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import Ask from './ask'
+import { Col, Row } from 'react-bootstrap';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
+import Ask from '../ask'
 import Style from './survey.module.scss'
+import DashboardDisc from '../dashboard/index'
+import { Link } from 'react-router-dom';
 
 type Props = {
     askings: {
@@ -18,6 +21,9 @@ export type Profile = {
 }
 
 const Survey = ({ askings }: Props) => {
+
+    let { path, url } = useRouteMatch();
+
     const [profile, setProfile] = useState<Profile>({
         dominant: { profile: "dominant", scoreMore: 0, scoreLess: 0 },
         influence: { profile: "influence", scoreMore: 0, scoreLess: 0 },
@@ -40,57 +46,68 @@ const Survey = ({ askings }: Props) => {
         setProfile(profile);
     }
 
+    const disc: any[] = Object.entries(JSON.parse(localStorage.getItem('disc') || '{}'));
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+
+    const save = async () => {
+        const response = await fetch(`http://localhost:5000/disc`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                profile: profileResult().profile,
+                employee: loggedUser.id,
+            }),
+        });
+
+        const discResponse: any = await response.json();
+
+        await Promise.all(disc.map(async (answer, index) => {
+            const affinity: any = answer[1];
+            await fetch(`http://localhost:5000/survey-disc`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    asking: askings[index].options,
+                    more: affinity.more,
+                    less: affinity.less,
+                    disc: discResponse.id,
+                })
+            });
+        }))
+    }
+
     return (
-        <div>
-            <Container className={Style.form}>
-                <Row className={Style.pageSectionHeader}>
-                    <Col><h3>DISC</h3></Col>
+        <Switch>
+            <Route exact path={path}>
+                {/* <Redirect to='/app/disc/survey/' /> */}
+                <Row className={Style.page}>
+                    <Col className={Style.discForm}>
+                        {askings.map((ask, index) => {
+                            return (
+                                <Ask 
+                                    key={`disc-ask-${index}`} 
+                                    id={`disc-ask-${index}`} 
+                                    utterance={ask.options} 
+                                    profile={profile} 
+                                    onChangeProfile={handleProfile} />
+                            )
+                        })}
+                    </Col>
+                    <div className={Style.buttonSection}>
+                        <button
+                            className={Style.btnPrimary}
+                            type="button"
+                            onClick={save}>
+                            Verificar resultado!
+                        </button>
+                    </div>
                 </Row>
-                {askings.map((ask) => {
-                    return (
-                        <Ask utterance={ask.options} profile={profile} onChangeProfile={handleProfile} />
-                    )
-                })}
-            </Container>
-            <div id="scores" className={Style.scores}>
-                <div id="scoreMore" className={Style.scoreTable}>
-                    <div className={Style.profileNames}>
-                        <div><p>Dominante:</p></div>
-                        <div><p>Conformidade:</p></div>
-                        <div><p>Influente:</p></div>
-                        <div><p>Estabilidade:</p></div>
-                    </div>
-                    <div className={Style.scoresValue}>
-                        <div><p>{profile.dominant.scoreMore}</p></div>
-                        <div><p>{profile.compliance.scoreMore}</p></div>
-                        <div><p>{profile.influence.scoreMore}</p></div>
-                        <div><p>{profile.steadiness.scoreMore}</p></div>
-                    </div>
-                </div>
-                <div id="scoreLess" className={Style.scoreTable}>
-                    <div className={Style.profileNames}>
-                        <div><p>Dominante:</p></div>
-                        <div><p>Conformidade:</p></div>
-                        <div><p>Influente:</p></div>
-                        <div><p>Estabilidade:</p></div>
-                    </div>
-                    <div className={Style.scoresValue}>
-                        <div><p>{profile.dominant.scoreLess}</p></div>
-                        <div><p>{profile.compliance.scoreLess}</p></div>
-                        <div><p>{profile.influence.scoreLess}</p></div>
-                        <div><p>{profile.steadiness.scoreLess}</p></div>
-                    </div>
-                </div>
-                <div data-profile={profileResult().profile} className={Style.profile}>
-                    <div className={Style.profileTitle}>
-                        <h2>{profileResult().profile.substring(0, 1)}</h2>
-                    </div>
-                    <div className={Style.profileDetails}>
-                        <h4>{profileResult().profile}</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </Route>
+            <Route path={`${path}/disc`} render={(props) => (
+                <DashboardDisc />
+            )}>
+            </Route>
+        </Switch >
     )
 }
 export default Survey;
