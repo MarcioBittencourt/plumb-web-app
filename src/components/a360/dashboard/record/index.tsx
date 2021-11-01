@@ -10,22 +10,21 @@ type Props = {
     name: string;
     requestDate: string;
     deadlineDate: string;
-    concludedDate: Date;
+    concludedDate?: string;
     status: string;
 };
 const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate, status }: Props) => {
-    const dataConclusaoFmt = format(new Date(concludedDate), 'd MMM yyyy');
-    const prazoResolucaoFmt = format(new Date(deadlineDate), 'd MMM yyyy');
-    const dataSolicitacaoFmt = format(new Date(requestDate), 'd MMM yyyy');
+    const dataConclusaoFmt = concludedDate? format(new Date(concludedDate), 'd MMM yyyy'): null;
+    const prazoResolucaoFmt = deadlineDate? format(new Date(deadlineDate), 'd MMM yyyy'): null;
+    const dataSolicitacaoFmt = requestDate? format(new Date(requestDate), 'd MMM yyyy'): null;
     const dataResolution = intervalToDuration(
         {
             start: new Date(),
-            end: new Date(deadlineDate)
+            end: deadlineDate? new Date(deadlineDate): new Date(),
         }
     )
 
-    var days = (dataResolution.months || 0) * 30;
-    days += (dataResolution.days || 0);
+    var reaminingTotalTimeInDay = ((dataResolution.months || 0) * 30) + (dataResolution.days || 0);
 
     return (
         <div className={Style.tableRecord}>
@@ -45,7 +44,7 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
                 <Col lg={3} className={Style.dataColumn}>
                     <div className={Style.detailsStatus}>
                         <p className={Style.tertiaryInfo}>Solicitado {dataSolicitacaoFmt}</p>
-                        <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${days} dias ${dataResolution.hours}:${dataResolution.minutes}`}</p>
+                        <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${reaminingTotalTimeInDay} dias ${dataResolution.hours}:${dataResolution.minutes}`}</p>
                         <p className={Style.secondaryInfo} hidden={["Concluído", "Enviado"].includes(status)}>Disponível até {prazoResolucaoFmt}</p>
                         <p className={Style.secondaryInfo} hidden={["Pendente", "Rascunho"].includes(status)}>Concluído em {dataConclusaoFmt}</p>
                     </div>
