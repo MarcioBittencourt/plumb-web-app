@@ -1,0 +1,67 @@
+@import "../../../assets/styles/ui";
+@import "../../../assets/styles/typograph";
+@import "../../../assets/styles/colors";
+
+.loginPage {
+    display: grid;
+    justify-content: center;
+}
+
+.login {
+    margin-top: 50px;
+    padding: 100px;
+}
+
+.titlePage {
+    display: block;
+    padding: 0;
+    h3 {
+        font-size: 34px;
+    }
+}
+
+.rowSignin{
+    display: block;
+}
+
+.colSignin {
+    margin-bottom: 18px;
+    display: block;
+    justify-content: center;
+    label {
+        font-size: 20px;
+        padding: 0;
+        color: white;
+    }
+    input {
+        width: 350px;
+        height: 44px;
+    }
+}
+
+.sectionButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnPrimary {
+    background-color: green;
+    width: 150px;
+    height: 36px;
+}
+
+.createAccount {
+    display: flex;
+    justify-content: center;
+    a {
+        color: white;
+        font-size: 12px;
+    }
+}
+
+.createAccount:hover {
+    a {
+        color: $color-quartenary;
+    }
+}
