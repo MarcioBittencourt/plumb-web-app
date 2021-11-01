@@ -10,14 +10,14 @@ const Navigation = () => {
 
     return (
         <Navbar className={Style.navbar} expand="md" bg="dark" variant="dark">
-            <Navbar.Brand href="/home">Plumb-Web</Navbar.Brand>
+            <Navbar.Brand href="/home">Plumb</Navbar.Brand>
             <Button type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02">
                 <span className="navbar-toggler-icon"></span>
             </Button>
             <div className={Style.menu}>
                 <Collapse id="navbarTogglerDemo02">
                     <Nav className={Style.navLinks}>
-                        <Nav.Link href="/app/home"><HouseDoorFill /> <p>Inicio</p></Nav.Link>
+                        <Nav.Link href="/app/home">Inicio</Nav.Link>
                         <Nav.Link href="/app/360">Desempenho</Nav.Link>
                         <Nav.Link href="/app/disc">Comportamento</Nav.Link>
                         <Nav.Link href="/app/appo">Objetivos</Nav.Link>
