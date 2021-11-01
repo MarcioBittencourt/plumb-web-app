@@ -47,7 +47,7 @@ const Dashboard = (props: Props) => {
             await filterSelectColaborator();
             await refreshPendingAssessements();
         })();
-    }, []);
+    }, [selectedEmployees]);
 
     const selectColaborator = (event: any, employee: any) => {
         const hasEmployee = selectedEmployees.indexOf(employee);
@@ -93,18 +93,22 @@ const Dashboard = (props: Props) => {
                     });
                 })
             });
-            return {
+            const assessementData = {
                 uuid: new Date().getTime(), //substituir por uuid
                 rated: JSON.parse(localStorage.getItem("loggedUser") || '{}'),
-                dataConclusao: "2021-02-02T13:00:00",
+                dataConclusao: null,
                 evaluator: employee,
-                dataSolicitacao: "2021-10-05T18:02:30",
-                prazoResolucao: "2021-10-05T18:02:30",
+                dataSolicitacao: new Date(),
+                prazoResolucao: "2021-12-05T18:00:00",
                 status: "Pendente"
             }
+            return assessementData;
         }));
-        setAssessements([...assessements, ...newAssessements]);
+        console.log('newAssessements', newAssessements);
+        console.log('before set', assessements);
+        setAssessements((prevState) => [...prevState, newAssessements]); // aqui
         setSelectedEmployees([]);
+        alert('Solicitações enviadas com sucesso!');
     }
 
     const refreshPendingAssessements = async () => {
@@ -177,15 +181,14 @@ const Dashboard = (props: Props) => {
                         <Row className={Style.entityTableHeader}>
                             <Col lg={4}><p>Avaliador</p></Col>
                             <Col lg={3}><p>Situação</p></Col>
-                            <Col lg={4}><p>Status</p></Col>
+                            <Col lg={4}><p>Tempo restante</p></Col>
                         </Row>
-                        {assessements.filter((assessement: any) =>
-                            assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído")
+                        {assessements.filter((assessement: any) => assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído")
                             .map((assessement: any) => {
                                 return (
                                     <AssessementRecord
                                         id={assessement.id}
-                                        name={assessement.evaluator.name} //verificar nome
+                                        name={assessement.evaluator.name}
                                         requestDate={assessement.requestDate}
                                         deadlineDate={assessement.deadlineDate}
                                         concludedDate={assessement.concludedDate}
@@ -214,7 +217,7 @@ const Dashboard = (props: Props) => {
                         <Row className={Style.entityTableHeader}>
                             <Col lg={4}><p>Avaliado</p></Col>
                             <Col lg={3}><p>Situação</p></Col>
-                            <Col lg={4}><p>Status</p></Col>
+                            <Col lg={4}><p>Tempo restante</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) => ["Pendente", "Rascunho"]
                             .includes(assessement.status) && assessement.evaluator.id === loggedUser.id)
@@ -254,7 +257,7 @@ const Dashboard = (props: Props) => {
                         <Row className={Style.entityTableHeader}>
                             <Col lg={4}><p>Avaliado</p></Col>
                             <Col lg={3}><p>Situação</p></Col>
-                            <Col lg={4}><p>Status</p></Col>
+                            <Col lg={4}><p>Tempo restante</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) => ["Concluído", "Enviado"]
                             .includes(assessement.status)).map((assessement: any) => {
