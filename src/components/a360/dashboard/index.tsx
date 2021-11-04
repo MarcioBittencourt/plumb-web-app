@@ -28,7 +28,7 @@ const Dashboard = (props: Props) => {
             setRatedAssessements([...ratedAssessements]);
         })();
         return ratedAssessements
-            //.filter((assessement: any) => assessement.rated.id === loggedUser.id)
+            .filter((assessement: any) => assessement.rated.id === loggedUser.id)
             .map((assessement: any) => assessement.evaluator.id)
             .reduce((unique: any, item: any) => unique.includes(item)
                 ? unique
@@ -64,6 +64,7 @@ const Dashboard = (props: Props) => {
 
     useEffect(() => {
         localStorage.setItem('assessements', JSON.stringify(assessements));
+
     }, [assessements]);
 
     const sendRequest = async () => {
@@ -78,6 +79,7 @@ const Dashboard = (props: Props) => {
                     status: "Pendente"
                 })
             });
+
             const assessement: any = await createdAssessementResponse.json();
             Data360.askings.map((ask) => {
                 ask.utterances.map(async (utterance) => {
@@ -104,8 +106,6 @@ const Dashboard = (props: Props) => {
             }
             return assessementData;
         }));
-        console.log('newAssessements', newAssessements);
-        console.log('before set', assessements);
         setAssessements((prevState) => [...prevState, newAssessements]); // aqui
         setSelectedEmployees([]);
         alert('Solicitações enviadas com sucesso!');

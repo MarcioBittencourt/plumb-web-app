@@ -330,8 +330,8 @@ const Survey = ({ uuid }: Props) => {
                     </div>
                 </div>
             </section>
-            <button className={Style.buttons} type="button" onClick={save}>Salvar</button>
-            <button className={Style.buttons} type="button" onClick={send}>Enviar</button>
+            <button className={Style.btnPrimary} type="button" onClick={save}>Salvar</button>
+            <button className={Style.btnPrimary} type="button" onClick={send}>Enviar</button>
         </form >
     )
 }

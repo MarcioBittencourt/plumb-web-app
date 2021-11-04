@@ -1,13 +1,5 @@
 @import "./colors";
-
-a {
-    text-decoration: none;
-    color: black;
-}
-a:hover {
-    text-decoration: none;
-    color: black;
-}
+@import "./typograph";
 
 .btn {
     width: 120px;
@@ -32,10 +24,10 @@ a:hover {
     font-weight: 600;
     background-color: #06171f;
     text-align: center;
+    text-decoration: none;
 }
 
 .page {
-    background-color: $color-background-primary;
 }
 
 .pageHeader {
@@ -45,7 +37,6 @@ a:hover {
 
 .pageSection {
     padding: 24px 48px;
-    max-width: 768px;
     background-color: white;
     margin-top: 28px;
     border-top-left-radius: $border-radius-sm;
@@ -54,6 +45,7 @@ a:hover {
     border-bottom-right-radius: $border-radius-sm;
 }
 .pageSectionHeader {
+    margin: 0;
     display: flex;
     align-items: center;
     background-color: $color-terciary;
@@ -64,6 +56,16 @@ a:hover {
 
 .page-section-content {
     background-color: $color-background-primary;
+    border-bottom-left-radius: $border-radius-sm;
+    border-bottom-right-radius: $border-radius-sm;
+}
+
+.pageSectionForDashboard {
+    padding: 0;
+    background-color: white;
+    margin: 28px 0;
+    border-top-left-radius: $border-radius-sm;
+    border-top-right-radius: $border-radius-sm;
     border-bottom-left-radius: $border-radius-sm;
     border-bottom-right-radius: $border-radius-sm;
 }
@@ -81,6 +83,7 @@ a:hover {
 
 .entityTableHeader {
     background-color: $color-quartenary;
+    margin: 0;
     padding: 6px;
     border-top-left-radius: $border-radius-sm;
     border-top-right-radius: $border-radius-sm;
@@ -101,6 +104,7 @@ a:hover {
 }
 
 .entityTableRecord {
+    margin: 0;
     & > div {
         display: flex;
         align-items: center;
@@ -114,6 +118,7 @@ a:hover {
 
         p {
             margin: 0;
+            padding: 6px;
         }
     }
 
@@ -129,6 +134,15 @@ a:hover {
 
     .entityTableRecordAction {
         display: block;
+    }
+}
+
+.disabledLink {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+        color: black;
     }
 }
 
