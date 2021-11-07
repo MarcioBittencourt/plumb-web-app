@@ -1,6 +1,5 @@
 .sprint {
-    display: block;
-    max-width: 780px;
+    display: flex;
     border-radius: 8px;
     border: 2px solid #bebdbd;
     padding: 20px;
@@ -8,9 +7,14 @@
     align-items: center;
     margin-bottom: 24px;
 
+    .period {
+        display: flex;
+        align-items: center;
+    }
+
     .sprintOption {
         cursor: pointer;
-        margin: 6px 0;
+        margin: 6px 8px;
         display: flex;
         background-color: white;
         color: #06171f;
@@ -19,8 +23,8 @@
         font-size: 16px;
         justify-content: center;
         align-items: center;
-        width: 110px;
-        height: 30px;
+        width: 190px;
+        height: 60px;
 
         &.active {
             background-color: #06171f;
@@ -28,8 +32,6 @@
             border: 2px solid rgba(17, 231, 255, 0.5);
             box-shadow: 0 0 18px rgba(17, 231, 255, 0.5);
             color: white;
-            width: 115px;
-            height: 35px;
         }
     }
 }
