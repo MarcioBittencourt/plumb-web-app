@@ -40,8 +40,10 @@ const DashboardDisc = (props: Props) => {
         headers: { 'Content-Type': 'application/json' },
       });
       const discsEmployeesData: any = await profilesEmployeesResponse.json();
-      setAllRatingsFromOthersEmployees(await discsEmployeesData);
+      setAllRatingsFromOthersEmployees(discsEmployeesData);
+      console.log("discs", discsEmployeesData);
     })();
+    console.log("allRatings", allRatingsFromOthersEmployees);
   }, []);
 
   const showDescription = () => {
@@ -118,7 +120,6 @@ const DashboardDisc = (props: Props) => {
         <Row className={"g-0"}>
           <Col lg={7} className={Style.entityTable}>
             {allRatingsFromLoggedUser.map((disc: any) => {
-              console.log("disc", disc);
               const dateCreationFmt = format(new Date(disc.creationDate), 'd MMM yyyy');
               return (
                 <Row className={Style.entityTableRecord}>
@@ -151,7 +152,9 @@ const DashboardDisc = (props: Props) => {
         <h4 className={Style.titleTable}>Perfis comportamentais de seus colegas</h4>
         <Row className={"g-0"}>
           <Col lg={7} className={Style.entityTable}>
-            {allRatingsFromOthersEmployees.map((disc: any) => {
+            {allRatingsFromOthersEmployees
+              .filter((disc: any) => disc.employee.id != loggedUser.id)
+              .map((disc: any) => {
               const dateCreationFmt = format(new Date(disc.creationDate), 'd MMM yyyy');
               return (
                 <Row className={Style.entityTableRecord}>
