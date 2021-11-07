@@ -144,7 +144,7 @@ export const HomePage = () => {
               </div>
             </div>
             <div>
-              <h6>Este é o seu perfil atual!</h6>
+              <h6 className={Style.profileNotice}>Este é o seu perfil atual!</h6>
             </div>
           </div>
         </Col>

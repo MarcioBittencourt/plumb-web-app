@@ -120,6 +120,10 @@
     font-size: 12px;
 }
 
+.profileNotice {
+    margin: 10px 0;
+}
+
 .profile {
     display: grid;
     width: 300px;
@@ -128,6 +132,7 @@
     box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
     border-radius: 8px;
     background-color: whitesmoke;
+    
     h3 {
         color: darkgrey;
     }
