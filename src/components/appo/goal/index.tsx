@@ -1,7 +1,7 @@
 import Style from "./goal.module.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import Smart from './smart/index';
-import { Search, XCircleFill } from "react-bootstrap-icons";
+import { PersonCheckFill, PersonCircle, PersonPlus, PersonPlusFill, PersonXFill, Search, XCircleFill } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
 import { convertToObject } from "typescript";
 
@@ -126,7 +126,6 @@ const Goal = ({ uuid }: Props) => {
   }
 
   const removeTask = (index: number) => {
-    console.log(tasksData);
     tasksData.splice(index, 1);
     setTasksData([...tasksData]);
 
@@ -137,7 +136,7 @@ const Goal = ({ uuid }: Props) => {
   const newLine = (name?: string, row: number = tasks.length) => {
     setTasks((prevState) => [...prevState, (
       <Row className={Style.entityTableRecord}>
-        <Col lg={1} className={Style.tableColumnRecordID}>
+        <Col lg={1}>
           <p># {row + 1}</p>
         </Col>
         <Col lg={11}>
@@ -211,9 +210,12 @@ const Goal = ({ uuid }: Props) => {
         </Row>
       </Container>
 
-      <Container>
-        <Row className={Style.rowSearchEmployee}>
-          <Col lg={6}>
+      <Container className={Style.pageSectionForDashboard}>
+        <Row className={Style.pageSectionHeader}>
+          <h4>Colaboradores</h4>
+        </Row>
+        <Row>
+          <Col lg={6} className={Style.employeesCol}>
             <div className={Style.searchEmployee}>
               <input
                 id="employeesInput"
@@ -236,28 +238,27 @@ const Goal = ({ uuid }: Props) => {
               <ul id="employees" className={Style.listSearchEmployee}>
                 {filteredColaborators.filter(colaborator => !addedColaborators.includes(colaborator)).map((colaborator, index) => {
                   return (
-                    <li
-                      value={colaborator.name}
-                      className={Style.searchOption}
+                    <li value={colaborator.name} className={Style.searchOption}
                       onClick={() => addEmployeeGoal(colaborator, index)}>
-                      <div className={Style.avatar}></div>
+                      <PersonCircle className={Style.avatar} />
                       <p>{colaborator.name}</p>
+                      <PersonPlusFill className={Style.iconPersonV} />
                     </li>
                   )
                 })}
               </ul>
             </div>
           </Col>
-          <Col lg={6}>
-            <label className={Style.addedColaborators}>Colaboradores envolvidos</label>
+          <Col lg={6} className={Style.employeesCol}>
+            <h5 className={Style.addedColaborators}>Colaboradores envolvidos</h5>
             <div className={Style.searchCollaboratorsList}>
               <ul id="employees" className={Style.listSearchEmployee}>
                 {addedColaborators.map((colaborator, index) => {
                   return (
                     <li value={colaborator.name} className={Style.searchOption}>
-                      <div className={Style.avatar}></div>
+                      <PersonCircle className={Style.avatar} />
                       <p>{colaborator.name}</p>
-                      <XCircleFill onClick={() => { removeCollaborator(colaborator, index) }} className={Style.iconXCircle} size={25} />
+                      <PersonXFill onClick={() => { removeCollaborator(colaborator, index) }} className={Style.iconPersonX} />
                     </li>
                   )
                 })}
@@ -266,31 +267,37 @@ const Goal = ({ uuid }: Props) => {
           </Col>
         </Row>
       </Container>
-
-      <Container>
-        <h6>Tarefas</h6>
+      <Container className={Style.pageSectionForDashboard}>
+        <Row className={Style.pageSectionHeader}>
+          <Col lg={10}>
+            <h4>Tarefas</h4>
+          </Col>
+          <Col lg={2}>
+            <button
+              className={Style.btnPrimary}
+              type="button"
+              onClick={() => newLine()}>
+              Adicionar
+            </button>
+          </Col>
+        </Row>
         <Row className={Style.entityTableHeader}>
           <Col lg={1}>
             <p>ID</p>
           </Col>
           <Col lg={11}>
             <p>Nome</p>
-            <div className={Style.entityTableActions}>
-              <button
-                className={Style.btnPrimary}
-                type="button"
-                onClick={() => newLine()}>
-                Adicionar
-              </button>
-            </div>
           </Col>
         </Row>
-        <div className={Style.tasksSection}>
-          {tasks}
-        </div>
+        {tasks}
+        <Row className={Style.entityTableRecord}>
+          <Col hidden={tasks.length >= 1} className={Style.assessementTableHidden}>
+            <p>Nenhuma tarefa adicionada.</p>
+          </Col>
+        </Row>
       </Container>
 
-      <Container>
+      <Container className={Style.sectionBtnSave}>
         <button
           className={Style.btnPrimary}
           type="button"
