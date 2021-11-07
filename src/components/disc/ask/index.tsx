@@ -30,16 +30,16 @@ const Ask = ({ id, utterance, response, profile, onChangeProfile }: Props) => {
         let index = selectMoreRef.current?.options.selectedIndex;
         switch (index) {
             case 1:
-                profile.dominant.scoreMore += index;
+                profile.dominante.scoreMore += index;
                 break;
             case 2:
-                profile.influence.scoreMore += index;
+                profile.influente.scoreMore += index;
                 break;
             case 3:
-                profile.steadiness.scoreMore += index;
+                profile.estavel.scoreMore += index;
                 break;
             case 4:
-                profile.compliance.scoreMore += index;
+                profile.conforme.scoreMore += index;
                 break;
         }
         onChangeProfile({ ...profile });
@@ -50,16 +50,16 @@ const Ask = ({ id, utterance, response, profile, onChangeProfile }: Props) => {
         const index = selectLessRef.current?.options.selectedIndex;
         switch (index) {
             case 1:
-                profile.dominant.scoreLess -= index;
+                profile.dominante.scoreLess -= index;
                 break;
             case 2:
-                profile.influence.scoreLess -= index;
+                profile.influente.scoreLess -= index;
                 break;
             case 3:
-                profile.steadiness.scoreLess -= index;
+                profile.estavel.scoreLess -= index;
                 break;
             case 4:
-                profile.compliance.scoreLess -= index;
+                profile.conforme.scoreLess -= index;
                 break;
         }
         onChangeProfile({ ...profile });

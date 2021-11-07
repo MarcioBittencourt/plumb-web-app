@@ -14,10 +14,10 @@ type Props = {
 };
 
 export type Profile = {
-    dominant: any;
-    influence: any;
-    steadiness: any;
-    compliance: any;
+    dominante: any;
+    influente: any;
+    estavel: any;
+    conforme: any;
 }
 
 const Survey = ({ askings }: Props) => {
@@ -25,14 +25,14 @@ const Survey = ({ askings }: Props) => {
     let { path, url } = useRouteMatch();
 
     const [profile, setProfile] = useState<Profile>({
-        dominant: { profile: "dominant", scoreMore: 0, scoreLess: 0 },
-        influence: { profile: "influence", scoreMore: 0, scoreLess: 0 },
-        steadiness: { profile: "steadiness", scoreMore: 0, scoreLess: 0 },
-        compliance: { profile: "compliance", scoreMore: 0, scoreLess: 0 },
+        dominante: { profile: "dominante", scoreMore: 0, scoreLess: 0 },
+        influente: { profile: "influente", scoreMore: 0, scoreLess: 0 },
+        estavel: { profile: "estavel", scoreMore: 0, scoreLess: 0 },
+        conforme: { profile: "conforme", scoreMore: 0, scoreLess: 0 },
     });
 
     const profileResult = () => {
-        const profiles = [profile.dominant, profile.influence, profile.steadiness, profile.compliance]
+        const profiles = [profile.dominante, profile.influente, profile.estavel, profile.conforme]
         let profileAux: any = { profile: "", scoreMore: 0, scoreLess: 0 };
         profiles.forEach((profile: any) => {
             if (profile.scoreMore > profileAux.scoreMore) {
@@ -79,7 +79,6 @@ const Survey = ({ askings }: Props) => {
     return (
         <Switch>
             <Route exact path={path}>
-                {/* <Redirect to='/app/disc/survey/' /> */}
                 <Row className={Style.page}>
                     <Col className={Style.discForm}>
                         {askings.map((ask, index) => {
@@ -94,12 +93,14 @@ const Survey = ({ askings }: Props) => {
                         })}
                     </Col>
                     <div className={Style.buttonSection}>
-                        <button
-                            className={Style.btnPrimary}
-                            type="button"
-                            onClick={save}>
-                            Verificar resultado!
-                        </button>
+                        <Link to={`${path}/disc`}>
+                            <button
+                                className={Style.btnPrimary}
+                                type="button"
+                                onClick={save}>
+                                Verificar resultado!
+                            </button>
+                        </Link>
                     </div>
                 </Row>
             </Route>
