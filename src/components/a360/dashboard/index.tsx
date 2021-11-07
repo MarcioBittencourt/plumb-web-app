@@ -143,7 +143,7 @@ const Dashboard = (props: Props) => {
                 <UiChecks className={Style.iconCheck} />
               </Col>
             </Row>
-            <div className={Style.colaboratorsSection}>
+            <div>
               {colaborators
                 .filter(employee => loggedUser.uuid !== employee.uuid)
                 .filter(employee => !memoRequestedColaborators.includes(employee.id))
