@@ -64,7 +64,6 @@ const Dashboard = (props: Props) => {
 
     useEffect(() => {
         localStorage.setItem('assessements', JSON.stringify(assessements));
-
     }, [assessements]);
 
     const sendRequest = async () => {
@@ -96,7 +95,6 @@ const Dashboard = (props: Props) => {
                 })
             });
             const assessementData = {
-                uuid: new Date().getTime(), //substituir por uuid
                 rated: JSON.parse(localStorage.getItem("loggedUser") || '{}'),
                 dataConclusao: null,
                 evaluator: employee,
@@ -106,7 +104,7 @@ const Dashboard = (props: Props) => {
             }
             return assessementData;
         }));
-        setAssessements((prevState) => [...prevState, newAssessements]); // aqui
+        setAssessements((prevState) => [...prevState, ...newAssessements]);
         setSelectedEmployees([]);
         alert('Solicitações enviadas com sucesso!');
     }
@@ -183,22 +181,24 @@ const Dashboard = (props: Props) => {
                             <Col lg={3}><p>Situação</p></Col>
                             <Col lg={4}><p>Tempo restante</p></Col>
                         </Row>
-                        {assessements.filter((assessement: any) => assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído")
+                        {assessements
+                            .filter((assessement: any) => assessement.rated.uuid === loggedUser.uuid)
                             .map((assessement: any) => {
                                 return (
                                     <AssessementRecord
-                                        id={assessement.id}
-                                        name={assessement.evaluator.name}
-                                        requestDate={assessement.requestDate}
-                                        deadlineDate={assessement.deadlineDate}
-                                        concludedDate={assessement.concludedDate}
-                                        status={assessement.status}
+                                        id={assessement?.id}
+                                        name={assessement?.evaluator?.name}
+                                        requestDate={assessement?.requestDate}
+                                        deadlineDate={assessement?.deadlineDate}
+                                        concludedDate={assessement?.concludedDate}
+                                        status={assessement?.status}
+                                        typePresentation="aboutMe"
                                     />)
                             })
                         }
                         <Row className={Style.entityTableRecord}>
                             <Col hidden={!(assessements.filter((assessement: any) =>
-                                assessement.rated.uuid === loggedUser.uuid && assessement.status === "Concluído").length === 0)} className={Style.assessementTableHidden}>
+                                assessement.rated.uuid === loggedUser.uuid).length === 0)} className={Style.assessementTableHidden}>
                                 <p>Nenhum registro de avaliação existente.</p>
                             </Col>
                         </Row>
@@ -260,7 +260,7 @@ const Dashboard = (props: Props) => {
                             <Col lg={4}><p>Tempo restante</p></Col>
                         </Row>
                         {assessements.filter((assessement: any) => ["Concluído", "Enviado"]
-                            .includes(assessement.status)).map((assessement: any) => {
+                            .includes(assessement.status) && assessement.evaluator.id === loggedUser.id).map((assessement: any) => {
                                 return (
                                     <AssessementRecord
                                         id={assessement.id}
