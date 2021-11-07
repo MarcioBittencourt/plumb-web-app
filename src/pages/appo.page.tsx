@@ -5,6 +5,7 @@ import { Route, Switch, useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import Goal from '../components/appo/goal';
 import { useState } from 'react';
+import { ChevronCompactLeft, ChevronCompactRight } from 'react-bootstrap-icons';
 type Props = {}
 
 // - Declaração do resultado que se pretende alcançar em um tempo estipulado</p>
@@ -22,23 +23,12 @@ type Props = {}
 
 const APPOPage = (props: Props) => {
     let { path, url } = useRouteMatch();
-    const [goals, setGoals] = useState<any[]>([]);
-    const newGoal = () => {
-        console.log("goals", goals);
-        setGoals((prevState) => [...prevState, (
-            <Goal />
-        )])
-    }
     return (
         <Container className={Style.page}>
             <Row className={Style.pageHeader}>
                 <Col className={Style.sectionTitle}>
                     <h3 className={Style.pageTitle}>Objetivos</h3>
                 </Col>
-                <Col className={Style.btnPlan}>
-                    <button className={Style.btnPrimary} type="button" onClick={newGoal}>Novo</button>
-                </Col>
-                {goals}
                 <Switch>
                     <Route exact path={path}>
                         <Col className={Style.btnPlan}>
@@ -48,7 +38,15 @@ const APPOPage = (props: Props) => {
                         </Col>
                     </Route>
                     <Route path={`${path}/goals`} render={
-                        () => (<Goal />)
+                        () => (
+                            <>
+                                <Link className={Style.btnPrimary} to={`/app/appo`}>
+                                    <ChevronCompactLeft className={Style.backIcon}/>
+                                    Voltar
+                                </Link>
+                                <Goal />
+                            </>
+                        )
                     }>
                     </Route>
                 </Switch>

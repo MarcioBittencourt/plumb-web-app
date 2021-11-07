@@ -13,3 +13,23 @@ p {
     justify-content: flex-end;
     margin-left: auto;
 }
+
+.informNotData {
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    margin: 10px 0;
+    padding: 10px;
+    p {
+        margin: 0;
+    }
+}
+
+.noticeIcon {
+    margin-top: 3px;
+    margin-right: 18px;
+    color: orange;
+    font-size: 26px;
+    transform: rotate(-45deg);
+}
