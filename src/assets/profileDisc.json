@@ -1,0 +1,20 @@
+{
+    "profiles": [
+        {
+            "profile": "dominante",
+            "description": "O traço comportamental de dominância demonstra a forma como a pessoa lida com os problemas e desafios que lhe são impostos. Quando essa é uma característica predominante, o indivíduo tende a enfrentar com mais facilidade as situações. Pessoas com traço comportamental de dominância elevado podem ser mais exigentes, ousadas e determinadas. São consideradas pessoas dominadoras, com maior afinidade ao empreendedorismo. A alta competitividade é uma das marcas dos profissionais com traços mais fortes do perfil de dominância e sentem-se mais a vontade em posições de comando e liderança. Em contrapartida, a dominância baixa denota um perfil mais conservador e moderado, porém com boa capacidade de realizar trabalhos colaborativos, em equipe."
+        },
+        {
+            "profile": "influente",
+            "description": "Quando esse é o traço comportamental evidente, o indivíduo tem mais facilidade em influenciar quem está ao seu redor. São pessoas mais emocionais, com aptidão para despertar empatia. São marcadas pelo entusiasmo e pela boa comunicação. Geralmente mais populares entre seus colegas, estes profissionais tem maior possibilidade de inspirá-los. Sua capacidade de influenciar e de motivar os demais, porém, nem sempre se constitui em efetividade no que se refere à própria prática de concluir tarefas, o que, por vezes, pode conferir um ar de superficialidade. O alto ceticismo e o pensamento racional preponderante são características dos indivíduos que não têm a influência como traço comportamental elevado. Estes são mais afeitos à reflexão e apresentam melhor desempenho em atividades realizadas individualmente."
+        },
+        {
+            "profile": "estavel",
+            "description": "Paciência e persistência são as principais características evidenciadas por esse fator. Ele permite aferir como a pessoa encara situações de mudança — sejam positivas, sejam negativas — e de que forma adapta seu trabalho a elas. Colaboradores com elevada estabilidade são mais constantes — ou melhor, não se abalam tanto aos problemas que surgem e costumam lidar melhor com a rotina profissional. Além disso, são considerados bons ouvintes, agradáveis e têm um profundo espírito de equipe. Em contrapartida, profissionais com este perfil podem ser mais indecisos e resistentes a mudanças."
+        },
+        {
+            "profile": "conforme",
+            "description": "Como o indivíduo se comporta diante das normas e dos procedimentos é o que verifica esse fator. Ele possibilita identificar se um profissional tem uma reação cautelosa ou imprevisível diante do que tem acontecido no ambiente de trabalho. Colaboradores com elevada conformidade são mais sistemáticos, apegam-se e atuam com base nas regras preestabelecidas. Também são mais cuidadosos, perfeccionistas e precisos no que realizam. Estas características podem torná-lo excessivamente avessos a situações que fogem do seu controle, prejudicando sua capacidade de tomar decisões e delegar tarefas."
+        }
+    ]
+}

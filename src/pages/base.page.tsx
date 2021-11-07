@@ -5,7 +5,7 @@ import DISCPage from "./disc.page";
 import AccountPage from './account.page';
 import Navigation from "../components/navigation";
 import Style from "./base.page.module.scss";
-import { HomePage } from "./home.page";
+import { HomePage } from "./home/home.page";
 
 type Props = {}
 

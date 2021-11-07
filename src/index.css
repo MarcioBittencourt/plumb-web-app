@@ -1,11 +1,26 @@
-body {
+html body {
+  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Fira Sans', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
   background-color: #C7D5D8;
+  /*height: inherit;*/
+}
+
+header, footer {
+  min-height: 10vh;
+} 
+
+main {
+  min-height: 80vh;
+  margin: 30px 0;
 }
 
 code {

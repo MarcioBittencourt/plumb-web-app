@@ -1,0 +1,68 @@
+@import "../../../assets/styles/ui";
+
+.entityTableRecord {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.entityTableRecord:hover {
+    background-color: white !important;
+    box-shadow: 0 0 16px rgba(17, 231, 255, 0.5);
+}
+
+.titleColumn {
+    margin-right: auto;
+}
+
+.goalTitle {
+    white-space: nowrap;
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.sectionGoal {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+}
+
+.infoRound {
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    border-radius: 8px;
+}
+
+.tasksLabel {
+    color: grey;
+    padding: 0 !important;
+    font-size: 16px;
+}
+
+.dateColumn {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.primaryInfo {
+    font-weight: 700;
+    padding: 0 !important;
+}
+
+.secondaryInfo {
+    padding: 0 !important;
+    font-weight: 400;
+    color: grey;
+    font-size: 12px;
+}
