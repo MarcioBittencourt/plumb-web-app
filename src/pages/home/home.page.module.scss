@@ -1,0 +1,195 @@
+@import "../../assets/styles/ui";
+
+.page {
+    margin: 0;
+    max-width: 100%;
+}
+
+.contentColumn {
+    padding: 0 42px;
+}
+
+.informativeColumn {
+    margin-bottom: 24px;
+}
+
+.division {
+    padding: 0 22px;
+}
+
+.informNotData {
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    margin: 10px 0;
+    padding: 10px;
+    p {
+        margin: 0;
+    }
+}
+
+.noticeIcon {
+    margin-top: 3px;
+    margin-right: 18px;
+    color: orange;
+    font-size: 32px;
+    transform: rotate(-45deg);
+}
+
+.notices {
+    background-color: white;
+    border-radius: 8px;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        li {
+            display: flex;
+            margin: 10px 0;
+            padding: 10px;
+
+            P {
+                margin: 0;
+            }
+
+            .markInfo {
+                font-weight: bold;
+                //color: royalblue;
+            }
+        }
+
+        li:before {
+            padding-left: 0;
+        }
+    }
+}
+
+.cycleText {
+    margin: 14px 0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.discSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.sectionTask {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+}
+
+.userInfo {
+    display: flex;
+    margin-right: auto;
+    align-items: center;
+
+    .avatar {
+        font-size: 45px;
+    }
+}
+
+.statusSection {
+    margin-right: auto;
+}
+
+.detailsAvatar {
+    margin-left: 8px;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+    }
+}
+
+.secondaryInfoDate {
+    padding: 0 !important;
+    font-weight: 500;
+    color: gray;
+    font-size: 12px;
+}
+
+.tertiaryInfo {
+    padding: 0 !important;
+    color: gray;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.profile {
+    display: grid;
+    width: 300px;
+    height: 250px;
+    border: 2px solid rgba(17, 231, 255, 0.5);
+    box-shadow: 0 0 5px rgba(17, 231, 255, 0.5);
+    border-radius: 8px;
+    background-color: whitesmoke;
+    h3 {
+        color: darkgrey;
+    }
+
+    &[data-profile="dominante"] {
+        background-color: #fe2449;
+        border: 2px solid #801224;
+        box-shadow: 0 0 5px #e62041;
+    }
+
+    &[data-profile="influente"] {
+        background-color: #ffd017;
+        border: 2px solid #80680b;
+        box-shadow: 0 0 5px #e6bc15;
+    }
+
+    &[data-profile="estavel"] {
+        background-color: #11ca68;
+        border: 2px solid #064a26;
+        box-shadow: 0 0 5px #0eb05a;
+    }
+
+    &[data-profile="conforme"] {
+        background-color: #16b8e7;
+        border: 2px solid #0a5469;
+        box-shadow: 0 0 5px #15a6cf;
+    }
+
+    .profileTitle {
+        font-size: 50px;
+        font-weight: 800;
+        h2 {
+            margin: 0;
+            font-size: 130px;
+            text-transform: uppercase;
+            color: whitesmoke;
+        }
+        &[data-profile="nenhum"] {
+            h2 {
+                color: gray;
+            }
+        }
+    }
+
+    .profileDetails {
+        h4 {
+            font-size: 35px;
+            margin: 0;
+            text-transform: capitalize;
+            color: whitesmoke;
+        }
+        &[data-profile="nenhum"] {
+            h4 {
+                color: gray;
+            }
+        }
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

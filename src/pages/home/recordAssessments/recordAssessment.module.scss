@@ -1,0 +1,94 @@
+@import "../../../assets/styles/ui";
+
+.entityTableRecord {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.entityTableRecord:hover {
+    background-color: white !important;
+    box-shadow: 0 0 16px rgba(17, 231, 255, 0.5);
+}
+
+
+.userInfo {
+    display: flex;
+    margin-right: auto;
+    align-items: center;
+    width: 350px;
+    .avatar {
+        font-size: 45px;
+    }
+}
+
+.detailsAvatar {
+    margin-left: 8px;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+    }
+}
+
+.primaryInfo {
+    font-weight: 700;
+    padding: 0 !important;
+}
+
+.secondaryInfo {
+    padding: 0 !important;
+    font-weight: 400;
+    color: grey;
+    font-size: 12px;
+}
+
+.dateColumn {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.secondaryInfoDate {
+    padding: 0 !important;
+    font-weight: 500;
+    color: gray;
+    font-size: 12px;
+}
+
+.tertiaryInfo {
+    padding: 0 !important;
+    color: gray;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.statusSection {
+    margin-left: auto;
+}
+
+.status {
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &[data-status = "Pendente"] {    
+        border: 2px solid red;
+        color: red;
+    }
+    &[data-status = "Rascunho"] {
+        border: 2px solid orange;
+        color: orange;
+    }
+}
