@@ -12,10 +12,12 @@ const DISCPage = () => {
             <Row>
                 <Col className={Style.pageHeader}>
                     <h3 className={Style.pageTitle} >DISC</h3>
-                    <Link className={Style.btnPrimary} to={`/app/disc`}>
-                        <ChevronCompactLeft className={Style.backIcon} />
-                        Voltar
-                    </Link>
+                    {window.location.pathname === '/app/disc/survey'
+                        ? <Link className={Style.btnPrimary} to={`/app/disc`}>
+                            <ChevronCompactLeft className={Style.backIcon} />
+                            Voltar
+                        </Link>
+                        : null}
                 </Col>
             </Row>
             <DashboardDisc />
