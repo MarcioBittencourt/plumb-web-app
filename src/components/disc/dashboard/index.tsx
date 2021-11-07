@@ -59,10 +59,10 @@ const DashboardDisc = (props: Props) => {
       return (
         <>
           <Row className={Style.page}>
+            <div className={Style.titleProfile}>
+              <h3>{latestRating.profile}</h3>
+            </div>
             <Col lg={7}>
-              <div className={Style.titleProfile}>
-                <h3>{latestRating.profile}</h3>
-              </div>
               {showDescription()}
             </Col>
             <Col lg={5} id="scores" className={Style.scores}>
