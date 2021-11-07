@@ -1,6 +1,36 @@
 @import "../../assets/styles/button";
 @import "../../assets/styles/typograph";
 @import "../../assets/styles/ui";
+@import "../../assets/styles/colors";
+
+.pageSection {
+    &[data-type-registration = "simple"] {
+        background-color: $color-primary;
+        color: white;
+        .register {
+            input {
+                height: 44px;
+            }
+        }
+    }
+}
+
+.error {
+    background-color: rgba(233, 24, 17, 0.815);
+    border-radius: 8px;
+    padding: 5px;
+    margin: 10px 0;
+    color: white;
+    
+    .messageHeader {
+        display: flex;
+        align-items: center;
+    }
+
+    .closeIcon {
+        margin-left: auto;
+    }
+}
 
 .btnsColumn {
     display: flex;
@@ -14,10 +44,7 @@
 
 .register {
     display: flex;
-    .fild {
-        display: grid;
-    }
-    .businessRegister {
+    .fieldRegister {
         display: grid;
     }
     label {
@@ -52,10 +79,32 @@
     }
 }
 
+.colCircleX {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
 .entityTableRecord:last-child {
     border-bottom: none;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+.period {
+    display: flex;
+    align-items: center;
+
+    .periodInfo {
+        margin-right: 20px;
+        label {
+            margin-right: 3px;
+        }
+    
+        input {
+            width: 200px;
+        }
+    }
 }
 
 .entityTableRecord:hover {
@@ -63,11 +112,28 @@
 }
 
 .sprint {
-    margin: 10px 12px 6px;
+    margin: 30px 0;
     font-weight: 500;
 }
 
 .containerButton {
+    display: flex;
+    justify-content: center;
+}
+
+.btnPrimary {
+    &[data-typeRegistration="simple"] {
+        margin-left: 45px;
+        background-color: green;
+        width: 150px;
+        height: 36px;
+    }
+    &[data-typeRegistration="complete"] {
+        width: 25%;
+    }
+}
+
+.sectionButton {
     display: flex;
     justify-content: center;
 }
