@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { MegaphoneFill } from 'react-bootstrap-icons';
+import { ChevronCompactLeft, MegaphoneFill } from 'react-bootstrap-icons';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Goal from '../goal';
 import Style from './dashboardAppo.module.scss'
@@ -12,7 +12,7 @@ const DashboardAppo = (props: Props) => {
     let { path, url } = useRouteMatch();
     const [goals, setGoals] = useState<any[]>([]);
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
-    
+
     useEffect(() => {
         (async () => {
             const goal = await fetch(`http://localhost:5000/goals/employee/${loggedUser.id}`, {
@@ -31,7 +31,7 @@ const DashboardAppo = (props: Props) => {
                 <Route exact path={path}>
                     <div hidden={goals.length >= 1} className={Style.informNotData}>
                         <MegaphoneFill className={Style.noticeIcon} />
-                        <p>Até o momento não existe nem um objetivo vinculado a esta empresa ou ao seu usúario, 
+                        <p>Até o momento não existe nem um objetivo vinculado a esta empresa ou ao seu usúario,
                             realize o primeiro planejamento.</p>
                     </div>
                     <section className={Style.goalsSection}>
@@ -50,8 +50,24 @@ const DashboardAppo = (props: Props) => {
                         })}
                     </section>
                 </Route>
+                <Route path={`${path}/goals/new`} render={
+                    (props) => (<>
+                        <Link className={Style.btnPrimary} to={`/app/appo`}>
+                            <ChevronCompactLeft className={Style.backIcon} />
+                            Voltar
+                        </Link>
+                        {<Goal />}
+                    </>)
+                }>
+                </Route>
                 <Route path={`${path}/goals/:id`} render={
-                    (props) => (<Goal uuid={props.match.params.id} />)
+                    (props) => (<>
+                        <Link className={Style.btnPrimary} to={`/app/appo`}>
+                            <ChevronCompactLeft className={Style.backIcon} />
+                            Voltar
+                        </Link>
+                        {<Goal uuid={props.match.params.id} />}
+                    </>)
                 }>
                 </Route>
             </Switch>
