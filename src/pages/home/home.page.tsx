@@ -15,14 +15,12 @@ export const HomePage = () => {
   const [latestRatingDisc, setLatestRatingDisc] = useState<any>({ profile: "nenhum" });
 
   useEffect(() => {
-    console.log("loggeduser",loggedUser);
     (async () => {
       const responseCompany = await fetch(`http://localhost:5000/companies/${loggedUser.company}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
       const companyData: any = await responseCompany.json();
-      console.log("if", companyData);
       if (companyData.cycle) {
         setCycles([...companyData.cycle]);
       }
@@ -93,7 +91,6 @@ export const HomePage = () => {
   }
 
   const textNotCycle = () => {
-    console.log("ciclos",cycles);
     if (!cycles || cycles?.length <= 0) {
       return (
         <div className={Style.informativeColumn}>
@@ -128,11 +125,12 @@ export const HomePage = () => {
           </div>
           <div className={Style.informativeColumn}>
             <h4>Avaliações pendentes</h4>
-            <div hidden={assessments.length >= 1} className={Style.informNotData}>
+            <RecordAssessment assessments={assessments} loggedUserId={loggedUser.id} />
+            <div hidden={!(assessments.filter((assessment: any) => ["Pendente", "Rascunho"]
+              .includes(assessment.status) && assessment.evaluator.id === loggedUser.id).length === 0)} className={Style.informNotData}>
               <MegaphoneFill className={Style.noticeIcon} />
               <p>Até o momento não existe nem uma avaliação vinculada a esta empresa ou ao seu usúario.</p>
             </div>
-            <RecordAssessment assessments={assessments} loggedUserId={loggedUser.id} />
           </div>
         </Col>
         <Col lg={5} className={Style.contentColumn}>

@@ -1,4 +1,5 @@
 @import "../../assets/styles/ui";
+@import "../../assets/styles/colors";
 
 .page {
     margin: 0;
@@ -37,9 +38,6 @@
 }
 
 .notices {
-    background-color: white;
-    border-radius: 8px;
-
     ul {
         list-style-type: none;
         padding-left: 0;
@@ -48,6 +46,8 @@
             display: flex;
             margin: 10px 0;
             padding: 10px;
+            background-color: white;
+            border-radius: 8px;
 
             P {
                 margin: 0;
@@ -55,7 +55,6 @@
 
             .markInfo {
                 font-weight: bold;
-                //color: royalblue;
             }
         }
 
