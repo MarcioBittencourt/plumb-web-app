@@ -59,7 +59,7 @@ const AssessementRecord = ({ id, name, requestDate, deadlineDate, concludedDate,
                     <Col lg={3} className={Style.dataColumn}>
                         <div className={Style.detailsStatus}>
                             <p className={Style.tertiaryInfo}>Solicitado {dataSolicitacaoFmt}</p>
-                            <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${reaminingTotalTimeInDay} dias ${dataResolution.hours}:${dataResolution.minutes}`}</p>
+                            <p className={Style.primaryInfo} hidden={status === "Concluído"}>{`Restam ${reaminingTotalTimeInDay} dias ${dataResolution.hours}h${dataResolution.minutes} min`}</p>
                             <p className={Style.secondaryInfo} hidden={["Concluído", "Enviado"].includes(status)}>Disponível até {prazoResolucaoFmt}</p>
                             <p className={Style.secondaryInfo} hidden={["Pendente", "Rascunho"].includes(status)}>Concluído em {dataConclusaoFmt}</p>
                         </div>
