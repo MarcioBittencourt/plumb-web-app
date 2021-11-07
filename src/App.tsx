@@ -5,16 +5,17 @@ import Style from './App.module.scss';
 
 function App() {
   return (
-    <div className={Style.App}>
-      <Switch>
-        <Route path="/signIn" render={(props) => (
-          <Signin />
-        )} />
-        <Route path="/app" render={(props) => (
+
+    <Switch>
+      <Route path="/signIn" render={(props) => (
+        <Signin />
+      )} />
+      <Route path="/app" render={(props) => (
+        <div className={Style.App}>
           <Base />
-        )} />
-      </Switch>
-    </div>
+        </div>
+      )} />
+    </Switch>
   );
 }
 export default App;
