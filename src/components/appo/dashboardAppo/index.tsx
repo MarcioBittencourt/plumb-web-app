@@ -52,20 +52,12 @@ const DashboardAppo = (props: Props) => {
                 </Route>
                 <Route path={`${path}/goals/new`} render={
                     (props) => (<>
-                        <Link className={Style.btnPrimary} to={`/app/appo`}>
-                            <ChevronCompactLeft className={Style.backIcon} />
-                            Voltar
-                        </Link>
                         {<Goal />}
                     </>)
                 }>
                 </Route>
                 <Route path={`${path}/goals/:id`} render={
                     (props) => (<>
-                        <Link className={Style.btnPrimary} to={`/app/appo`}>
-                            <ChevronCompactLeft className={Style.backIcon} />
-                            Voltar
-                        </Link>
                         {<Goal uuid={props.match.params.id} />}
                     </>)
                 }>

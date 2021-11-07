@@ -9,6 +9,7 @@ import { ChevronCompactLeft, ChevronCompactRight } from 'react-bootstrap-icons';
 type Props = {}
 
 const APPOPage = (props: Props) => {
+    let isPlan = window.location.pathname.startsWith('/app/appo/goals/')
     let { path, url } = useRouteMatch();
     return (
         <Container className={Style.page}>
@@ -16,13 +17,22 @@ const APPOPage = (props: Props) => {
                 <Col className={Style.sectionTitle}>
                     <h3 className={Style.pageTitle}>Objetivos</h3>
                 </Col>
-                <Route exact path={path}>
-                    <Col className={Style.btnPlan}>
+                <Col className={Style.btnPlan}>
+                    {!isPlan ?
                         <Link className={Style.btnPrimary} to={`/app/appo/goals/new`}>
                             Planejar
                         </Link>
-                    </Col>
-                </Route>
+                        : null
+                    }
+                    {
+                        isPlan
+                            ? (<Link className={Style.btnPrimary} to={`/app/appo`}>
+                                <ChevronCompactLeft className={Style.backIcon} />
+                                Voltar
+                            </Link>)
+                            : null
+                    }
+                </Col>
             </Row>
             <Row>
                 <DashboardAppo />
