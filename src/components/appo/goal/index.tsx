@@ -1,9 +1,8 @@
 import Style from "./goal.module.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import Smart from './smart/index';
-import { PersonCheckFill, PersonCircle, PersonPlus, PersonPlusFill, PersonXFill, Search, XCircleFill } from "react-bootstrap-icons";
+import { PersonCircle, PersonPlusFill, PersonXFill, Search, XCircleFill } from "react-bootstrap-icons";
 import { useEffect, useRef, useState } from "react";
-import { convertToObject } from "typescript";
 
 type Props = {
   uuid?: string | null;
@@ -25,8 +24,8 @@ const Goal = ({ uuid }: Props) => {
   const [title, setTitle] = useState<string>();
   const [goalDetail, setGoalDetail] = useState<string>();
   const [goalMeasuredDetail, setGoalMeasuredDetail] = useState<string>();
-  const [startDate, setStartDate] = useState<string>();
-  const [endDate, setEndDate] = useState<string>();
+  const [startDate, setStartDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
   const [taskName, setTaskName] = useState<string>();
 
   const refTaskName = useRef<HTMLInputElement>(null);
@@ -42,7 +41,6 @@ const Goal = ({ uuid }: Props) => {
   const [goal, setGoal] = useState<any>({});
 
   useEffect(() => {
-    console.log("teste", typeof 1);
     (async () => {
       const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
       const company = await fetch(url, {
@@ -62,8 +60,8 @@ const Goal = ({ uuid }: Props) => {
         setTitle(goalData.title);
         setGoalDetail(goalData.goalDetail);
         setGoalMeasuredDetail(goalData.goalMeasuredDetail);
-        setStartDate(goalData.startDate);
-        setEndDate(goalData.endDate);
+        setStartDate(new Date(goalData.startDate));
+        setEndDate(new Date(goalData.endDate));
         setAddedColaborators([...goalData.employees]);
         setTasksData([...goalData.tasks]);
         goalData.tasks.forEach((task: any, index: number) => newLine(task.name, index));
@@ -71,12 +69,14 @@ const Goal = ({ uuid }: Props) => {
     })();
   }, []);
 
+  console.log("tipo date ", typeof startDate);
+
   const saveGoal = async () => {
     const goalsResponse = await fetch(`http://localhost:5000/goals`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        id: uuid,
+        id: parseInt(uuid || ""),
         title: title,
         goalDetail: goalDetail,
         goalMeasuredDetail: goalMeasuredDetail,
@@ -204,16 +204,18 @@ const Goal = ({ uuid }: Props) => {
                 <input
                   type="date"
                   className="form-control"
-                  onChange={(event: any) => setStartDate(event?.target.value)}
-                  value={startDate} />
+                  value={startDate?.toISOString().split('T')[0]}
+                  onChange={(event: any) => setStartDate(new Date(event?.target.value))} 
+                />
+                <p></p>
               </Col>
               <Col lg={6}>
                 <label>Fim:</label>
                 <input
                   type="date"
                   className="form-control"
-                  onChange={(event: any) => setEndDate(event?.target.value)}
-                  value={endDate} />
+                  value={endDate?.toISOString().split('T')[0]} 
+                  onChange={(event: any) => setEndDate(new Date(event?.target.value))}/>
               </Col>
             </Row>
           </Col>
