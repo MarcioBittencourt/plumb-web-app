@@ -22,11 +22,13 @@ type GoalType = {
 const Goal = ({ uuid }: Props) => {
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
 
-  const refTitle = useRef<HTMLInputElement>(null);
-  const refGoalDetail = useRef<HTMLTextAreaElement>(null);
-  const refGoalMeasuredDetail = useRef<HTMLTextAreaElement>(null);
-  const refStartDate = useRef<HTMLInputElement>(null);
-  const refEndDate = useRef<HTMLInputElement>(null);
+  const [title, setTitle] = useState<string>();
+  const [goalDetail, setGoalDetail] = useState<string>();
+  const [goalMeasuredDetail, setGoalMeasuredDetail] = useState<string>();
+  const [startDate, setStartDate] = useState<string>();
+  const [endDate, setEndDate] = useState<string>();
+  const [taskName, setTaskName] = useState<string>();
+
   const refTaskName = useRef<HTMLInputElement>(null);
   const refTaskStatus = useRef<HTMLInputElement>(null);
 
@@ -40,6 +42,7 @@ const Goal = ({ uuid }: Props) => {
   const [goal, setGoal] = useState<any>({});
 
   useEffect(() => {
+    console.log("teste", typeof 1);
     (async () => {
       const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
       const company = await fetch(url, {
@@ -56,6 +59,11 @@ const Goal = ({ uuid }: Props) => {
         });
         const goalData: any = await goal.json();
         setGoal(goalData);
+        setTitle(goalData.title);
+        setGoalDetail(goalData.goalDetail);
+        setGoalMeasuredDetail(goalData.goalMeasuredDetail);
+        setStartDate(goalData.startDate);
+        setEndDate(goalData.endDate);
         setAddedColaborators([...goalData.employees]);
         setTasksData([...goalData.tasks]);
         goalData.tasks.forEach((task: any, index: number) => newLine(task.name, index));
@@ -68,11 +76,12 @@ const Goal = ({ uuid }: Props) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        title: refTitle.current?.value,
-        goalDetail: refGoalDetail.current?.value,
-        goalMeasuredDetail: refGoalMeasuredDetail.current?.value,
-        startDate: refStartDate.current?.value,
-        endDate: refEndDate.current?.value,
+        id: uuid,
+        title: title,
+        goalDetail: goalDetail,
+        goalMeasuredDetail: goalMeasuredDetail,
+        startDate: startDate,
+        endDate: endDate,
         employees: addedColaborators,
       })
     });
@@ -82,6 +91,7 @@ const Goal = ({ uuid }: Props) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          id: task.id,
           name: task.name,
           status: "Pendente",
           goal: goal.id,
@@ -159,8 +169,8 @@ const Goal = ({ uuid }: Props) => {
             <input
               type="text"
               placeholder="Insira o titulo do objetivo aqui!"
-              value={goal.title}
-              ref={refTitle} />
+              onChange={(event: any) => setTitle(event?.target.value)}
+              value={title}/>
           </Col>
           <Col hidden lg={3}>
             <Smart smarts={["Especifico", "Mensuravel", "Alcançavel", "Realista", "Temporal"]} />
@@ -172,18 +182,18 @@ const Goal = ({ uuid }: Props) => {
               <textarea
                 className="form-control"
                 placeholder="Descreva de forma detalhada seu objetivo..."
-                value={goal.goalDetail}
-                id="description"
-                ref={refGoalDetail}>
+                onChange={(event: any) => setGoalDetail(event?.target.value)}
+                value={goalDetail}
+                id="description">
               </textarea>
             </Row>
             <Row className={Style.rowDetailsGoal}>
               <textarea
                 className="form-control"
                 placeholder="Descreva como o objetivo será mensurado..."
-                value={goal.goalMeasuredDetail}
-                id="description"
-                ref={refGoalMeasuredDetail}>
+                value={goalMeasuredDetail}
+                onChange={(event: any) => setGoalMeasuredDetail(event?.target.value)}
+                id="description">
               </textarea>
             </Row>
           </Col>
@@ -194,16 +204,16 @@ const Goal = ({ uuid }: Props) => {
                 <input
                   type="date"
                   className="form-control"
-                  value={goal.startDate}
-                  ref={refStartDate} />
+                  onChange={(event: any) => setStartDate(event?.target.value)}
+                  value={startDate} />
               </Col>
               <Col lg={6}>
                 <label>Fim:</label>
                 <input
                   type="date"
                   className="form-control"
-                  value={goal.endDate}
-                  ref={refEndDate} />
+                  onChange={(event: any) => setEndDate(event?.target.value)}
+                  value={endDate} />
               </Col>
             </Row>
           </Col>
