@@ -1,4 +1,5 @@
 @import "../../../../assets/styles/ui";
+@import "../../../../assets/styles/colors";
 
 .goal {
     background-color: white;
@@ -18,7 +19,7 @@
 }
 
 .goal:hover {
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid $color-details-secondary;
 }
 
 .taskTitle {

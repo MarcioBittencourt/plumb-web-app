@@ -12,6 +12,8 @@ const DashboardAppo = (props: Props) => {
     let { path, url } = useRouteMatch();
     const [goals, setGoals] = useState<any[]>([]);
     const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+    const cycles: any[] = JSON.parse(localStorage.getItem("cycles") || '{}');
+    const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "APPO");
 
     useEffect(() => {
         (async () => {

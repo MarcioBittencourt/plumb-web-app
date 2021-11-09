@@ -20,6 +20,9 @@ type GoalType = {
 
 const Goal = ({ uuid }: Props) => {
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+  const cycles: any[] = JSON.parse(localStorage.getItem("cycles") || '{}');
+  const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "APPO");
+
 
   const [title, setTitle] = useState<string>();
   const [goalDetail, setGoalDetail] = useState<string>();
@@ -70,6 +73,7 @@ const Goal = ({ uuid }: Props) => {
   }, []);
 
   const saveGoal = async () => {
+    const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "APPO");
     const goalsResponse = await fetch(`http://localhost:5000/goals`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,6 +85,7 @@ const Goal = ({ uuid }: Props) => {
         startDate: startDate,
         endDate: endDate,
         employees: addedColaborators,
+        cycle: cycle.id,
       })
     });
     const goal = await goalsResponse.json();
