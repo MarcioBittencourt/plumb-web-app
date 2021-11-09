@@ -23,6 +23,9 @@ export type Profile = {
 const Survey = ({ askings }: Props) => {
 
     let { path, url } = useRouteMatch();
+    const disc: any[] = Object.entries(JSON.parse(localStorage.getItem('disc') || '{}'));
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+    const cycles:any[] = JSON.parse(localStorage.getItem("cycles") || '{}');
 
     const [profile, setProfile] = useState<Profile>({
         dominante: { profile: "dominante", scoreMore: 0, scoreLess: 0 },
@@ -46,16 +49,15 @@ const Survey = ({ askings }: Props) => {
         setProfile(profile);
     }
 
-    const disc: any[] = Object.entries(JSON.parse(localStorage.getItem('disc') || '{}'));
-    const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
-
     const save = async () => {
+        const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "DISC");
         const response = await fetch(`http://localhost:5000/disc`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 profile: profileResult().profile,
                 employee: loggedUser.id,
+                cycle: cycle.id,
             }),
         });
 

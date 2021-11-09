@@ -7,6 +7,7 @@ import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Survey from '../survey/index';
 import DISCData from '../../../assets/disc.json';
 import { format } from "date-fns";
+import { MegaphoneFill } from "react-bootstrap-icons";
 
 type Props = {}
 
@@ -21,6 +22,8 @@ const DashboardDisc = (props: Props) => {
   const [latestRating, setLatestRating] = useState<any>({ profile: "nenhum" });
   const [allRatingsFromLoggedUser, setAllRatingsFromLoggedUser] = useState<any>([]);
   const [allRatingsFromOthersEmployees, setAllRatingsFromOthersEmployees] = useState<any>([]);
+  const cycles: any[] = JSON.parse(localStorage.getItem("cycles") || '{}');
+
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
@@ -41,9 +44,7 @@ const DashboardDisc = (props: Props) => {
       });
       const discsEmployeesData: any = await profilesEmployeesResponse.json();
       setAllRatingsFromOthersEmployees(discsEmployeesData);
-      console.log("discs", discsEmployeesData);
     })();
-    console.log("allRatings", allRatingsFromOthersEmployees);
   }, []);
 
   const showDescription = () => {
@@ -56,6 +57,21 @@ const DashboardDisc = (props: Props) => {
       </div>
     )
   }
+
+  const validationNewProfile = () => {
+    const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "DISC");
+    return (
+      latestRating.cycle.id == cycle.id
+        ? <div className={Style.notices} data-new-cycle="cycle">
+          <MegaphoneFill className={Style.noticeIcon} />
+          <p>Aguarde um novo ciclo para realizar uma nova avaliação.</p>
+        </div>
+        : <Link className={Style.btnPrimary} to={`/app/disc/survey`}>
+          Realizar uma nova avaliação
+        </Link>
+    )
+  }
+
   const resultProfile = () => {
     if (dataProfiles.profiles.some(profile => profile.profile === latestRating.profile)) {
       return (
@@ -76,9 +92,7 @@ const DashboardDisc = (props: Props) => {
                   <h4>{latestRating.profile}</h4>
                 </div>
               </div>
-              <Link className={Style.btnPrimary} to={`/app/disc/survey`}>
-                Realizar uma nova avaliação
-              </Link>
+              {validationNewProfile()}
             </Col>
           </Row>
           {tableProfiles()}
@@ -155,22 +169,30 @@ const DashboardDisc = (props: Props) => {
             {allRatingsFromOthersEmployees
               .filter((disc: any) => disc.employee.id != loggedUser.id)
               .map((disc: any) => {
-              const dateCreationFmt = format(new Date(disc.creationDate), 'd MMM yyyy');
-              return (
-                <Row className={Style.entityTableRecord}>
-                  <Col lg={3}>
-                    <div data-profile={disc.profile}
-                      className={Style.profileTableRecord}>
-                      <h3>{disc.profile.substring(0, 1)}</h3>
-                    </div>
-                  </Col>
-                  <Col lg={3}>
-                    <h5 className={Style.primaryInfoSecondaryCol}>{disc.profile}</h5>
-                  </Col>
-                  <Col lg={3}><h5>{disc.employee.name}</h5></Col>
-                </Row>
-              )
-            })
+                const dateCreationFmt = format(new Date(disc.creationDate), 'd MMM yyyy');
+                return (
+                  <Row className={Style.entityTableRecord}>
+                    <Col lg={3}>
+                      <div data-profile={disc.profile}
+                        className={Style.profileTableRecord}>
+                        <h3>{disc.profile.substring(0, 1)}</h3>
+                      </div>
+                    </Col>
+                    <Col lg={3}>
+                      <h5 className={Style.primaryInfoSecondaryCol}>{disc.profile}</h5>
+                    </Col>
+                    <Col lg={3}><h5>{disc.employee.name}</h5></Col>
+                  </Row>
+                )
+              })
+            }
+            {
+              allRatingsFromOthersEmployees
+                ? <div className={Style.notices} >
+                  <MegaphoneFill className={Style.noticeIcon} />
+                  <p>Aguarde um colega realizar uma nova avaliação.</p>
+                </div>
+                : null
             }
           </Col>
         </Row>

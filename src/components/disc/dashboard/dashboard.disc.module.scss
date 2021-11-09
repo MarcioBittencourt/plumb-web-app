@@ -210,3 +210,30 @@
 .descriptionProfile {
     margin-bottom: 38px;
 }
+
+.noticeIcon {
+    margin-top: 3px;
+    margin-right: 18px;
+    margin-left: 8px;
+    color: orange;
+    font-size: 24px;
+    transform: rotate(-45deg);
+}
+
+.notices {
+    align-items: center;
+    padding: 14px;
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    font-weight: 500;
+
+    p {
+        margin: 0;
+    }
+
+    &[data-new-cycle = "cycle"] {
+        width: 350px;
+        margin-top: 24px;
+    }
+}
