@@ -7,11 +7,11 @@ type Props = {
     avatar: string,
     name: string,
     email: string,
-    departament: string,
+    role: string,
     handleOnChange: (event: any) => void
 }
 
-const Request = ({ id, avatar, name, email, departament, handleOnChange }: Props) => {
+const Request = ({ id, avatar, name, email, role, handleOnChange }: Props) => {
     return (
         <Row className={Style.assessementTableRecordContent}>
             <Col lg={4} sm={4} className={Style.userInfo}>
@@ -22,7 +22,7 @@ const Request = ({ id, avatar, name, email, departament, handleOnChange }: Props
                 </div>
             </Col>
             <Col lg={3} sm={4}><p>{email}</p></Col>
-            <Col lg={3} sm={4}><p>Administração{departament}</p></Col>
+            <Col lg={3} sm={4}><p>{role}</p></Col>
             <Col lg={2} sm={1}><input className={Style.checkbox} type="checkbox" onChange={handleOnChange} /></Col>
         </Row>
     );

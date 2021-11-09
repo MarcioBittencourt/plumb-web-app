@@ -14,6 +14,7 @@ const Dashboard = (props: Props) => {
   const [selectedEmployees, setSelectedEmployees] = useState<any[]>([]);
 
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
+  const cycles:any[] = JSON.parse(localStorage.getItem("cycles") || '{}');
 
   const [colaborators, setColaborators] = useState<any[]>([]);
   const [assessements, setAssessements] = useState<any[]>([]);
@@ -37,6 +38,7 @@ const Dashboard = (props: Props) => {
   }
 
   useEffect(() => {
+    console.log("teste", cycles);
     (async () => {
       const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
       const response = await fetch(url, {
@@ -67,6 +69,7 @@ const Dashboard = (props: Props) => {
   }, [assessements]);
 
   const sendRequest = async () => {
+    const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "AF360");
     const newAssessements: any[] = await Promise.all(selectedEmployees.map(async employee => {
       const createdAssessementResponse = await fetch(`http://localhost:5000/assessements`, {
         method: 'POST',
@@ -75,6 +78,7 @@ const Dashboard = (props: Props) => {
           evaluator: employee.id,
           rated: loggedUser.id,
           requestDate: new Date(),
+          deadlineDate: cycle.periodEnd,
           status: "Pendente"
         })
       });
@@ -138,7 +142,7 @@ const Dashboard = (props: Props) => {
             <Row className={Style.entityTableHeader}>
               <Col lg={4}><p>Colaborador</p></Col>
               <Col lg={3}><p>Contato</p></Col>
-              <Col lg={3}><p>Setor</p></Col>
+              <Col lg={3}><p>Papel</p></Col>
               <Col lg={2} className={Style.iconCheckColumn}>
                 <UiChecks className={Style.iconCheck} />
               </Col>
@@ -155,7 +159,7 @@ const Dashboard = (props: Props) => {
                       avatar={employee.avatar}
                       name={employee.name}
                       email={employee.email}
-                      departament={employee.departament}
+                      role={employee.role}
                       handleOnChange={event => selectColaborator(event, employee)}
                     />
                   )
