@@ -38,7 +38,6 @@ const Dashboard = (props: Props) => {
   }
 
   useEffect(() => {
-    console.log("teste", cycles);
     (async () => {
       const url = `http://localhost:5000/employees/company/${loggedUser.company}`;
       const response = await fetch(url, {

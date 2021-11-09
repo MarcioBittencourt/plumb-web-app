@@ -69,8 +69,6 @@ const Goal = ({ uuid }: Props) => {
     })();
   }, []);
 
-  console.log("tipo date ", typeof startDate);
-
   const saveGoal = async () => {
     const goalsResponse = await fetch(`http://localhost:5000/goals`, {
       method: 'POST',

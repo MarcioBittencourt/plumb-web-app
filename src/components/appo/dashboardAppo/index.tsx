@@ -21,7 +21,6 @@ const DashboardAppo = (props: Props) => {
             });
             const goalData: any = await goal.json();
             setGoals([...goalData]);
-            console.log("goals", goalData);
         })();
     }, []);
 
