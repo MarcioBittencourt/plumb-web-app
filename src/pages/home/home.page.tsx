@@ -16,16 +16,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     (async () => {
-      const responseCompany = await fetch(`http://localhost:5000/companies/${loggedUser.company}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const companyData: any = await responseCompany.json();
-      if (companyData.cycle) {
-        setCycles([...companyData.cycle]);
-      }
-    })();
-    (async () => {
       const discProfileResponse = await fetch(`http://localhost:5000/disc/employeeId/${loggedUser.id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
@@ -51,6 +41,17 @@ export const HomePage = () => {
       const goalData: any = await goalResponse.json();
       setGoals([...goalData]);
     })();
+    (async () => {
+      const cycleResponse = await fetch(`http://localhost:5000/cycles/findCurrentCycles/${loggedUser.company}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const cycleData: any = await cycleResponse.json();
+      if (cycleData) {
+        setCycles([...cycleData]);
+        localStorage.setItem('cycles', JSON.stringify(cycleData));
+      }
+    })();
   }, []);
 
   const presentCycle = () => {
@@ -62,7 +63,9 @@ export const HomePage = () => {
           return {
             typeAssessement: dict[cycle.typeAssessment],
             periodEnd: format(new Date(cycle.periodEnd), "dd - MMMM - yyyy").replaceAll('-', 'de'),
-            pediodStart: format(new Date(cycle.periodEnd), "dd - MMMM - yyyy").replaceAll('-', 'de'),
+            nextCycleStart:
+              cycle.nextCycleStart ? format(new Date(cycle.nextCycleStart), "dd - MMMM - yyyy").replaceAll('-', 'de')
+                : null,
           }
         });
 
@@ -71,16 +74,25 @@ export const HomePage = () => {
           <h4>Avisos</h4>
           <div className={Style.notices}>
             <ul>
-              {filteredCycles.map(c => {
+              {filteredCycles.map(cycle => {
                 return (
-                  <li>
-                    <MegaphoneFill className={Style.noticeIcon} />
-                    <p>
-                      Este ciclo de <span className={Style.markInfo}>{c.typeAssessement}&nbsp;</span>
-                      encerra em <span className={Style.markInfo}>{c.periodEnd}&nbsp;</span>,
-                      e o próximo iniciará em <span className={Style.markInfo}>{c.pediodStart}</span>.
-                    </p>
-                  </li>
+                  cycle.nextCycleStart
+                    ? <li>
+                      <MegaphoneFill className={Style.noticeIcon} />
+                      <p>
+                        Este ciclo de <span className={Style.markInfo}>{cycle.typeAssessement}&nbsp;</span>
+                        encerra em <span className={Style.markInfo}>{cycle.periodEnd}&nbsp;</span>,
+                        e o próximo iniciará em <span className={Style.markInfo}>{cycle.nextCycleStart}</span>.
+                      </p>
+                    </li>
+                    : <li>
+                      <MegaphoneFill className={Style.noticeIcon} />
+                      <p>
+                        Este ciclo de <span className={Style.markInfo}>{cycle.typeAssessement}&nbsp;</span>
+                        encerra em <span className={Style.markInfo}>{cycle.periodEnd}&nbsp;</span>,
+                        para continuar as avaliações crie outro ciclo, após o fim da linha de tempo corrente.
+                      </p>
+                    </li>
                 )
               })}
             </ul>
