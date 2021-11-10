@@ -21,10 +21,18 @@ const Navigation = () => {
                         <Nav.Link href="/app/360">Desempenho</Nav.Link>
                         <Nav.Link href="/app/disc">Comportamento</Nav.Link>
                         <Nav.Link href="/app/appo">Objetivos</Nav.Link>
-                        <Nav.Link href="/app/account" className={Style.avatarContent}>
-                            <PersonCircle className={Style.avatar} />
-                            <p>Olá, {loggedUser.name}</p>
-                        </Nav.Link>
+                        {
+                            loggedUser.role === "admin"
+                                ? <Nav.Link href="/app/account" className={Style.avatarContent}>
+                                    <PersonCircle className={Style.avatar} />
+                                    <p>Olá, {loggedUser.name}</p>
+                                </Nav.Link>
+                                :
+                                <Nav.Link className={Style.avatarContent}>
+                                    <PersonCircle className={Style.avatar} />
+                                    <p>Olá, {loggedUser.name}</p>
+                                </Nav.Link>
+                        }
                     </Nav>
                 </Collapse>
             </div>
