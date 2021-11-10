@@ -41,6 +41,7 @@ const Goal = ({ uuid }: Props) => {
   const [addedColaborators, setAddedColaborators] = useState<any[]>([]);
   const [tasks, setTasks] = useState<any[]>([]);
   const [tasksData, setTasksData] = useState<any[]>([]);
+  const [removeTasksData, setRemoveTasksData] = useState<any[]>([]);
   const [goal, setGoal] = useState<any>({});
 
   useEffect(() => {
@@ -67,10 +68,15 @@ const Goal = ({ uuid }: Props) => {
         setEndDate(new Date(goalData.endDate));
         setAddedColaborators([...goalData.employees]);
         setTasksData([...goalData.tasks]);
-        goalData.tasks.forEach((task: any, index: number) => newLine(task.name, index));
       }
     })();
   }, []);
+
+  useEffect(() => {
+    setTasks([]);
+    tasksData.forEach((task: any, index: number) => newLine(task.name, index));
+    console.log("removed", removeTasksData);
+  }, [tasksData]);
 
   const saveGoal = async () => {
     const cycle = cycles.find((cycle: any) => cycle.typeAssessment == "APPO");
@@ -123,6 +129,8 @@ const Goal = ({ uuid }: Props) => {
   }, [addedColaborators])
 
   const removeCollaborator = (colaborator: any, index: number) => {
+
+
     const removed = addedColaborators.splice(index, 1);
     setAddedColaborators([...addedColaborators]);
     setFilteredColaborators([...filteredColaborators, removed[0]]);
@@ -133,17 +141,22 @@ const Goal = ({ uuid }: Props) => {
       name: refTaskName.current?.value,
       status: refTaskStatus.current?.value,
     }
-    const newValues = [...tasksData];
-    newValues.splice(index, 1, changedTask);
-    setTasksData([...newValues]);
+    tasksData.splice(index, 1, changedTask);
   }
 
   const removeTask = (index: number) => {
-    tasksData.splice(index, 1);
+    const removedTask = tasksData.splice(index, 1);
     setTasksData([...tasksData]);
-
+    removedTask.map((task) => {
+      setRemoveTasksData([...removeTasksData, task]);
+    })
     tasks.splice(index, 1);
     setTasks([...tasks]);
+
+    fetch(`http://localhost:5000/tasks/${removedTask[0].id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
   }
 
   const newLine = (name?: string, row: number = tasks.length) => {
@@ -173,7 +186,7 @@ const Goal = ({ uuid }: Props) => {
               type="text"
               placeholder="Insira o titulo do objetivo aqui!"
               onChange={(event: any) => setTitle(event?.target.value)}
-              value={title}/>
+              value={title} />
           </Col>
           <Col hidden lg={3}>
             <Smart smarts={["Especifico", "Mensuravel", "Alcançavel", "Realista", "Temporal"]} />
@@ -208,7 +221,7 @@ const Goal = ({ uuid }: Props) => {
                   type="date"
                   className="form-control"
                   value={startDate?.toISOString().split('T')[0]}
-                  onChange={(event: any) => setStartDate(new Date(event?.target.value))} 
+                  onChange={(event: any) => setStartDate(new Date(event?.target.value))}
                 />
                 <p></p>
               </Col>
@@ -217,8 +230,8 @@ const Goal = ({ uuid }: Props) => {
                 <input
                   type="date"
                   className="form-control"
-                  value={endDate?.toISOString().split('T')[0]} 
-                  onChange={(event: any) => setEndDate(new Date(event?.target.value))}/>
+                  value={endDate?.toISOString().split('T')[0]}
+                  onChange={(event: any) => setEndDate(new Date(event?.target.value))} />
               </Col>
             </Row>
           </Col>
