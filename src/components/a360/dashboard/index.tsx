@@ -34,7 +34,6 @@ const Dashboard = (props: Props) => {
       .reduce((unique: any, item: any) => unique.includes(item)
         ? unique
         : [...unique, item], []);
-    //adicionar mais um filtro pelo ciclo/sprint
   }
 
   useEffect(() => {
@@ -78,7 +77,8 @@ const Dashboard = (props: Props) => {
           rated: loggedUser.id,
           requestDate: new Date(),
           deadlineDate: cycle.periodEnd,
-          status: "Pendente"
+          cycle: cycle.id,
+          status: "Pendente",
         })
       });
 
@@ -141,7 +141,7 @@ const Dashboard = (props: Props) => {
             <Row className={Style.entityTableHeader}>
               <Col lg={4}><p>Colaborador</p></Col>
               <Col lg={3}><p>Contato</p></Col>
-              <Col lg={3}><p>Papel</p></Col>
+              <Col lg={3}><p hidden>Papel</p></Col>
               <Col lg={2} className={Style.iconCheckColumn}>
                 <UiChecks className={Style.iconCheck} />
               </Col>

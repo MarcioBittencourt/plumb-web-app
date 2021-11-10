@@ -22,7 +22,7 @@ const Request = ({ id, avatar, name, email, role, handleOnChange }: Props) => {
                 </div>
             </Col>
             <Col lg={3} sm={4}><p>{email}</p></Col>
-            <Col lg={3} sm={4}><p>{role}</p></Col>
+            <Col lg={3} sm={4}><p hidden>{role}</p></Col>
             <Col lg={2} sm={1}><input className={Style.checkbox} type="checkbox" onChange={handleOnChange} /></Col>
         </Row>
     );
