@@ -6,6 +6,13 @@ import Style from './home.page.module.scss'
 import RecordAssessment from './recordAssessments/recordAssessment';
 import RecordGoals from './recordGoals/recordGoals';
 
+const _profiles_disc: any = {
+  estavel: "Estável",
+  dominante: "Dominante",
+  conforme: "Conforme",
+  influencia: "Influência"
+}
+
 export const HomePage = () => {
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
   const [cycles, setCycles] = useState<any[]>([]);
@@ -152,7 +159,7 @@ export const HomePage = () => {
                 <h2>{latestRatingDisc.profile.substring(0, 1)}</h2>
               </div>
               <div data-profile={latestRatingDisc.profile} className={Style.profileDetails}>
-                <h4>{latestRatingDisc.profile}</h4>
+                <h4>{_profiles_disc[latestRatingDisc.profile]}</h4>
               </div>
             </div>
             <div>

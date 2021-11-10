@@ -16,6 +16,13 @@ type Disc = {
   description: string;
 }
 
+const _profiles_disc: any = {
+  estavel: "Estável",
+  dominante: "Dominante",
+  conforme: "Conforme",
+  influencia: "Influência"
+}
+
 const DashboardDisc = (props: Props) => {
 
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser") || '{}');
@@ -78,7 +85,7 @@ const DashboardDisc = (props: Props) => {
         <>
           <Row className={Style.page}>
             <div className={Style.titleProfile}>
-              <h3>{latestRating.profile}</h3>
+              <h3>{_profiles_disc[latestRating.profile]}</h3>
             </div>
             <Col lg={7}>
               {showDescription()}
@@ -89,7 +96,7 @@ const DashboardDisc = (props: Props) => {
                   <h2>{latestRating.profile.substring(0, 1)}</h2>
                 </div>
                 <div className={Style.profileDetails}>
-                  <h4>{latestRating.profile}</h4>
+                  <h4>{_profiles_disc[latestRating.profile]}</h4>
                 </div>
               </div>
               {validationNewProfile()}
@@ -144,7 +151,7 @@ const DashboardDisc = (props: Props) => {
                     </div>
                   </Col>
                   <Col lg={3}>
-                    <h5 className={Style.primaryInfoSecondaryCol}>{disc.profile}</h5>
+                    <h5 className={Style.primaryInfoSecondaryCol}>{_profiles_disc[disc.profile]}</h5>
                   </Col>
                   <Col lg={3} className={Style.tableRecordyTerciaryCol}>
                     <p className={Style.primaryInfoTerciaryCol}>Realizado</p>
@@ -179,7 +186,7 @@ const DashboardDisc = (props: Props) => {
                       </div>
                     </Col>
                     <Col lg={3}>
-                      <h5 className={Style.primaryInfoSecondaryCol}>{disc.profile}</h5>
+                      <h5 className={Style.primaryInfoSecondaryCol}>{_profiles_disc[disc.profile]}</h5>
                     </Col>
                     <Col lg={3}><h5>{disc.employee.name}</h5></Col>
                   </Row>
