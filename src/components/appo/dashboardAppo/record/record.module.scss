@@ -6,6 +6,7 @@
     border-radius: 8px;
     border-bottom-right-radius: 50px;
     align-items: center;
+    width: 100% !important;
 
     padding: 32px;
     margin: 32px 0;
@@ -56,4 +57,24 @@
     font-weight: 400;
     color: grey;
     font-size: 12px;
+}
+
+.status {
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 3px 10px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    &[data-status = "Pendente"] {    
+        border: 2px solid red;
+        color: red;
+    }
+    &[data-status = "Concluído"] {
+        border: 2px solid green;
+        color: green;
+    }
 }

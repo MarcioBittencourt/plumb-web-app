@@ -75,7 +75,6 @@ const Goal = ({ uuid }: Props) => {
   useEffect(() => {
     setTasks([]);
     tasksData.forEach((task: any, index: number) => newLine(task.name, index));
-    console.log("removed", removeTasksData);
   }, [tasksData]);
 
   const saveGoal = async () => {
@@ -92,6 +91,7 @@ const Goal = ({ uuid }: Props) => {
         endDate: endDate,
         employees: addedColaborators,
         cycle: cycle.id,
+        status: "Pendente",
       })
     });
     const goal = await goalsResponse.json();
@@ -154,9 +154,9 @@ const Goal = ({ uuid }: Props) => {
     setTasks([...tasks]);
 
     fetch(`http://localhost:5000/tasks/${removedTask[0].id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 
   const newLine = (name?: string, row: number = tasks.length) => {

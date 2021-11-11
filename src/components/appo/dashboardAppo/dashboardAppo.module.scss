@@ -8,6 +8,53 @@ p {
     margin: 0;
 }
 
+.recordSection {
+    display: flex;
+}
+
+.record {
+    width: 100%;
+}
+
+.rowBtn {
+    margin-left: auto;
+    & > div {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.iconStatus {
+    color: white;
+    font-size: 50px;
+    padding-bottom: 4px;
+
+    &[data-status = "Pendente"] {
+        padding-right: 12px;
+    }
+    &[data-status = "Concluído"] {
+        padding-right: 18px;
+    }
+}
+
+.statusBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    
+    &[data-status = "Pendente"] {
+        border: 2px solid red;
+        background-color: red;
+        color: red;
+    }
+    &[data-status = "Concluído"] {
+        border: 2px solid green;
+        background-color: green;
+        color: green;
+    }
+}
+
 .containerHeaderActions {
     display: flex;
     justify-content: flex-end;
