@@ -50,7 +50,7 @@ const Survey = ({ uuid }: Props) => {
 
       setFeedback1(questions["a360-feedback-1"]?.answer);
       setFeedback2(questions["a360-feedback-2"]?.answer);
-      
+
       setSliders([
         questions["a360-expectation-1"].answer,
         questions["a360-expectation-2"].answer,
@@ -237,11 +237,11 @@ const Survey = ({ uuid }: Props) => {
         <div className={Style.essentialSlider}>
           <p>O colaborador está alinhado aos pilares da organização?</p>
           <label className="teste">Integridade</label>
-          <p className={Style.askUtterance}>significa a qualidade de alguém ou algo a ser integre,
-            de conduta reta, pessoa de honra, ética, educada, brioso,
-            pundonoroso, cuja natureza de ação nos dá uma imagem de inocência,
-            pureza ou castidade, o que é íntegro, é justo e perfeito,
-            é puro de alma e de espírito.</p>
+          <p className={Style.askUtterance}>
+            Integridade é uma conduta que se caracteriza por uma convergência entre palavras e ações.
+            Uma pessoa íntegra tem uma conduta reta, ela faz o que ela fala,
+            o que ela pensa, sempre galgada pela ética e pela honestidade.
+          </p>
           <div className={Style.sliderSection}>
             <Col lg={8}>
               <Slider
@@ -260,10 +260,12 @@ const Survey = ({ uuid }: Props) => {
         </div>
         <div className={Style.essentialSlider}>
           <label className="teste">Colaboração</label>
-          <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-            in their exact original form, accompanied by English versions from the 1914 translation
-            by H. Rackham.</p>
+          <p className={Style.askUtterance}>
+            A colaboração permite que os membros da equipe se juntem
+            em uma plataforma comum e trabalhem em busca de um objetivo comum, 
+            pensando, tendo novas ideias e oferecendo várias perspectivas para 
+            fornecer soluções.
+          </p>
           <div className={Style.sliderSection}>
             <Col lg={8}>
               <Slider
@@ -282,10 +284,12 @@ const Survey = ({ uuid }: Props) => {
         </div>
         <div className={Style.essentialSlider}>
           <label className="teste">Transparência</label>
-          <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-            in their exact original form, accompanied by English versions from the 1914 translation
-            by H. Rackham.</p>
+          <p className={Style.askUtterance}>
+            Refere-se à nossa necessidade de entender o que está acontecendo
+            e prever o que acontecerá no futuro.
+            O compartilhamento aberto e transparente de informações, por sua vez,
+            é fundamental para a criação de certezas.
+          </p>
           <div className={Style.sliderSection}>
             <Col lg={8}>
               <Slider
@@ -304,10 +308,11 @@ const Survey = ({ uuid }: Props) => {
         </div>
         <div className={Style.essentialSlider}>
           <label className="teste">Organização</label>
-          <p className={Style.askUtterance}>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced
-            in their exact original form, accompanied by English versions from the 1914 translation
-            by H. Rackham.</p>
+          <p className={Style.askUtterance}>
+            A organização pessoal é uma competência imprescindível
+            para o gerenciamento eficaz do tempo e para a produtividade
+            e qualidade no ambiente de trabalho.
+          </p>
           <div className={Style.sliderSection}>
             <Col lg={8}>
               <Slider
@@ -325,8 +330,14 @@ const Survey = ({ uuid }: Props) => {
           </div>
         </div>
       </section>
-      <button hidden={assessement.status == "Concluído"} className={Style.btnPrimary} type="button" onClick={save}>Salvar</button>
-      <button hidden={assessement.status == "Concluído"} className={Style.btnPrimary} type="button" onClick={send}>Enviar</button>
+      <Row>
+        <Col>
+          <button hidden={assessement.status == "Concluído"} className={Style.btnPrimary} type="button" onClick={save}>Salvar</button>
+        </Col>
+        <Col>
+          <button hidden={assessement.status == "Concluído"} className={Style.btnPrimary} type="button" onClick={send}>Enviar</button>
+        </Col>
+      </Row>
     </form >
   )
 }
