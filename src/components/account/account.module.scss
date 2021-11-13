@@ -92,6 +92,7 @@
 }
 
 .period {
+    padding: 20px;
     display: flex;
     align-items: center;
 
@@ -99,6 +100,7 @@
         margin-right: 20px;
         label {
             margin-right: 3px;
+            font-weight: bold;
         }
     
         input {
